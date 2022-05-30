@@ -3,8 +3,8 @@
   "description": "Small MVC App written in PHP",
   "authors": [
     {
-      "name": "",
-      "email": ""
+      "name": "Wyvin Struys",
+      "email": "struys.wyvin@gmail.com"
     }
   ],
   "require": {

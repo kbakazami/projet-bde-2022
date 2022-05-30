@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Utils\Form;
-use App\Entity\User;
 use App\Form\LoginType;
 use App\Routing\Attribute\Route;
-use App\Controller\AbstractController;
 use App\Repository\UserRepository;
 use App\Session\Session;
 
@@ -63,6 +61,6 @@ class LoginController extends AbstractController
     }
 
     // var_dump($_SESSION);
-    echo $this->twig->render('index/contact.html.twig');
+    echo $this->twig->render('index/home.html.twig');
   }
 }
