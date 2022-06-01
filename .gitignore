@@ -4,3 +4,5 @@
 /var/
 /.phpunit.cache/
 /coverage/
+/node_modules
+/public/css/styles-output.css
