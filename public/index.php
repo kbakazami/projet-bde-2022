@@ -5,7 +5,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 if (
   php_sapi_name() !== 'cli' &&
-  preg_match('/\.(?:png|jpg|jpeg|gif|ico)$/', $_SERVER['REQUEST_URI'])
+  preg_match('/\.(?:png|jpg|jpeg|gif|ico|css|js)$/', $_SERVER['REQUEST_URI'])
 ) {
   return false;
 }
@@ -22,6 +22,9 @@ use App\Session\Session;
 use App\Session\SessionInterface;
 use Symfony\Component\Dotenv\Dotenv;
 use Twig\Environment;
+
+// On définit une constante contenant le dossier racine du projet
+define('ROOT', dirname(__DIR__));
 
 // Env vars - Possibilité d'utiliser le pattern Adapter
 // Pour pouvoir varier les dépendances qu'on utilise
