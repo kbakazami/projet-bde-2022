@@ -1,16 +1,32 @@
 {% include 'partials/header.html.twig'%}
 {% block nav %}
-    <nav>
-        <div>
-            <p>Logo</p>
+    <nav class="pb-px uppercase bg-gradient-to-r from-blue via-purple to-pink text-sm lg:text-base">
+        <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur "></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur "></div>
+            <div class="relative flex flex-row justify-between items-center h-full bg-black px-20 py-5 opacity-90">
+                <div>
+                    <p>Logo</p>
+                </div>
+                <ul class="flex flex-col md:flex-row space-x-5 justify-center items-center text-center">
+                    <li class="flex justify-center items-center md:after:content-['|'] md:after:pl-4 md:after:-mt-1">
+                        <a  href="/">Accueil</a>
+                    </li>
+                    <li class="flex justify-center items-center md:after:content-['|'] md:after:pl-4 md:after:-mt-1">
+                        <a href="#">Evenements</a>
+                    </li>
+                    <li class="flex justify-center items-center md:after:content-['|'] md:after:pl-4 md:after:-mt-1">
+                        <a href="#">Catégories</a>
+                    </li>
+                    <li class="flex justify-center items-center md:after:content-['|'] md:after:pl-4 md:after:-mt-1">
+                        <a href="/login">Se connecter</a>
+                    </li>
+                    <li>
+                        <a href="/register">S'inscrire</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="#">Evenements</a></li>
-            <li><a href="#">Catégories</a></li>
-            <li><a href="/login">Se connecter</a></li>
-            <li><a href="/register">S'inscrire</a></li>
-        </ul>
     </nav>
 {% endblock %}
 {% block body %}
