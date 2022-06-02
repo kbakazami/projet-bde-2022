@@ -6,6 +6,6 @@ La première fois que l'on récupère le projet sans tailwind il faut faire : ``
 
 Lancer le localhost : ``composer start``.
 
-Lancer le build du css : ``npm watch`` /!\ Lancer la commande même si on ajoute seulement des classes dans un template twig /!\.
+Lancer le build du css : ``npm run watch`` /!\ Lancer la commande même si on ajoute seulement des classes dans un template twig /!\.
 
-Si le css ne s'affiche pas faire un ``npm watch`` aussi.
+Si le css ne s'affiche pas faire un ``npm run watch`` aussi.
