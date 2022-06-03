@@ -5,7 +5,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 if (
   php_sapi_name() !== 'cli' &&
-  preg_match('/\.(?:png|jpg|jpeg|gif|ico|css|js)$/', $_SERVER['REQUEST_URI'])
+  preg_match('/\.(?:png|jpg|jpeg|gif|ico|css|js|ttf)$/', $_SERVER['REQUEST_URI'])
 ) {
   return false;
 }

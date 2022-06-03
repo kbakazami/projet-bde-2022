@@ -13,8 +13,17 @@ module.exports = {
         'blue': '#2D27FF',
         'purple': '#AE20D5',
         'pink': '#FF0A6C',
+      },
+      fontFamily:{
+        hind:["hind","roboto"],
+        expletus:["expletus","roboto"],
       }
     },
+  },
+  variants:{
+    extend: {
+      display: ['after','before']
+    }
   },
   plugins: [],
 }
