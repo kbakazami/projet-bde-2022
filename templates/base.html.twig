@@ -4,35 +4,76 @@
         <div class="relative">
             <div class="glowEffect"></div>
             <div class="glowEffect"></div>
-            <div class="relative flex flex-row justify-between items-center h-full bg-black px-20 py-5 opacity-90">
+            <div class="relative flex flex-row justify-between items-center h-full w-full bg-black px-8 py-2.5 lg:px-20 lg:py-5 opacity-90">
                 <div>
                     <p>Logo</p>
                 </div>
-                <ul class="flex flex-col md:flex-row divide-white divide-x-[2px] justify-center items-center text-center">
-                    <li class="relative flex justify-center items-center pr-5">
-                        <a href="/">Accueil</a>
-                    </li>
-                    <li class="relative flex justify-center items-center pr-5
-                    md:before:w-0.5 md:before:h-6 md:before:mr-5
-                    md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink">
-                        <a href="#">Evenements</a>
-                    </li>
-                    <li class="flex justify-center items-center pr-5
-                    md:before:w-0.5 md:before:h-6 md:before:mr-5
-                    md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink">
-                        <a href="#">Catégories</a>
-                    </li>
-                    <li class="flex justify-center items-center pr-5
-                    md:before:w-0.5 md:before:h-6 md:before:mr-5
-                    md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink">
-                        <a href="/login">Se connecter</a>
-                    </li>
-                    <li class="flex justify-center items-center pr-5
-                    md:before:w-0.5 md:before:h-6 md:before:mr-5
-                    md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink">
-                        <a href="/register">S'inscrire</a>
-                    </li>
-                </ul>
+
+                <div>
+                    <a href="javascript:void(0)" class="md:hidden" id="menuButton">
+                        <svg id="burgerMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            <defs>
+                                <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <svg id="cross" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant2)" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            <defs>
+                                <linearGradient id="gradiant2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </a>
+                </div>
+
+                <div id="headerNav"
+                     class="topnav">
+                    <div class="flex flex-col space-y-12
+                    md:space-y-0 md:flex-row md:justify-center md:items-center
+                    md:divide-white md:divide-x-[2px]">
+
+                        <a class="md:pr-5"
+                           href="/">
+                            Accueil
+                        </a>
+
+                        <a class="flex md:pr-5
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
+                        href="#">
+                            Evenements
+                        </a>
+
+                        <a class="flex md:pr-5
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
+                        href="#">
+                            Catégories
+                        </a>
+
+                        <a class="flex md:pr-5
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
+                        href="/login">
+                            Se connecter
+                        </a>
+
+                        <a class="flex
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
+                        href="/register">
+                            S'inscrire
+                        </a>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>
