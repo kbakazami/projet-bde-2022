@@ -2,3 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind screens;
+
+@font-face {
+    font-family: "hind";
+    src: url("../fonts/Hind.ttf");
+}
+
+@font-face {
+    font-family: "expletus";
+    src: url("../fonts/ExpletusSans.ttf");
+}
+
+.glowEffect
+{
+    @apply absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur
+}
