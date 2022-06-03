@@ -13,6 +13,18 @@
     src: url("../fonts/ExpletusSans.ttf");
 }
 
+@media screen and (max-width: 760px){
+    .topnav
+    {
+        @apply hidden
+    }
+
+    .topnav.openMenuMobile
+    {
+        @apply absolute text-lg flex top-14 pt-12 left-0 justify-center w-full items-center bg-black
+    }
+}
+
 .glowEffect
 {
     @apply absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur
