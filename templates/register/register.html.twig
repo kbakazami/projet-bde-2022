@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Connectez-vous</h1>
-    <form action='/connect' method='POST'>
+    <h1>Enregistrez-vous</h1>
+    <form action='/register-add' method='POST'>
         {% for form in formulaire %}
             {{form|raw}}
         {% endfor %}
