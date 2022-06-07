@@ -29,3 +29,8 @@
 {
     @apply absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur
 }
+
+.borderGradiantEffect
+{
+    @apply bg-gradient-to-r from-blue via-purple to-pink p-px
+}
