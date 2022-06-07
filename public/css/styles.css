@@ -34,3 +34,33 @@
 {
     @apply bg-gradient-to-r from-blue via-purple to-pink p-px
 }
+
+.inputFront
+{
+    /*@apply border-b border-red-500 bg-transparent*/
+    /*border-bottom: 2px solid red;*/
+    /*border-top: 0px solid transparent;*/
+    /*border-right: 0px solid transparent;*/
+    /*border-left: 0px solid transparent;*/
+    background-color: transparent;
+    /*background-image: linear-gradient(to right, #EAB226 50%, #984B43 50%);*/
+
+    /*border-bottom: 2px solid transparent;*/
+    /*background-image: linear-gradient(to right, #EAB226 50%, #984B43 50%);*/
+    background-size: calc(100% + 4px) 2px;
+
+    /* 4px extra to cater for 2px border on right + 2px on left */
+    background-repeat: no-repeat;
+    /*background-origin: border-box; */
+    /* make background start from border area itself instead of content/padding area */
+    background-position: bottom;
+    /*box-sizing: border-box !important;*/
+
+    margin-bottom: 24px;
+    @apply bg-gradient-to-r from-blue via-purple to-pink outline-0 placeholder:italic placeholder:uppercase
+}
+
+.labelFront
+{
+    @apply sr-only
+}

@@ -12,13 +12,13 @@ class Form
     $this->errors = $errors;
   }
 
-  public function input(string $key, string $label, string $type)
+  public function input(string $key, string $label, string $type, string $valuePlaceholder)
   {
 
     return
       '<div>
-        <label for="field' . $key . '"  required>' . $label . '</label>
-        <input type="' . $type . '" name="' . $key . '" id="field' . $key . '" />
+        <label class="labelFront" for="field' . $key . '" >' . $label . '</label>
+        <input class="inputFront" required type="' . $type . '" name="' . $key . '" id="field' . $key . '" placeholder="' . $valuePlaceholder . '" />
       </div>';
   }
 }
