@@ -18,8 +18,8 @@ class LoginController extends AbstractController
     $form = new Form($errors);
 
     $formulaire = [
-      $form->input("mail", "Email", "email"),
-      $form->input("password", "password", "password"),
+      $form->input("mail", "Email", "email", "adresse email"),
+      $form->input("password", "password", "password", "mot de passe"),
     ];
 
     echo $this->twig->render('login/login.html.twig', [
