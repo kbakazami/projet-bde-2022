@@ -25,6 +25,11 @@
     }
 }
 
+h1
+{
+    @apply font-expletus uppercase
+}
+
 .glowEffect
 {
     @apply absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur
@@ -63,4 +68,13 @@
 .labelFront
 {
     @apply sr-only
+}
+
+/* Used to push the footer to the bottom of the page */
+.page-wrapper {
+    @apply h-screen flex flex-col;
+
+}
+#maincontent {
+    @apply flex-grow;
 }
