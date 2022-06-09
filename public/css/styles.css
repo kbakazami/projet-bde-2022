@@ -3,6 +3,9 @@
 @tailwind utilities;
 @tailwind screens;
 
+/****************/
+/* FONT FAMILY */
+/***************/
 @font-face {
     font-family: "hind";
     src: url("../fonts/Hind.ttf");
@@ -13,6 +16,10 @@
     src: url("../fonts/ExpletusSans.ttf");
 }
 
+/**************/
+/* RESPONSIVE */
+/**************/
+
 @media screen and (max-width: 760px){
     .topnav
     {
@@ -21,13 +28,17 @@
 
     .topnav.openMenuMobile
     {
-        @apply absolute text-lg flex top-14 pt-12 left-0 justify-center w-full items-center bg-black
+        @apply absolute text-lg flex top-px pt-12 left-0 justify-center w-full items-center bg-black
     }
 }
 
-h1
+/************************/
+/* REUSABLES COMPONENTS */
+/************************/
+
+.borderGradiantEffect
 {
-    @apply font-expletus uppercase
+    @apply bg-gradient-to-r from-blue via-purple to-pink p-px
 }
 
 .glowEffect
@@ -35,34 +46,39 @@ h1
     @apply absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur
 }
 
-.borderGradiantEffect
+h1
 {
-    @apply bg-gradient-to-r from-blue via-purple to-pink p-px
+    @apply font-expletus uppercase text-xl lg:text-2xl
+}
+
+.h1Gradiant
+{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @apply bg-gradient-to-r from-blue via-purple to-pink font-bold opacity-75
 }
 
 .inputFront
 {
-    /*@apply border-b border-red-500 bg-transparent*/
-    /*border-bottom: 2px solid red;*/
-    /*border-top: 0px solid transparent;*/
-    /*border-right: 0px solid transparent;*/
-    /*border-left: 0px solid transparent;*/
     background-color: transparent;
-    /*background-image: linear-gradient(to right, #EAB226 50%, #984B43 50%);*/
-
-    /*border-bottom: 2px solid transparent;*/
-    /*background-image: linear-gradient(to right, #EAB226 50%, #984B43 50%);*/
     background-size: calc(100% + 4px) 2px;
 
-    /* 4px extra to cater for 2px border on right + 2px on left */
-    background-repeat: no-repeat;
-    /*background-origin: border-box; */
-    /* make background start from border area itself instead of content/padding area */
-    background-position: bottom;
-    /*box-sizing: border-box !important;*/
+    @apply bg-gradient-to-r from-blue via-purple to-pink bg-no-repeat bg-bottom
+    outline-0
+    placeholder:italic placeholder:uppercase
+    lg:w-300 w-220 mb-14
+}
 
-    margin-bottom: 24px;
-    @apply bg-gradient-to-r from-blue via-purple to-pink outline-0 placeholder:italic placeholder:uppercase
+input[type="submit"]
+{
+    @apply relative bg-gradient-to-t from-blue-60 via-purple-60 to-pink-60
+    outline-0 w-48 uppercase mx-auto py-2 rounded-full cursor-pointer
+    font-expletus text-sm lg:text-base text-center
+}
+
+input[type="submit"]:hover
+{
+    @apply relative bg-gradient-to-t from-blue via-purple to-pink shadow-glowEffect
 }
 
 .labelFront
@@ -70,11 +86,70 @@ h1
     @apply sr-only
 }
 
+/*****************************************************/
 /* Used to push the footer to the bottom of the page */
+/*****************************************************/
 .page-wrapper {
     @apply h-screen flex flex-col;
 
 }
 #maincontent {
     @apply flex-grow;
+}
+
+/***************************************************/
+/*********** ANIMATE BORDER AROUND FORM ************/
+/***************************************************/
+.box{
+    @apply w-full h-full overflow-hidden
+}
+
+.box span{
+    @apply absolute top-0 left-0 w-full h-full
+}
+
+.box span:nth-child(1)
+{
+    @apply rotate-0
+}
+
+.box span:nth-child(2)
+{
+    @apply rotate-270
+}
+
+.box span:nth-child(3)
+{
+    @apply rotate-180
+}
+
+.box span:nth-child(4)
+{
+    @apply rotate-90
+}
+
+.box span:before
+{
+    animation: animate 4s linear infinite;
+    @apply bg-gradient-to-r from-blue via-purple to-pink w-full absolute h-0.5 content-['']
+}
+
+
+@keyframes animate {
+    0% {
+        transform: scaleX(0);
+        @apply origin-left;
+    }
+    50% {
+        transform: scaleX(1);
+        @apply origin-left;
+    }
+    50.1% {
+        transform: scaleX(1);
+        @apply origin-right;
+    }
+    100% {
+        transform: scaleX(0);
+        @apply origin-right;
+    }
 }
