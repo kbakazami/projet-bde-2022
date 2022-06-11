@@ -13,12 +13,15 @@ class EventController extends AbstractController
     #[Route(path: "/list_event", name: "list_event")]
     public function list_event()
     {
-     
+        $event = new Event();
+        $list = [];
+        $list = $event -> getAll();
+
 
 
 
         echo $this->twig->render('event/event.html.twig', [
-            // "formulaire" => $formulaire
+            "event" => $list
         ]);
     }
 }
