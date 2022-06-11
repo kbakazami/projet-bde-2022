@@ -90,4 +90,17 @@ class Event
 
         return $this;
     }
+
+    public function getAll(): array
+    {
+        $table = array(
+            "id" => $this->id,
+            "titre" => $this->titleEvent,
+            "prix" => $this->priceEvent,
+            "date" => $this->dateEvent,
+            "category" => $this->idCategory,
+            "createur" => $this-> idCreator,
+        );
+        return $table;
+    }
 }
