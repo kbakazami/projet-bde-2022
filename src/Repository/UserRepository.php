@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use PDO;
 
 final class UserRepository extends AbstractRepository
 {
@@ -29,17 +28,17 @@ final class UserRepository extends AbstractRepository
     return $stmt->execute();
   }
 
-  protected $table = "users";
-  protected $class = User::class;
 
   public function findByMail(string $mail)
   {
-    $stmt = $this->pdo->prepare("SELECT * FROM " . $this->table . " WHERE mail=:mail");
-
+    $stmt = $this->pdo->prepare("SELECT mail FROM " . "users" . " WHERE mail=:mail");
     $stmt->execute(['mail' => $mail]);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
     $result = $stmt->fetch();
 
-    return ($result !== false) ? $result : [];
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
   }
 }
