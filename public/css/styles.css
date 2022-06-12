@@ -48,7 +48,7 @@
 
 h1
 {
-    @apply font-expletus uppercase text-xl lg:text-2xl
+    @apply font-expletus uppercase text-base sm:text-xl lg:text-2xl
 }
 
 .h1Gradiant
@@ -65,20 +65,37 @@ h1
 
     @apply bg-gradient-to-r from-blue via-purple to-pink bg-no-repeat bg-bottom
     outline-0
-    placeholder:italic placeholder:uppercase
-    lg:w-300 w-220 mb-14
+    placeholder:italic placeholder:uppercase text-sm lg:text-base
+    lg:w-300 w-full mb-6 lg:mb-14
 }
 
 input[type="submit"]
 {
     @apply relative bg-gradient-to-t from-blue-60 via-purple-60 to-pink-60
-    outline-0 w-48 uppercase mx-auto py-2 rounded-full cursor-pointer
+    outline-0 w-full lg:w-auto uppercase mx-auto lg:px-12 py-2 rounded-full cursor-pointer
     font-expletus text-sm lg:text-base text-center
 }
 
 input[type="submit"]:hover
 {
     @apply relative bg-gradient-to-t from-blue via-purple to-pink shadow-glowEffect
+}
+
+input[type="date"]
+{
+    @apply uppercase text-white
+}
+
+input[type="date"]:before
+{
+    content: 'Date de naissance';
+    color: #a9a9a9;
+    @apply italic pr-4
+    /*@apply content-['Date de naissance']*/
+}
+
+::-webkit-calendar-picker-indicator{
+    filter: invert(1);
 }
 
 .labelFront
@@ -105,7 +122,9 @@ input[type="submit"]:hover
 }
 
 .box span{
-    @apply absolute top-0 left-0 w-full h-full
+    width: calc(100% - 4rem);
+    left: 2rem;
+    @apply absolute top-0 h-full
 }
 
 .box span:nth-child(1)
@@ -115,23 +134,35 @@ input[type="submit"]:hover
 
 .box span:nth-child(2)
 {
-    @apply rotate-270
+    @apply rotate-0
 }
+
+/*.box.register span:nth-child(2)*/
+/*{*/
+/*    height: inherit;*/
+/*    @apply rotate-270 w-24*/
+/*}*/
 
 .box span:nth-child(3)
 {
     @apply rotate-180
 }
 
-.box span:nth-child(4)
-{
-    @apply rotate-90
-}
+/*.box.register span:nth-child(4)*/
+/*{*/
+/*    height: inherit;*/
+/*    @apply rotate-90 w-24*/
+/*}*/
+
+/*.box span:nth-child(4)*/
+/*{*/
+/*    @apply rotate-90*/
+/*}*/
 
 .box span:before
 {
     animation: animate 4s linear infinite;
-    @apply bg-gradient-to-r from-blue via-purple to-pink w-full absolute h-0.5 content-['']
+    @apply bg-gradient-to-r from-blue via-purple to-pink w-full absolute h-0.5 content-[''] shadow-glowEffecty
 }
 
 
