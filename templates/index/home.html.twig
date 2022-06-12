@@ -1,8 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <h1>Welcome</h1>
+  <div class="flex flex-col">
+    <div class="border border-red w-full">Bannière event + actu</div>
+    <div class="flex flex-col px-4 lg:px-16 pt-20">
 
+      <div class="flex flex-col lg:flex-row">
+      {#Evenements#}
+      <div class="border border-pink w-full lg:w-1/2">
+        <div class="relative flex flex-row items-center space-x-4 pb-16 w-full">
+          <div class="relative">
+            <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="absolute right-px">événements</h1>
+            <h1 class="h1Gradiant">événements</h1>
+          </div>
+        </div>
+      </div>
+
+      {#Recherche + Actualités#}
+      <div class="border border-blue w-full lg:w-1/2 flex flex-col">
+        <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
+          <div class="relative">
+            <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="absolute right-px">Recherche<br>événements</h1>
+            <h1 class="h1Gradiant">Recherche<br>événements</h1>
+          </div>
+        </div>
+
+        <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
+          <div class="relative">
+            <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="absolute right-px">Actualités</h1>
+            <h1 class="h1Gradiant">Actualités</h1>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="border border-purple mt-32 mb-24">
+        <div class=" flex flex-row items-center space-x-4 py-14 justify-center">
+          <div class="relative">
+            <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="absolute right-px w-full">Qui sommes nous ?</h1>
+            <h1 class="h1Gradiant">Qui sommes nous ?</h1>
+          </div>
+        </div>
+        <div class="px-60 pb-16">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa nulla nibh at eget neque nullam ac sem.
+            Aliquam pellentesque leo scelerisque massa vivamus in nulla pellentesque. Ultrices sit gravida eget viverra.
+            Eget tempor tincidunt volutpat velit suspendisse.<br><br>
+            scelerisque massa vivamus in nulla pellentesque. Ultrices sit gravida eget viverra.
+            Eget tempor tincidunt volutpat velit suspendisse.</p>
+        </div>
+      </div>
+
+    </div>
+    {#Qui sommes nous#}
+
+  </div>
 {% endblock %}
 
 
