@@ -20,6 +20,7 @@ module.exports = {
         'purple-60': 'rgba(174,32,213, 0.6)',
         'pink': '#FF0A6C',
         'pink-60': 'rgba(255,10,108, 0.6)',
+        'red': '#FF0000'
       },
       fontFamily:{
         hind:["hind","roboto"],
@@ -28,14 +29,18 @@ module.exports = {
       width:{
         '400':'400px',
         '300':'300px',
-        '220':'220px'
+        '220':'220px',
+        '600':'600px'
       },
       height:{
         '400':'400px',
         '300':'300px',
+        '200':'200px',
+        '600':'600px'
       },
       boxShadow:{
-        'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple'
+        'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
+        'glowEffecty':' 0 0 10px blue,  0 0 40px pink, 0 0 10px purple'
       },
       rotate:{
         '270':'270deg',
