@@ -22,12 +22,12 @@ class RegisterController extends AbstractController
         $form = new Form($errors);
 
         $formulaire = [
-            $form->input("nom", "Nom", "text"),
-            $form->input("prenom", "Prénom", "text"),
-            $form->input("mail", "Email", "email"),
-            $form->input("date", "Date de naissance", "date"),
-            $form->input("password", "Mot de passe", "password"),
-            $form->input("confirmPassword", "Confirmation du mot de passe", "password"),
+            $form->input("nom", "Nom", "text", "nom"),
+            $form->input("prenom", "Prénom", "text", "prénom"),
+            $form->input("mail", "Email", "email","adresse email"),
+            $form->input("date", "Date de naissance", "date","date de naissance"),
+            $form->input("password", "Mot de passe", "password","mot de passe"),
+            $form->input("confirmPassword", "Confirmation du mot de passe", "password","confirmation du mot de passe"),
         ];
 
 
