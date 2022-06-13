@@ -28,8 +28,6 @@ class RegisterController extends AbstractController
             $form->input("confirmPassword", "Confirmation du mot de passe", "password"),
         ];
 
-
-
         echo $this->twig->render('register/register.html.twig', [
             "formulaire" => $formulaire
         ]);
@@ -40,9 +38,10 @@ class RegisterController extends AbstractController
     public function registerAdd(UserRepository $userRepository)
     {
         $mailExist = $userRepository->findByMail($_POST['mail']);
-       var_dump($mailExist);
+
        if($mailExist === true){
-            echo "<p>error</p>";
+           echo "<p>Cet email existe déjà !</p>";
+
         }else{
            $user = new User();
            $user->setFirstName($_POST['prenom'])

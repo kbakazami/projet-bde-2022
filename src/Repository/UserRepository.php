@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use PDO;
 
 final class UserRepository extends AbstractRepository
 {
@@ -22,16 +23,17 @@ final class UserRepository extends AbstractRepository
     ]);
   }
 
-  public function getIdUser(User $user)
-  {
-    $stmt = $this->pdo->prepare("SELECT id FROM users");
-    return $stmt->execute();
+  public function verifUser($mail){
+      $stmt = $this->pdo->prepare("SELECT id, mail, password FROM users WHERE mail=:mail");
+      $stmt->bindValue("mail", $mail);
+      $stmt->execute();
+      return $stmt->fetch(PDO::FETCH_OBJ);
   }
 
 
   public function findByMail(string $mail)
   {
-    $stmt = $this->pdo->prepare("SELECT mail FROM " . "users" . " WHERE mail=:mail");
+    $stmt = $this->pdo->prepare("SELECT mail FROM users WHERE mail=:mail");
     $stmt->execute(['mail' => $mail]);
     $result = $stmt->fetch();
 

@@ -3,6 +3,7 @@
 {% block body %}
     <h1>Enregistrez-vous</h1>
     <form action='/register-add' method='POST'>
+        <p>{{ error }}</p>
         {% for form in formulaire %}
             {{form|raw}}
         {% endfor %}
