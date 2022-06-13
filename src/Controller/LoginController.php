@@ -48,27 +48,6 @@ class LoginController extends AbstractController
       }else{
           header('Location: /login');
       }
-
-//    // var_dump($_POST['mail']);
-//    if (!empty($_POST)) {
-//      if (!empty($_POST["mail"]) || !empty($_POST["password"])) {
-//        $errors['password'] = 'identifiant ou mot de passe incorrect';
-//      }
-//
-//      $user = $repository->findByMail($_POST["mail"]);
-//      $user->getPassword();
-//      $_POST['password'];
-//      if (password_verify($_POST['password'], $user->getPassword()) === true) {
-//        if (!isset($_SESSION)) {
-//          $session = new Session();
-//          $session->set('auth', $user->getId());
-//        }
-//        // var_dump($_SESSION["auth"]);
-//        echo $this->twig->render('login/connect.html.twig');
-//      }else {
-//        echo '<p>Connexion à échoué</p>';
-//      }
-//    }
   }
 
   #[Route(path: "/logout", name: "logout")]
