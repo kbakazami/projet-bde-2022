@@ -1,13 +1,16 @@
 "use strict";
 
-document.querySelector('#menuButton').addEventListener('click', menuMobile);
+const hamburgerMenu = document.querySelector(".hamburger-menu");
+const navMenu = document.querySelector(".nav-menu");
+const displayCross = document.querySelector('#cross');
+const hideBurgerMenu = document.querySelector('#burgerMenu');
+
+hamburgerMenu.addEventListener('click', menuMobile);
 
 function menuMobile()
 {
-    var headerNav = document.querySelector('#headerNav');
-    var displayCross = document.querySelector('#cross');
-    var hideBurgerMenu = document.querySelector('#burgerMenu');
-    headerNav.classList.toggle('openMenuMobile');
+    navMenu.classList.toggle("active");
+
     hideBurgerMenu.classList.toggle('hidden');
     if(hideBurgerMenu.classList.contains('hidden'))
     {

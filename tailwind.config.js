@@ -44,6 +44,9 @@ module.exports = {
       },
       rotate:{
         '270':'270deg',
+      },
+      spacing:{
+        '26':'106px'
       }
     },
   },

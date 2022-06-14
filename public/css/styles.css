@@ -20,15 +20,31 @@
 /* RESPONSIVE */
 /**************/
 
-@media screen and (max-width: 760px){
-    .topnav
+@media screen and (max-width: 767px){
+    .nav-menu
     {
-        @apply hidden
+        right: -100%;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        @apply absolute top-16 hidden
     }
 
-    .topnav.openMenuMobile
+    .nav-menu.active
     {
-        @apply absolute text-lg flex top-px pt-12 left-0 justify-center w-full items-center bg-black
+        right: 0;
+        background-color: black;
+        display: flex;
+        height: auto;
+        padding: 54px 0;
+        @apply sm:py-26
+        /*overflow-scrolling: unset;*/
+        /*@apply absolute text-lg flex top-px pt-12 left-0 justify-center w-full items-center bg-black*/
+    }
+
+    .navbar{
+        z-index: 1000;
+        opacity: 1;
     }
 }
 
