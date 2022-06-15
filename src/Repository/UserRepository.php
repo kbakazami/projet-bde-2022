@@ -23,23 +23,24 @@ final class UserRepository extends AbstractRepository
     ]);
   }
 
-  public function getIdUser(User $user)
-  {
-    $stmt = $this->pdo->prepare("SELECT id FROM users");
-    return $stmt->execute();
+  public function verifUser($mail){
+      $stmt = $this->pdo->prepare("SELECT id, mail, password FROM users WHERE mail=:mail");
+      $stmt->bindValue("mail", $mail);
+      $stmt->execute();
+      return $stmt->fetch(PDO::FETCH_OBJ);
   }
 
-  protected $table = "users";
-  protected $class = User::class;
 
   public function findByMail(string $mail)
   {
-    $stmt = $this->pdo->prepare("SELECT * FROM " . $this->table . " WHERE mail=:mail");
-
+    $stmt = $this->pdo->prepare("SELECT mail FROM users WHERE mail=:mail");
     $stmt->execute(['mail' => $mail]);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
     $result = $stmt->fetch();
 
-    return ($result !== false) ? $result : [];
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
   }
 }

@@ -1,33 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div class="flex flex-col items-center h-full">
 
-		<div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
-			<div class="relative">
-				<div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
-				<div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-			</div>
-			<h1 class="absolute top-12 right-px">Connexion</h1>
-			<h1 class="h1Gradiant">Connexion</h1>
-		</div>
+		<h1>Connectez-vous</h1>
+		<form action='/login' method='POST'>
+			{{ field("mail", "Email") }}
+			{{ field("password", "Password") }}
+			<input type='submit'/>
+		</form>
 
-		<div class="relative mb-16 w-full h-200 sm:h-300 lg:w-400 lg:h-400 px-8">
-			<div class="box">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<form action='/connect' method='POST' class="relative w-full h-full flex flex-col justify-center text-center">
-					{% for form in formulaire %}
-						{{form|raw}}
-					{% endfor %}
-					<div class="customSubmit relative">
-						<input type='submit' class="uppercase text-base" value="Connexion"/>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
 {% endblock %}
 

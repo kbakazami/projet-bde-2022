@@ -13,6 +13,7 @@ if (
 use App\Config\PdoConnection;
 use App\Config\TwigEnvironment;
 use App\DependencyInjection\Container;
+use App\Repository\CategoryRepository;
 use App\Repository\EventRepository;
 use App\Repository\UserRepository;
 use App\Routing\ArgumentResolver;
@@ -20,6 +21,7 @@ use App\Routing\RouteNotFoundException;
 use App\Routing\Router;
 use App\Session\Session;
 use App\Session\SessionInterface;
+use App\Utils\FormExtension;
 use Symfony\Component\Dotenv\Dotenv;
 use Twig\Environment;
 
@@ -35,17 +37,21 @@ $dotenv->loadEnv(__DIR__ . '/../.env');
 $pdoConnection = new PdoConnection();
 $pdoConnection->init(); // Connexion à la BDD
 $userRepository = new UserRepository($pdoConnection->getPdoConnection());
+$categoryRepository = new CategoryRepository($pdoConnection->getPdoConnection());
 $eventRepository = new EventRepository($pdoConnection->getPdoConnection());
 // Twig - Vue
 $twigEnvironment = new TwigEnvironment();
 $twig = $twigEnvironment->init();
+$formTwig = new FormExtension();
 
 // Service Container
 $container = new Container();
 $container->set(Environment::class, $twig);
 $container->set(SessionInterface::class, new Session());
 $container->set(UserRepository::class, $userRepository);
+$container->set(CategoryRepository::class,$categoryRepository);
 $container->set(EventRepository::class, $eventRepository);
+$container->set(FormExtension::class, $formTwig);
 
 // Routage
 $router = new Router($container, new ArgumentResolver());

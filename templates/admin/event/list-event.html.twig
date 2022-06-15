@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Evénements</h1>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Catégorie</th>
+            <th>Créateur</th>
+        </tr>
+        <tr>
+            {% for event in events %}
+                <td>{{ event.id }}</td>
+                <td>{{ event.title }}</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.price }}</td>
+                <td>{{ event.category.name }}</td>
+                <td>{{ event.user.username }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+{% endblock %}
