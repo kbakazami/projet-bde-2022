@@ -27,26 +27,18 @@ module.exports = {
         expletus:["expletus","roboto"],
       },
       width:{
-        '400':'400px',
-        '300':'300px',
-        '220':'220px',
-        '600':'600px'
-      },
-      height:{
-        '400':'400px',
-        '300':'300px',
-        '200':'200px',
-        '600':'600px'
+        '520':'520px',
+        '400':'400px'
       },
       boxShadow:{
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
         'glowEffecty':' 0 0 10px blue,  0 0 40px pink, 0 0 10px purple'
       },
-      rotate:{
-        '270':'270deg',
-      },
       spacing:{
-        '26':'106px'
+        '15':'60px'
+      },
+      zIndex:{
+        '1':'1',
       }
     },
   },
