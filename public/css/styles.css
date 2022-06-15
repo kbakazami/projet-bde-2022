@@ -23,28 +23,17 @@
 @media screen and (max-width: 767px){
     .nav-menu
     {
-        right: -100%;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        @apply absolute top-16 hidden
+        @apply absolute top-16 hidden overflow-y-auto w-full
     }
 
     .nav-menu.active
     {
-        right: 0;
-        background-color: black;
-        display: flex;
-        height: auto;
-        padding: 54px 0;
-        @apply sm:py-26
-        /*overflow-scrolling: unset;*/
-        /*@apply absolute text-lg flex top-px pt-12 left-0 justify-center w-full items-center bg-black*/
+        height: calc(100vh - 4rem);
+        @apply pb-4 right-0 flex bg-black
     }
 
     .navbar{
         z-index: 1000;
-        opacity: 1;
     }
 }
 
@@ -107,7 +96,6 @@ input[type="date"]:before
     content: 'Date de naissance';
     color: #a9a9a9;
     @apply italic pr-4
-    /*@apply content-['Date de naissance']*/
 }
 
 ::-webkit-calendar-picker-indicator{
@@ -123,7 +111,8 @@ input[type="date"]:before
 /* Used to push the footer to the bottom of the page */
 /*****************************************************/
 .page-wrapper {
-    @apply h-screen flex flex-col;
+    height: calc(100vh - 4px);
+    @apply flex flex-col;
 
 }
 #maincontent {
