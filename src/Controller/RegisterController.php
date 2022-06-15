@@ -11,26 +11,6 @@ use DateTime;
 
 class RegisterController extends AbstractController
 {
-<<<<<<< HEAD
-    #[Route(path: "/register", name: "register")]
-    public function register()
-    {
-        $errors = [];
-
-        $form = new Form($errors);
-
-        $formulaire = [
-            $form->input("nom", "Nom", "text", "nom"),
-            $form->input("prenom", "Prénom", "text", "prénom"),
-            $form->input("mail", "Email", "email","adresse email"),
-            $form->input("date", "Date de naissance", "date","date de naissance"),
-            $form->input("password", "Mot de passe", "password","mot de passe"),
-            $form->input("confirmPassword", "Confirmation du mot de passe", "password","confirmation du mot de passe"),
-        ];
-
-
-=======
->>>>>>> crud-users
 
     #[Route(path: "/form-register", name: "form-register")]
     public function formRegister()

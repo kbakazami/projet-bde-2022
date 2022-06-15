@@ -12,17 +12,9 @@ class LoginController extends AbstractController
     #[Route(path: "/form-login", name: "form-login")]
     public function formLogin()
     {
-
-
-<<<<<<< HEAD
-    $formulaire = [
-      $form->input("mail", "Email", "email", "adresse email"),
-      $form->input("password", "password", "password", "mot de passe"),
-    ];
-=======
         echo $this->twig->render('login/login.html.twig');
     }
->>>>>>> crud-users
+
 
     #[Route(path: "/login", name: "login", httpMethod: "POST")]
     public function login(UserRepository $userRepository)
@@ -50,7 +42,6 @@ class LoginController extends AbstractController
             $session->destroy();
         }
 
-        // var_dump($_SESSION);
         echo $this->twig->render('index/home.html.twig');
     }
 }
