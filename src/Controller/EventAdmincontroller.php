@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Event;
 use App\Repository\CategoryRepository;
+use App\Repository\EventRepository;
 use App\Routing\Attribute\Route;
-
+use App\Utils\Validator;
+use DateTime;
 
 
 class EventAdmincontroller extends AbstractController
@@ -21,45 +24,46 @@ class EventAdmincontroller extends AbstractController
     }
 
     #[Route(path: "/admin/create-event", name: "create-event", httpMethod: "POST")]
-    public function createEvent()
+    public function createEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository)
     {
+        $category = $categoryRepository->findAllCategory();
+        $validator = new Validator($_POST);
 
+        $validator->required("title", "description", "price")
+            ->length("title", 2, 250)
+            ->length("description", 2, 250)
+            ->length("price", 2, 250);
 
+        if ($validator->isValid()) {
+            $event = new Event();
+            $event->setTitleEvent($_POST['title'])
+                ->setDescriptionEvent($_POST['description'])
+                ->setPriceEvent($_POST['price'])
+                ->setDateEvent(new DateTime())
+                ->setIdCategory(intVal($_POST['category']))
+                ->setIdCreator($_SESSION['userId']);
 
-//        $validator = new Validator($_POST);
-//
-//        $validator->required("nom", "prenom", "mail", "date", "password", "confirmPassword")
-//            ->length("nom", 2, 250)
-//            ->length("prenom", 2, 50)
-//            ->mailPattern("mail")
-//            ->dateTime("date")
-//            ->confirmPasword("password", "confirmPassword");
-//
-//        if ($validator->isValid()) {
-//            $user = new Event();
-//            $user->setFirstName($_POST['prenom'])
-//                ->setLastName($_POST['nom'])
-//                ->setEmail($_POST['mail'])
-//                ->setPassword($_POST['password'])
-//                ->setBirthDate(new DateTime($_POST['date']))
-//                ->setImage("");
-//
-//            $userRepository->save($user);
-//            header("location: /login");
-//        }
-//        $errors = $validator->getErrors();
+            $eventRepository->save($event);
+        }
 
-        echo $this->twig->render('admin/event/form-event.html.twig');
+        $errors = $validator->getErrors();
+
+        echo $this->twig->render('admin/event/form-event.html.twig', [
+                'errors' => $errors,
+                'category' => $category
+            ]);
     }
 
 
 
-    #[Route(path: "/list-event")]
-    public function listEvent()
+    #[Route(path: "/admin/list-event")]
+    public function listEvent(EventRepository $eventRepository)
     {
+        $events = $eventRepository->findAllEvent();
 
-        echo $this->twig->render('admin/event/list-event.html.twig');
-
+        echo $this->twig->render('admin/event/list-event.html.twig',[
+                'events' => $events
+            ]);
     }
 
 }

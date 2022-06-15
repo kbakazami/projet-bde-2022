@@ -3,9 +3,9 @@
 {% block body %}
     <h1>Ajouter un Evenement</h1>
 
-    <form action='/login' method='POST'>
-        {{ field("titre", "Titre") }}
-        {{ field("description", "Descrption", "", {type: "textearea"}) }}
+    <form action='/admin/create-event' method='POST'>
+        {{ field("title", "Titre") }}
+        {{ field("description", "Description", "", {type: "textarea"}) }}
         {{ field("price", "Prix") }}
         {{ field("category", "Catégorie", "", {type: "select", data: category}) }}
         <input type='submit'/>

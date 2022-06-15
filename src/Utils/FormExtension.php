@@ -36,7 +36,7 @@ class FormExtension extends AbstractExtension
             $attributes['class'] .= ' form-control-danger';
         }
 
-        if($type === 'textarea'){
+        if($type === 'textearea'){
             $input = $this->textarea($value, $attributes);
         }elseif ($type === 'select'){
             $input = $this->select($attributes, $data);
@@ -71,13 +71,14 @@ class FormExtension extends AbstractExtension
         return '<textarea type="text" '. $this->getHtmlFromArray($attributes) .'>' . $value .'</textarea>';
     }
 
-    private function select(array $attributes, ?array $data)
+    private function select(array $attributes, $data)
     {
-        var_dump($data);
+
         $select = "<select {$this->getHtmlFromArray($attributes)}>";
         $select .= "<option>Sélectionnez une catégorie</option>";
         foreach ($data as $d){
-            $select .= "<option value='$d'>$d</option>";
+
+           $select .= "<option value='$d->id'>$d->title</option>";
         }
 
         $select .= "</select>";
