@@ -18,7 +18,7 @@ class FormExtension extends AbstractExtension
         ];
     }
 
-    public function field(array $context, string $key, string $label, $value ='', array $options = [])
+    public function field(array $context, string $key, string $label, string $placeholder, $value ='', array $options = [])
     {
 
         $type = $options["type"] ?? 'text';
@@ -42,7 +42,7 @@ class FormExtension extends AbstractExtension
             $input = $this->select($attributes, $data);
         }
         else{
-            $input = $this->input($value, $attributes, $type);
+            $input = $this->input($value, $attributes, $type, $placeholder);
         }
 
         echo '<div class="' .  $class .'">
@@ -61,9 +61,9 @@ class FormExtension extends AbstractExtension
         return "";
     }
 
-    private function input(?string $value, array $attributes, $type): string
+    private function input(?string $value, array $attributes, $type, string $placeholder): string
     {
-        return'<input type="'. $type .'"'. $this->getHtmlFromArray($attributes) . ' value="' . $value . '" />';
+        return'<input type="'. $type .'"'. $this->getHtmlFromArray($attributes) . ' value="' . $value . '" placeholder="'. $placeholder .'" />';
     }
 
     private function textarea(?string $value, array $attributes): string
