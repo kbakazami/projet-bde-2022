@@ -46,6 +46,23 @@
     @apply bg-gradient-to-r from-blue via-purple to-pink p-px
 }
 
+.form-wrapper
+{
+    @apply w-520
+}
+
+.form-container
+{
+    @apply relative rounded bg-black
+}
+
+.form-container:before{
+    content: "";
+    background: conic-gradient(transparent 20%, #2D27FF 25% 52%, transparent 53% 70%, red 75%);
+    background: -webkit-linear-gradient(to right, #2D27FF, #AE20D5, #FF0A6C);
+    @apply absolute w-full h-full bg-gradient-to-r from-blue via-purple to-pink -z-1 skew-x-3 rotate-2
+}
+
 .glowEffect
 {
     @apply absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur
@@ -71,7 +88,7 @@ h1
     @apply bg-gradient-to-r from-blue via-purple to-pink bg-no-repeat bg-bottom
     outline-0
     placeholder:italic placeholder:uppercase text-sm lg:text-base
-    lg:w-300 w-full mb-6 lg:mb-14
+    lg:w-400 w-full mb-6 lg:mb-14
 }
 
 input[type="submit"]
@@ -98,14 +115,15 @@ input[type="date"]:before
     @apply italic pr-4
 }
 
-::-webkit-calendar-picker-indicator{
-    filter: invert(1);
-}
-
 .labelFront
 {
     @apply sr-only
 }
+
+::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+}
+
 
 /*****************************************************/
 /* Used to push the footer to the bottom of the page */
@@ -117,75 +135,4 @@ input[type="date"]:before
 }
 #maincontent {
     @apply flex-grow;
-}
-
-/***************************************************/
-/*********** ANIMATE BORDER AROUND FORM ************/
-/***************************************************/
-.box{
-    @apply w-full h-full overflow-hidden
-}
-
-.box span{
-    width: calc(100% - 4rem);
-    left: 2rem;
-    @apply absolute top-0 h-full
-}
-
-.box span:nth-child(1)
-{
-    @apply rotate-0
-}
-
-.box span:nth-child(2)
-{
-    @apply rotate-0
-}
-
-/*.box.register span:nth-child(2)*/
-/*{*/
-/*    height: inherit;*/
-/*    @apply rotate-270 w-24*/
-/*}*/
-
-.box span:nth-child(3)
-{
-    @apply rotate-180
-}
-
-/*.box.register span:nth-child(4)*/
-/*{*/
-/*    height: inherit;*/
-/*    @apply rotate-90 w-24*/
-/*}*/
-
-/*.box span:nth-child(4)*/
-/*{*/
-/*    @apply rotate-90*/
-/*}*/
-
-.box span:before
-{
-    animation: animate 4s linear infinite;
-    @apply bg-gradient-to-r from-blue via-purple to-pink w-full absolute h-0.5 content-[''] shadow-glowEffecty
-}
-
-
-@keyframes animate {
-    0% {
-        transform: scaleX(0);
-        @apply origin-left;
-    }
-    50% {
-        transform: scaleX(1);
-        @apply origin-left;
-    }
-    50.1% {
-        transform: scaleX(1);
-        @apply origin-right;
-    }
-    100% {
-        transform: scaleX(0);
-        @apply origin-right;
-    }
 }
