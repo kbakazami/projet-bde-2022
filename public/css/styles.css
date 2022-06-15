@@ -48,7 +48,7 @@
 
 .form-wrapper
 {
-    @apply w-520
+    @apply w-290 sm:w-520
 }
 
 .form-container
@@ -80,7 +80,8 @@ h1
     @apply bg-gradient-to-r from-blue via-purple to-pink font-bold opacity-75
 }
 
-.inputFront
+.form-front input[type="text"],
+.form-front input[type="date"]
 {
     background-color: transparent;
     background-size: calc(100% + 4px) 2px;
@@ -115,7 +116,7 @@ input[type="date"]:before
     @apply italic pr-4
 }
 
-.labelFront
+.form-front label
 {
     @apply sr-only
 }

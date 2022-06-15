@@ -28,7 +28,8 @@ module.exports = {
       },
       width:{
         '520':'520px',
-        '400':'400px'
+        '400':'400px',
+        '290':'290px'
       },
       boxShadow:{
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
