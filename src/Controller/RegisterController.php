@@ -3,62 +3,50 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Utils\Form;
-use App\Form\LoginType;
 use App\Routing\Attribute\Route;
 use App\Repository\UserRepository;
+use App\Utils\Validator;
 use DateTime;
 
 
 class RegisterController extends AbstractController
 {
-    #[Route(path: "/register", name: "register")]
-    public function register()
+
+    #[Route(path: "/form-register", name: "form-register")]
+    public function formRegister()
     {
-        $errors = [];
+        echo $this->twig->render('register/register.html.twig');
+    }
 
-        $form = new Form($errors);
+    #[Route(path: "/register", name: "register", httpMethod: "POST")]
+    public function register(UserRepository $userRepository,)
+    {
 
-        $formulaire = [
-            $form->input("nom", "Nom", "text"),
-            $form->input("prenom", "Prénom", "text"),
-            $form->input("mail", "Email", "email"),
-            $form->input("date", "Date de naissance", "date"),
-            $form->input("password", "Mot de passe", "password"),
-            $form->input("confirmPassword", "Confirmation du mot de passe", "password"),
-        ];
+        $validator = new Validator($_POST);
+
+        $validator->required("nom", "prenom", "mail", "date", "password", "confirmPassword")
+            ->length("nom", 2, 250)
+            ->length("prenom", 2, 50)
+            ->mailPattern("mail")
+            ->dateTime("date")
+            ->confirmPasword("password", "confirmPassword");
+
+        if ($validator->isValid()) {
+            $user = new User();
+            $user->setFirstName($_POST['prenom'])
+                ->setLastName($_POST['nom'])
+                ->setEmail($_POST['mail'])
+                ->setPassword($_POST['password'])
+                ->setBirthDate(new DateTime($_POST['date']))
+                ->setImage("");
+
+            $userRepository->save($user);
+            header("location: /login");
+        }
+        $errors = $validator->getErrors();
 
         echo $this->twig->render('register/register.html.twig', [
-            "formulaire" => $formulaire
+            "errors" => $errors
         ]);
     }
-
-
-    #[Route(path: "/register-add", name: "register-add", httpMethod: "POST")]
-    public function registerAdd(UserRepository $userRepository)
-    {
-        $mailExist = $userRepository->findByMail($_POST['mail']);
-
-       if($mailExist === true){
-           echo "<p>Cet email existe déjà !</p>";
-
-        }else{
-           $user = new User();
-           $user->setFirstName($_POST['prenom'])
-               ->setLastName($_POST['nom'])
-               ->setEmail($_POST['mail'])
-               ->setPassword($_POST['password'])
-               ->setBirthDate(new DateTime($_POST['date']))
-               ->setImage("");
-
-
-           $userRepository->save($user);
-
-           echo $this->twig->render('register/register.html.twig');
-       }
-
-
-
-    }
-
 }

@@ -1,12 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <h1>Enregistrez-vous</h1>
-    <form action='/register-add' method='POST'>
-        <p>{{ error }}</p>
-        {% for form in formulaire %}
-            {{form|raw}}
-        {% endfor %}
+    <form action='/register' method='POST'>
+        {{ field("nom", "Nom") }}
+        {{ field("prenom", "Prénom") }}
+        {{ field("mail", "Email") }}
+        {{ field("date", "Date de naissance","" , {type: 'date'}) }}
+        {{ field("password", "Mot de passe") }}
+        {{ field("confirmPassword", "Confirmation du mot de passe") }}
         <input type='submit'/>
     </form>
 

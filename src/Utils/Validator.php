@@ -49,10 +49,31 @@ class Validator
         return $this;
     }
 
+    public function mailPattern(string $key):self
+    {
+        $pattern = '/@+myges+\.fr+$/';
+
+        if(!preg_match($pattern, $this->params[$key])){
+            $this->addError($key, 'mailPattern');
+        }
+        return $this;
+    }
+
+    public function confirmPasword(string $key, string $confirmPass):self
+    {
+        $value = $this->getValue($key);
+        $value2 = $this->getValue($confirmPass);
+
+        if($value !== $value2){
+            $this->addError($key, 'confirmPassword');
+        }
+        return $this;
+    }
+
     public function length(string $key, ?int $min, ?int $max = null): self
     {
         $value = $this->getValue($key);
-        $length = mb_strlen($value);
+        $length = strlen($value);
         if (!is_null($min) &&
             !is_null($max) &&
             ($length < $min || $length > $max)
@@ -87,6 +108,11 @@ class Validator
         return $this;
     }
 
+    public function isValid():bool
+    {
+        return empty($this->errors);
+    }
+
     /**
      * Récupère les erreurs
      * @return ValidationError[]
@@ -108,6 +134,7 @@ class Validator
     }
 
     private function getValue(string $key){
+
         if(array_key_exists($key, $this->params)){
             return $this->params[$key];
         }
