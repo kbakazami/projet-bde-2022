@@ -2,33 +2,57 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use App\Routing\Attribute\Route;
-use App\Utils\Form;
+
 
 
 class EventAdmincontroller extends AbstractController
 {
 
-    #[Route(path: "/form-event")]
-    public function formEvent()
+    #[Route(path: "/admin/form-event", name: "form-event")]
+    public function formEvent(CategoryRepository $categoryRepository)
+    {
+        $category = $categoryRepository->findAllCategory();
+
+        echo $this->twig->render('admin/event/form-event.html.twig', [
+                'category' => $category
+            ]);
+    }
+
+    #[Route(path: "/admin/create-event", name: "create-event", httpMethod: "POST")]
+    public function createEvent()
     {
 
-        $errors = [];
 
-        $form = new Form($errors);
 
-        $formulaire = [
-            $form->input("nom", "Nom", "text"),
-            $form->input("prenom", "Prénom", "text"),
-            $form->input("mail", "Email", "email"),
-            $form->input("date", "Date de naissance", "date"),
-            $form->input("password", "Mot de passe", "password"),
-            $form->input("confirmPassword", "Confirmation du mot de passe", "password"),
-        ];
+//        $validator = new Validator($_POST);
+//
+//        $validator->required("nom", "prenom", "mail", "date", "password", "confirmPassword")
+//            ->length("nom", 2, 250)
+//            ->length("prenom", 2, 50)
+//            ->mailPattern("mail")
+//            ->dateTime("date")
+//            ->confirmPasword("password", "confirmPassword");
+//
+//        if ($validator->isValid()) {
+//            $user = new Event();
+//            $user->setFirstName($_POST['prenom'])
+//                ->setLastName($_POST['nom'])
+//                ->setEmail($_POST['mail'])
+//                ->setPassword($_POST['password'])
+//                ->setBirthDate(new DateTime($_POST['date']))
+//                ->setImage("");
+//
+//            $userRepository->save($user);
+//            header("location: /login");
+//        }
+//        $errors = $validator->getErrors();
 
         echo $this->twig->render('admin/event/form-event.html.twig');
-
     }
+
+
 
     #[Route(path: "/list-event")]
     public function listEvent()

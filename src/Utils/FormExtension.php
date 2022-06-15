@@ -22,6 +22,7 @@ class FormExtension extends AbstractExtension
     {
 
         $type = $options["type"] ?? 'text';
+        $data = $options["data"] ?? null;
         $error = $this->getErrorHtml($context, $key);
         $class = 'form-group';
         $attributes = [
@@ -37,7 +38,10 @@ class FormExtension extends AbstractExtension
 
         if($type === 'textarea'){
             $input = $this->textarea($value, $attributes);
-        }else{
+        }elseif ($type === 'select'){
+            $input = $this->select($attributes, $data);
+        }
+        else{
             $input = $this->input($value, $attributes, $type);
         }
 
@@ -66,6 +70,21 @@ class FormExtension extends AbstractExtension
     {
         return '<textarea type="text" '. $this->getHtmlFromArray($attributes) .'>' . $value .'</textarea>';
     }
+
+    private function select(array $attributes, ?array $data)
+    {
+        var_dump($data);
+        $select = "<select {$this->getHtmlFromArray($attributes)}>";
+        $select .= "<option>Sélectionnez une catégorie</option>";
+        foreach ($data as $d){
+            $select .= "<option value='$d'>$d</option>";
+        }
+
+        $select .= "</select>";
+
+        return $select;
+    }
+
 
     private function getHtmlFromArray(array $attributes) {
         return implode(' ', array_map(function ($key, $value){

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ajouter un Evenement</h1>
+
+    <form action='/login' method='POST'>
+        {{ field("titre", "Titre") }}
+        {{ field("description", "Descrption", "", {type: "textearea"}) }}
+        {{ field("price", "Prix") }}
+        {{ field("category", "Catégorie", "", {type: "select", data: category}) }}
+        <input type='submit'/>
+    </form>
+
+{% endblock %}
