@@ -39,7 +39,7 @@ final class EventRepository extends AbstractRepository
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function updateEvent(Event $event){
+    public function updateEvent(Event $event, $id){
         $stmt = $this->pdo->prepare("UPDATE event SET title = :title, description = :description, price = :price, date = :date, id_category = :id_category, id_users = :id_users WHERE id = :id");
 
         return $stmt->execute([
@@ -49,7 +49,7 @@ final class EventRepository extends AbstractRepository
             'date' => $event->getDateEvent()->format('Y-m-d'),
             'id_category' => $event->getIdCategory(),
             'id_users' => $event->getIdCreator(),
-            'id' => $event->getId()
+            'id' => $id
         ]);
     }
 

@@ -3,12 +3,30 @@
 {% block body %}
     <h1>Ajouter un Evenement</h1>
 
-    <form action='/admin/create-event' method='POST'>
-        {{ field("title", "Titre") }}
-        {{ field("description", "Description", "", {type: "textarea"}) }}
-        {{ field("price", "Prix") }}
-        {{ field("category", "Catégorie", "", {type: "select", data: category}) }}
-        <input type='submit'/>
+<div class="flex flex-col items-center h-full">
+
+    <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
+        <div class="relative">
+            <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+        </div>
+        <h1 class="absolute top-12 right-px">Ajouter un Événement</h1>
+        <h1 class="h1Gradiant">Ajouter un Événement</h1>
+    </div>
+
+    <div class="form-wrapper pb-28">
+        <div class="form-container">
+    <form action='/admin/create-event' method='POST' class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
+        {{ field("title", "Titre", "Titre") }}
+        {{ field("description", "Description", "", "", {type: "textarea"}) }}
+        {{ field("price", "Prix", "Prix") }}
+        {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
+        <div class="customSubmit">
+            <input type='submit' class="uppercase text-base" value="Ajouter"/>
+        </div>
     </form>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -25,4 +25,31 @@ final class CategoryRepository extends AbstractRepository
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function findCategoryById(int $id){
+        $stmt = $this->pdo->prepare("SELECT id, title, color FROM category WHERE id = :id");
+
+        $stmt->execute([
+            'id' => $id
+        ]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function updateCategory(Category $category, $id){
+        $stmt = $this->pdo->prepare("UPDATE category SET title = :title, color = :color WHERE id = :id");
+
+        return $stmt->execute([
+            'title' => $category->getTitle(),
+            'color' => $category->getColor(),
+            'id' => $id
+        ]);
+    }
+
+    public function deleteCategory(int $id){
+        $stmt = $this->pdo->prepare("DELETE FROM category WHERE id = :id");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
 }

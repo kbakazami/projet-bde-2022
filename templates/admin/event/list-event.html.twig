@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Liste des Evénements</h1>
-
+    <a href="/admin/form-create-event">Créer un Événement</a>
     <table>
         <tr>
             <th>Id</th>
@@ -11,17 +11,22 @@
             <th>Price</th>
             <th>Catégorie</th>
             <th>Créateur</th>
+            <th>Action</th>
         </tr>
+        {% for event in events %}
         <tr>
-            {% for event in events %}
                 <td>{{ event.id }}</td>
                 <td>{{ event.title }}</td>
                 <td>{{ event.description }}</td>
                 <td>{{ event.price }}</td>
                 <td>{{ event.category.name }}</td>
                 <td>{{ event.user.username }}</td>
-            {% endfor %}
+                <td>
+                    <a href="/admin/form-edit-event/{{ event.id }}">Modifier</a>
+                    <a href="/admin/delete-event/{{ event.id }}">Supprimer</a>
+                </td>
         </tr>
+        {% endfor %}
     </table>
 
 {% endblock %}

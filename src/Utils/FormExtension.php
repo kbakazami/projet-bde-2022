@@ -54,7 +54,6 @@ class FormExtension extends AbstractExtension
     private function getErrorHtml($context, $key)
     {
         $error = $context["errors"][$key] ?? false;
-        $errorHTML = "";
         if($error){
             return "<small>{$error}</small>";
         }
@@ -75,20 +74,20 @@ class FormExtension extends AbstractExtension
     {
 
         $select = "<select {$this->getHtmlFromArray($attributes)}>";
-
-        //filre par la la valuee qui correspond à l'id de la categorie
+        
         if($value !== ''){
-
-            $select .= "<option value=$value>$value</option>";
-
+            foreach ($data as $key => $val) {
+                $select .= "<option value='{$val->id}' " . ($value === $val->id ? "selected" : "") . ">$val->title</option>";
+            }
         }else{
             $select .= "<option>Sélectionnez une catégorie</option>";
 
-        }
-        foreach ($data as $d){
+            foreach ($data as $d){
 
-            $select .= "<option value='$d->id'>$d->title</option>";
+                $select .= "<option value='$d->id'>$d->title</option>";
+            }
         }
+
         $select .= "</select>";
         return $select;
     }

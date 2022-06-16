@@ -41,6 +41,4 @@ class CategoryAdminController extends AbstractController
             'errors' => $errors
         ]);
     }
-
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Utils\Form;
 use App\Routing\Attribute\Route;
 use App\Repository\UserRepository;
 use App\Session\Session;
