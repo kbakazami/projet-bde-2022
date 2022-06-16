@@ -6,6 +6,7 @@ use App\Entity\Event;
 use App\Repository\CategoryRepository;
 use App\Repository\EventRepository;
 use App\Routing\Attribute\Route;
+use App\Routing\Router;
 use App\Utils\Validator;
 use DateTime;
 
@@ -56,7 +57,7 @@ class EventAdmincontroller extends AbstractController
 
 
 
-    #[Route(path: "/admin/list-event")]
+    #[Route(path: "/admin/list-event", name: "admin-list-event")]
     public function listEvent(EventRepository $eventRepository)
     {
         $events = $eventRepository->findAllEvent();
@@ -64,6 +65,19 @@ class EventAdmincontroller extends AbstractController
         echo $this->twig->render('admin/event/list-event.html.twig',[
                 'events' => $events
             ]);
+    }
+
+    #[Route(path: "/admin/event/{id}" , name: "admin-one-event")]
+    public function oneEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
+    {
+        $event = $eventRepository->findEventById($id);
+
+        $category = $categoryRepository->findAllCategory();
+
+        echo $this->twig->render('admin/event/edit-event.html.twig',[
+            'event' => $event,
+            'category' => $category,
+        ]);
     }
 
 }

@@ -36,10 +36,10 @@ class FormExtension extends AbstractExtension
             $attributes['class'] .= ' form-control-danger';
         }
 
-        if($type === 'textearea'){
+        if($type === 'textarea'){
             $input = $this->textarea($value, $attributes);
         }elseif ($type === 'select'){
-            $input = $this->select($attributes, $data);
+            $input = $this->select($value, $attributes, $data);
         }
         else{
             $input = $this->input($value, $attributes, $type, $placeholder);
@@ -61,7 +61,7 @@ class FormExtension extends AbstractExtension
         return "";
     }
 
-    private function input(?string $value, array $attributes, $type, string $placeholder): string
+    private function input(?string $value, array $attributes, $type, ?string $placeholder): string
     {
         return'<input type="'. $type .'"'. $this->getHtmlFromArray($attributes) . ' value="' . $value . '" placeholder="'. $placeholder .'" />';
     }
@@ -71,18 +71,25 @@ class FormExtension extends AbstractExtension
         return '<textarea type="text" '. $this->getHtmlFromArray($attributes) .'>' . $value .'</textarea>';
     }
 
-    private function select(array $attributes, $data)
+    private function select(?string $value, array $attributes, $data): string
     {
 
         $select = "<select {$this->getHtmlFromArray($attributes)}>";
-        $select .= "<option>Sélectionnez une catégorie</option>";
+
+        //filre par la la valuee qui correspond à l'id de la categorie
+        if($value !== ''){
+
+            $select .= "<option value=$value>$value</option>";
+
+        }else{
+            $select .= "<option>Sélectionnez une catégorie</option>";
+
+        }
         foreach ($data as $d){
 
-           $select .= "<option value='$d->id'>$d->title</option>";
+            $select .= "<option value='$d->id'>$d->title</option>";
         }
-
         $select .= "</select>";
-
         return $select;
     }
 

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Modifier un Evenement</h1>
+
+    <form action='/admin/edit-event' method='POST'>
+        {{ field("title", "Titre", event.title ) }}
+        {{ field("description", "Description", "", event.description, {type: "textarea"}) }}
+        {{ field("price", "Prix", event.price ) }}
+        {{ field("category", "Catégorie", "", event.id_category, {type: "select", data: category}) }}
+        <input type='submit'/>
+    </form>
+
+{% endblock %}
