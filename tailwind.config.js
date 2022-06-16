@@ -29,17 +29,27 @@ module.exports = {
       width:{
         '520':'520px',
         '400':'400px',
-        '290':'290px'
+        '290':'290px',
+        '50':'200px',
+        '46':'185px',
+        '34':'140px',
+        '30':'125px',
       },
       boxShadow:{
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
         'glowEffecty':' 0 0 10px blue,  0 0 40px pink, 0 0 10px purple'
       },
       spacing:{
-        '15':'60px'
+        '15':'60px',
+        'pxmd':'1.5px',
+        '0.1':'0.1rem',
+        '0.2':'0.2rem',
       },
       zIndex:{
         '1':'1',
+      },
+      skew:{
+        '125':'125deg'
       }
     },
   },
