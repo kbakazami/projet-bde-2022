@@ -13,9 +13,10 @@ class ValidationError {
         'minLength' => 'Le champ %s ne doit pas être vide',
         'maxLength' => 'Le champ %s doit contenir moins de %d caractères',
         'betweenLength' => 'Le champ %s doit contenir entre %d et %d caractères',
-        'dateTime' => 'Le champ %s doit contenir être une date valide (%s)',
+        'dateTime' => 'Veuillez sélectionner une date',
         'mailPattern' => 'Ne sont acccepté que les emails @myges.fr valide',
         'confirmPassword' => 'Les mots de passes sont différents',
+        "select" => "Veuillez choisir une valeur"
     ];
 
     public function __construct(string $key, string $rule, array $attributes= []) {

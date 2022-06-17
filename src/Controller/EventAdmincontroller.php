@@ -30,16 +30,18 @@ class EventAdmincontroller extends AbstractController
         $validator = new Validator($_POST);
 
         $validator->required("title", "description", "price")
+            ->dateTime("date")
             ->length("title", 2, 250)
             ->length("description", 2, 250)
-            ->length("price", 2, 250);
+            ->length("price", 2, 250)
+            ->select('category');
 
         if ($validator->isValid()) {
             $event = new Event();
             $event->setTitleEvent($_POST['title'])
                 ->setDescriptionEvent($_POST['description'])
                 ->setPriceEvent($_POST['price'])
-                ->setDateEvent(new DateTime())
+                ->setDateEvent(new DateTime($_POST['date']))
                 ->setIdCategory(intVal($_POST['category']))
                 ->setIdCreator($_SESSION['userId']);
 
@@ -108,11 +110,15 @@ class EventAdmincontroller extends AbstractController
 
         $errors = $validator->getErrors();
 
-        echo $this->twig->render('admin/event/edit-event.html.twig', [
-            'errors' => $errors,
-            'category' => $category,
-            'event' => $event,
-        ]);
+        if(!empty($errors)) {
+            echo $this->twig->render('admin/event/form-event.html.twig', [
+                'errors' => $errors,
+                'category' => $category,
+                'event' => $event
+            ]);
+        } else {
+            header('Location: /admin/list-event');
+        }
     }
 
     #[Route(path: "/admin/delete-event/{id}" , name: "delete-event")]

@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ajouter un Evenement</h1>
 
 <div class="flex flex-col items-center h-full">
 
@@ -19,7 +18,8 @@
     <form action='/admin/create-event' method='POST' class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
         {{ field("title", "Titre", "Titre") }}
         {{ field("description", "Description", "", "", {type: "textarea"}) }}
-        {{ field("price", "Prix", "Prix") }}
+        {{ field("price", "Prix","Prix", "", {type: "number"}) }}
+        {{ field("date", "Date","Date", "", {type: "date"}) }}
         {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
         <div class="customSubmit">
             <input type='submit' class="uppercase text-base" value="Ajouter"/>

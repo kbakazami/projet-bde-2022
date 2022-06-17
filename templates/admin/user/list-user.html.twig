@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Utilisateurs</h1>
+    <a href="/admin/form-create-user">Créer un Utilisateur</a>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Image</th>
+            <th>Prénom</th>
+            <th>Nom de famille</th>
+            <th>Email</th>
+            <th>Date de naissance</th>
+            <th>Action</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.image }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.mail }}</td>
+                <td>{{ user.birthdate }}</td>
+                <td>
+                    <a href="/admin/form-edit-user/{{ user.id }}">Modifier</a>
+                    <a href="/admin/delete-user/{{ user.id }}">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

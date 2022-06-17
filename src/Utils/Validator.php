@@ -97,13 +97,21 @@ class Validator
         return $this;
     }
 
-    public function dateTime(string $key, string $format = 'Y-m-d H:i:s'):self
+    public function dateTime(string $key):self
     {
         $value = $this->getValue($key);
-        $date = \DateTime::createFromFormat($format, $value);
-        $errors = \DateTime::getLastErrors();
-        if($errors['error_count'] > 0 || $errors['warning_count'] > 0 || $date === false){
-            $this->addError($key, 'dateTime', [$format]);
+
+        if($value === ""){
+            $this->addError($key, 'dateTime');
+        }
+        return $this;
+    }
+
+    public function select(string $key){
+        $value = $this->getValue($key);
+
+        if($value === "Sélectionnez une valeur"){
+            $this->addError($key, 'select');
         }
         return $this;
     }

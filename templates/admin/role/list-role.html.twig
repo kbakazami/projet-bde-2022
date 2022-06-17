@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Rôles</h1>
+    <a href="/admin/form-create-role">Créer un Rôle</a>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+        </tr>
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>{{ role.name }}</td>
+                <td>
+                    <a href="/admin/form-update-role/{{ role.id }}">Modifier</a>
+                    <a href="/admin/delete-role/{{ role.id }}">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

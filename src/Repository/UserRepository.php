@@ -43,4 +43,38 @@ final class UserRepository extends AbstractRepository
         return false;
     }
   }
+
+  public function findAllUser(){
+      $stmt = $this->pdo->prepare("SELECT * FROM users");
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_OBJ);
+  }
+
+    public function findUserById(int $id){
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->execute([
+            'id' => $id
+        ]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function updateUser(User $user, $id){
+        $stmt = $this->pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, mail = :mail,  image = :image, birthDate = :birthDate WHERE id = :id");
+
+        return $stmt->execute([
+            'firstname' => $user->getFirstName(),
+            'lastname' => $user->getlastName(),
+            'mail' => $user->getEmail(),
+            'image' => $user->getImage(),
+            'birthDate' => $user->getBirthDate()->format('Y-m-d'),
+            'id' => $id
+        ]);
+    }
+
+    public function deleteUser(int $id){
+        $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
 }

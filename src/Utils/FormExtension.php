@@ -51,6 +51,7 @@ class FormExtension extends AbstractExtension
       '</div>';
     }
 
+
     private function getErrorHtml($context, $key)
     {
         $error = $context["errors"][$key] ?? false;
@@ -80,7 +81,7 @@ class FormExtension extends AbstractExtension
                 $select .= "<option value='{$val->id}' " . ($value === $val->id ? "selected" : "") . ">$val->title</option>";
             }
         }else{
-            $select .= "<option>Sélectionnez une catégorie</option>";
+            $select .= "<option>Sélectionnez une valeur</option>";
 
             foreach ($data as $d){
 
