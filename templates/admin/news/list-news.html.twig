@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Actualitées</h1>
+    <a href="/admin/form-create-news">Créer une Actualitée</a>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+        {% for new in news %}
+            <tr>
+                <td>{{ new.id }}</td>
+                <td>{{ new.name }}</td>
+                <td>{{ new.description }}</td>
+                <td>{{ new.date }}</td>
+                <td>
+                    <a href="/admin/form-edit-news/{{ new.id }}">Modifier</a>
+                    <a href="/admin/delete-news/{{ new.id }}">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

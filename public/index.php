@@ -17,6 +17,7 @@ use App\Repository\CategoryRepository;
 use App\Repository\EventRepository;
 use App\Repository\RoleRepository;
 use App\Repository\UserRepository;
+use App\Repository\NewsRepository;
 use App\Routing\ArgumentResolver;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;
@@ -41,6 +42,8 @@ $userRepository = new UserRepository($pdoConnection->getPdoConnection());
 $categoryRepository = new CategoryRepository($pdoConnection->getPdoConnection());
 $eventRepository = new EventRepository($pdoConnection->getPdoConnection());
 $roleRepository = new RoleRepository($pdoConnection->getPdoConnection());
+$newsRepository = new NewsRepository($pdoConnection->getPdoConnection());
+
 // Twig - Vue
 $twigEnvironment = new TwigEnvironment();
 $twig = $twigEnvironment->init();
@@ -55,6 +58,7 @@ $container->set(CategoryRepository::class,$categoryRepository);
 $container->set(EventRepository::class, $eventRepository);
 $container->set(RoleRepository::class, $roleRepository);
 $container->set(FormExtension::class, $formTwig);
+$container->set(NewsRepository::class, $newsRepository);
 
 // Routage
 $router = new Router($container, new ArgumentResolver());
