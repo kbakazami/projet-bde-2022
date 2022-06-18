@@ -41,6 +41,10 @@ class FormExtension extends AbstractExtension
         }elseif ($type === 'select'){
             $input = $this->select($value, $attributes, $data);
         }
+//        elseif ($type === 'file')
+//        {
+//            $input = $this->file($value, $attributes, $type, $jsMethod);
+//        }
         else{
             $input = $this->input($value, $attributes, $type, $placeholder);
         }
@@ -70,6 +74,11 @@ class FormExtension extends AbstractExtension
     {
         return '<textarea type="text" '. $this->getHtmlFromArray($attributes) .'>' . $value .'</textarea>';
     }
+//
+//    private function file(?string $value, array $attributes, $type, ?string $jsMethod): string
+//    {
+//        return '<input type="'. $type .'"'. $this->getHtmlFromArray($attributes) . ' value="' . $value . '" onChange="' . $jsMethod . '" />';
+//    }
 
     private function select(?string $value, array $attributes, $data): string
     {

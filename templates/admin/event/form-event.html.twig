@@ -15,9 +15,15 @@
 
     <div class="form-wrapper pb-28">
         <div class="form-container">
-    <form action='/admin/create-event' method='POST' class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
+    <form action='/admin/create-event' enctype="multipart/form-data" method='POST'
+          class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
         {{ field("title", "Titre", "Titre") }}
         {{ field("description", "Description", "", "", {type: "textarea"}) }}
+        {{ field("file", "Image", "", "", {type: "file"}) }}
+        <div id="edit-image-preview" class="hidden">
+            <p>Image sélectionnée :</p>
+            <div id="img-preview"></div>
+        </div>
         {{ field("price", "Prix","Prix", "", {type: "number"}) }}
         {{ field("date", "Date","Date", "", {type: "date"}) }}
         {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
