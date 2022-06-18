@@ -4,8 +4,8 @@
     <h1>Ajouter une Catégorie</h1>
 
     <form action='/admin/create-category' method='POST'>
-        {{ field("title", "Titre de la catégorie") }}
-        {{ field("color", "Choisissez la couleur de la catégorie", "", {type: "color"}) }}
+        {{ field("title", "Titre de la catégorie", "Titre de la catégorie") }}
+        {{ field("color", "Choisissez la couleur de la catégorie", "", "", {type: "color"}) }}
         <input type='submit'/>
     </form>
 
