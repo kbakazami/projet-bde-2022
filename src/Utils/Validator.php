@@ -122,6 +122,21 @@ class Validator
     }
 
     /**
+     * Vérifie l'extension de l'image
+     */
+    public function imagePattern($key)
+    {
+        $pattern = ["image/jpg", "image/png", "image/jpeg"];
+        $keyToLower = strtolower($key);
+        if(!in_array($keyToLower, $pattern))
+        {
+            $this->addError($keyToLower, 'imagePattern');
+        }
+
+        return true;
+    }
+
+    /**
      * Récupère les erreurs
      * @return ValidationError[]
      */

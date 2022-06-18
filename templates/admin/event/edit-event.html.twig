@@ -20,8 +20,15 @@
                 <form action='/admin/update-event/{{ event.id }}' method='POST'
                       class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
                     {{ field("title", "Titre", "Titre", event.title ) }}
+                    <div>Image actuelle :</div>
+                    <div><img src="/img/{{ event.image }}" alt="e"/></div>
+                    {{ field("file", "Image", "", "", {type: "file"}) }}
+                    <div id="edit-image-preview" class="hidden">
+                        <p>Nouvelle image :</p>
+                    <div id="img-preview"></div>
+                    </div>
                     {{ field("description", "Description", "", event.description, {type: "textarea"}) }}
-                    {{ field("price", "Prix", "Prix", event.price ) }}
+                    {{ field("price", "Prix", "Prix", event.price,{type: "number"} ) }}
                     {{ field("date", "Date","Date", event.date, {type: "date"}) }}
                     {{ field("category", "Catégorie", "", event.id_category, {type: "select", data: category}) }}
                     <div class="customSubmit">

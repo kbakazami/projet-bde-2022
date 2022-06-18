@@ -16,7 +16,8 @@ class ValidationError {
         'dateTime' => 'Veuillez sélectionner une date',
         'mailPattern' => 'Ne sont acccepté que les emails @myges.fr valide',
         'confirmPassword' => 'Les mots de passes sont différents',
-        "select" => "Veuillez choisir une valeur"
+        "select" => "Veuillez choisir une valeur",
+        'imagePattern' => "Veuillez selectionner un format d'image autorisé (png, jpg ou jpeg)"
     ];
 
     public function __construct(string $key, string $rule, array $attributes= []) {
