@@ -1,0 +1,74 @@
+{% include 'admin/partials/header.html.twig'%}
+{% block nav %}
+<header>
+<div>
+    <nav class="relative navbar pb-px uppercase bg-gradient-to-r from-blue via-purple to-pink text-sm font-expletus h-16">
+        <div class="relative h-full">
+            <div class=" flex flex-row justify-between items-center h-full w-full bg-black px-4 py-2.5 lg:px-20 lg:py-5 opacity-90">
+                <h1 class="text-2xl lg:text-5xl text-center">{{ title }}</h1>
+                <ul class="nav-menu flex flex-col space-y-12 pt-8
+                    md:space-y-0 md:flex-row md:space-x-4 md:pt-0 items-center">
+                    <li class="nav-item">
+                        <a class="button-left"
+                           href="/">
+                            Accueil
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="button-left "
+                           href="/admin/list-event">
+                            Evenements
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="button-left"
+                           href="/admin/list-category">
+                            Catégories
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="button-left"
+                           href="/admin/list-news">
+                            Actualitées
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="button-left"
+                           href="/admin/list-user">
+                            Utilisateurs
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="button-left"
+                           href="/admin/list-role">
+                            Rôles
+                        </a>
+                    </li>
+                </ul>
+                <div class="hamburger-menu md:hidden">
+                    <svg id="burgerMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg id="cross" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+</div>
+</header>
+<main id="maincontent">
+    {% endblock %}
+    {% block body %}
+    {% endblock %}
+
+{% include 'admin/partials/footer.html.twig'%}
