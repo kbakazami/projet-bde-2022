@@ -21,13 +21,13 @@ class RoleAdminController extends AbstractController
     {
         $validator = new Validator($_POST);
 
-        $validator->required("name")
-            ->length("name", 2, 250);
+        $validator->required("title")
+            ->length("title", 2, 250);
 
 
         if ($validator->isValid()) {
             $role = new Role();
-            $role->setName($_POST['name']);
+            $role->setTitle($_POST['title']);
 
 
             $roleRepository->save($role);
@@ -69,12 +69,12 @@ class RoleAdminController extends AbstractController
         $role = $roleRepository->findRoleById($id);
         $validator = new Validator($_POST);
 
-        $validator->required("name")
+        $validator->required("title")
             ->length("name", 2, 250);
 
         if ($validator->isValid()) {
             $roleUpdate = new Role();
-            $roleUpdate->setName($_POST['name']);
+            $roleUpdate->setTitle($_POST['title']);
 
             $roleRepository->updateRole($roleUpdate, $id);
         }

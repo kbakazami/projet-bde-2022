@@ -12,22 +12,22 @@ final class RoleRepository extends AbstractRepository
 
     public function save(Role $role): bool
     {
-        $stmt = $this->pdo->prepare("INSERT INTO roles (name) VALUES (:name)");
+        $stmt = $this->pdo->prepare("INSERT INTO roles (title) VALUES (:title)");
 
         return $stmt->execute([
-            'name' => $role->getName()
+            'title' => $role->getTitle()
         ]);
     }
 
     public function findAllRole(){
-        $stmt = $this->pdo->prepare("SELECT id, name FROM roles");
+        $stmt = $this->pdo->prepare("SELECT id, title FROM roles");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function findRoleById(int $id){
-        $stmt = $this->pdo->prepare("SELECT id, name FROM roles WHERE id = :id");
+        $stmt = $this->pdo->prepare("SELECT id, title FROM roles WHERE id = :id");
 
         $stmt->execute([
             'id' => $id
@@ -36,10 +36,10 @@ final class RoleRepository extends AbstractRepository
     }
 
     public function updateRole(Role $role, $id){
-        $stmt = $this->pdo->prepare("UPDATE roles SET name = :name WHERE id = :id");
+        $stmt = $this->pdo->prepare("UPDATE roles SET title = :title WHERE id = :id");
 
         return $stmt->execute([
-            'name' => $role->getName(),
+            'title' => $role->getTitle(),
             'id' => $id
         ]);
     }

@@ -23,6 +23,7 @@
                     {{ field("prenom", "Prénom","Prénom", user.firstname) }}
                     {{ field("mail", "Email","Email", user.mail) }}
                     {{ field("date", "Date de naissance","Date de naissance" , user.birthdate, {type: 'date'}) }}
+                    {{ field("role", "Rôle", "", "", {type: "select", data: role}) }}
                     <div class="customSubmit">
                         <input type='submit' class="uppercase text-base" value="Modifier"/>
                     </div>

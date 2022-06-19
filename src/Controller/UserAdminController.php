@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\RoleRepository;
 use App\Routing\Attribute\Route;
 use App\Repository\UserRepository;
 use App\Utils\Validator;
@@ -16,15 +17,19 @@ class UserAdminController extends AbstractController
     public function listUser(UserRepository $userRepository)
     {
        $users = $userRepository->findAllUser();
+
         echo $this->twig->render('/admin/user/list-user.html.twig',[
             'users' => $users
         ]);
     }
 
     #[Route(path: "/admin/form-create-user", name: "create-form-user")]
-    public function createFormUser(UserRepository $userRepository,)
+    public function createFormUser(RoleRepository $roleRepository,)
     {
-        echo $this->twig->render('/admin/user/form-user.html.twig');
+        $role = $roleRepository->findAllRole();
+        echo $this->twig->render('/admin/user/form-user.html.twig', [
+            'role' => $role
+        ]);
     }
 
     #[Route(path: "/admin/create-user", name: "create-user", httpMethod: "POST")]
@@ -38,7 +43,8 @@ class UserAdminController extends AbstractController
             ->length("password", 2, 50)
             ->mailPattern("mail")
             ->dateTime("date")
-            ->confirmPasword("password", "confirmPassword");
+            ->confirmPasword("password", "confirmPassword")
+            ->select('role');
 
         if ($validator->isValid()) {
             $user = new User();
@@ -47,6 +53,7 @@ class UserAdminController extends AbstractController
                 ->setEmail($_POST['mail'])
                 ->setPassword($_POST['password'])
                 ->setBirthDate(new DateTime($_POST['date']))
+                ->setIdRole(intVal($_POST['role']))
                 ->setImage("");
 
             $userRepository->save($user);
@@ -64,11 +71,14 @@ class UserAdminController extends AbstractController
     }
 
     #[Route(path: "/admin/form-edit-user/{id}", name: "edit-form-user")]
-    public function editFormUser(UserRepository $userRepository,int $id)
+    public function editFormUser(UserRepository $userRepository, RoleRepository $roleRepository, int $id)
     {
         $user = $userRepository->findUserById($id);
+
+        $role = $roleRepository->findAllRole();
         echo $this->twig->render('admin/user/edit-user.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'role' => $role
         ]);
     }
 
@@ -82,7 +92,8 @@ class UserAdminController extends AbstractController
             ->length("nom", 2, 250)
             ->length("prenom", 2, 50)
             ->mailPattern("mail")
-            ->dateTime("date");
+            ->dateTime("date")
+            ->select('role');
 
         if ($validator->isValid()) {
             $userUpdate = new User();
@@ -90,10 +101,12 @@ class UserAdminController extends AbstractController
                 ->setLastName($_POST['nom'])
                 ->setEmail($_POST['mail'])
                 ->setBirthDate(new DateTime($_POST['date']))
+                ->setIdRole(intVal($_POST['role']))
                 ->setImage("");
 
             $userRepository->updateUser($userUpdate, $id);
         }
+
         $errors = $validator->getErrors();
 
         if(!empty($errors)) {

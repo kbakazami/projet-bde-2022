@@ -11,7 +11,7 @@
         {% for role in roles %}
             <tr>
                 <td>{{ role.id }}</td>
-                <td>{{ role.name }}</td>
+                <td>{{ role.title }}</td>
                 <td>
                     <a href="/admin/form-update-role/{{ role.id }}">Modifier</a>
                     <a href="/admin/delete-role/{{ role.id }}">Supprimer</a>

@@ -11,7 +11,7 @@ final class UserRepository extends AbstractRepository
 
   public function save(User $user): bool
   {
-    $stmt = $this->pdo->prepare("INSERT INTO users (firstname, lastname, mail, `password`, image, birthDate) VALUES (:firstname, :lastname, :mail, :password, :image, :birthDate)");
+    $stmt = $this->pdo->prepare("INSERT INTO users (firstname, lastname, mail, `password`, image, birthDate, id_role) VALUES (:firstname, :lastname, :mail, :password, :image, :birthDate, :id_role)");
 
     return $stmt->execute([
       'firstname' => $user->getFirstName(),
@@ -19,7 +19,8 @@ final class UserRepository extends AbstractRepository
       'mail' => $user->getEmail(),
       'password' => password_hash($user->getPassword(), PASSWORD_BCRYPT),
       'image' => $user->getImage(),
-      'birthDate' => $user->getBirthDate()->format('Y-m-d')
+      'birthDate' => $user->getBirthDate()->format('Y-m-d'),
+        'id_role' => $user->getIdRole()
     ]);
   }
 
@@ -45,7 +46,7 @@ final class UserRepository extends AbstractRepository
   }
 
   public function findAllUser(){
-      $stmt = $this->pdo->prepare("SELECT * FROM users");
+      $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id");
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_OBJ);
   }
@@ -59,7 +60,7 @@ final class UserRepository extends AbstractRepository
     }
 
     public function updateUser(User $user, $id){
-        $stmt = $this->pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, mail = :mail,  image = :image, birthDate = :birthDate WHERE id = :id");
+        $stmt = $this->pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, mail = :mail,  image = :image, birthDate = :birthDate, id_role = :id_role WHERE id = :id");
 
         return $stmt->execute([
             'firstname' => $user->getFirstName(),
@@ -67,6 +68,7 @@ final class UserRepository extends AbstractRepository
             'mail' => $user->getEmail(),
             'image' => $user->getImage(),
             'birthDate' => $user->getBirthDate()->format('Y-m-d'),
+            'id_role' => $user->getIdRole(),
             'id' => $id
         ]);
     }

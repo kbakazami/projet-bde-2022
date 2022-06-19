@@ -16,7 +16,7 @@
         <div class="form-wrapper pb-28">
             <div class="form-container">
                 <form action='/admin/update-role/{{ role.id }}' method='POST' class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
-                    {{ field("name", "Nom du Rôle", "Nom du Rôle", role.name) }}
+                    {{ field("title", "Nom du Rôle", "Nom du Rôle", role.title) }}
                     <div class="customSubmit">
                         <input type='submit' class="uppercase text-base" value="Modifier"/>
                     </div>

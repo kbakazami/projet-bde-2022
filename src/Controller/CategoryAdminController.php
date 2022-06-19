@@ -32,7 +32,6 @@ class CategoryAdminController extends AbstractController
             $category->setTitle($_POST['title'])
                 ->setColor($_POST['color']);
 
-
             $categoryRepository->save($category);
         }
         $errors = $validator->getErrors();
