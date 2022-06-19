@@ -46,6 +46,26 @@
     @apply bg-gradient-to-r from-blue via-purple to-pink p-px
 }
 
+.button-add
+{
+    @apply rounded-full border-3 border-blue py-3 px-7
+}
+
+.button-edit
+{
+    @apply rounded-full border border-blue uppercase px-3 py-1 w-32
+}
+
+.button-delete
+{
+    @apply rounded-full border border-pink uppercase px-3 py-1 w-32
+}
+
+.button-left
+{
+    @apply rounded-full border-2 border-blue py-1 px-3 uppercase text-center
+}
+
 .form-container
 {
     @apply relative rounded bg-black
