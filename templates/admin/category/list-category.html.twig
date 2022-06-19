@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Catégories</h1>
+    <a href="/admin/form-create-category">Créer une Catégorie</a>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Couleur</th>
+        </tr>
+        {% for category in category %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.title }}</td>
+                <td>{{ category.color }}</td>
+                <td>
+                    <a href="/admin/form-edit-category/{{ category.id }}">Modifier</a>
+                    <a href="/admin/delete-category/{{ category.id }}">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

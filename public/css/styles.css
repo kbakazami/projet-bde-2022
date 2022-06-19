@@ -46,14 +46,14 @@
     @apply bg-gradient-to-r from-blue via-purple to-pink p-px
 }
 
-.form-wrapper
-{
-    @apply w-290 sm:w-520
-}
-
 .form-container
 {
     @apply relative rounded bg-black
+}
+
+.form-wrapper
+{
+    @apply w-290 sm:w-520
 }
 
 .form-container:before{
@@ -94,14 +94,10 @@ h1
 
 input[type="submit"]
 {
-    @apply relative bg-gradient-to-t from-blue-60 via-purple-60 to-pink-60
-    outline-0 w-full lg:w-auto uppercase mx-auto lg:px-12 py-2 rounded-full cursor-pointer
-    font-expletus text-sm lg:text-base text-center
-}
-
-input[type="submit"]:hover
-{
-    @apply relative bg-gradient-to-t from-blue via-purple to-pink shadow-glowEffect
+    /*@apply relative bg-gradient-to-t from-blue-60 via-purple-60 to-pink-60*/
+    /*outline-0 w-full lg:w-auto uppercase mx-auto lg:px-12 py-2 rounded-full cursor-pointer*/
+    /*font-expletus text-sm lg:text-base text-center*/
+    @apply font-expletus text-sm lg:text-base
 }
 
 input[type="date"]
@@ -119,6 +115,52 @@ input[type="date"]:before
 .form-front label
 {
     @apply sr-only
+}
+
+.submit-front
+{
+    @apply cursor-pointer
+}
+
+.submit-wrapper
+{
+    @apply w-34 sm:w-50 mx-auto sm:mt-8 lg:mt-0
+}
+
+.submit-container,
+.submit-container2
+{
+    @apply relative rounded
+}
+
+.submit-container:before,
+.submit-container2:before
+{
+    content: "";
+    background: conic-gradient(transparent 20%, #2D27FF 25% 52%, transparent 53% 70%, red 75%);
+    background: -webkit-linear-gradient(to right, #2D27FF, #AE20D5, #FF0A6C);
+    @apply absolute w-34 sm:w-50 h-full bg-gradient-to-r from-blue via-purple to-pink skew-x-125 left-0
+}
+
+.submit-container-black:hover:before
+{
+    @apply bg-transparent transition-all ease-in-out duration-700
+}
+
+.submit-container-black:hover
+{
+    @apply text-black
+}
+
+.submit-container-black
+{
+    @apply flex justify-center
+}
+
+.submit-container-black:before
+{
+    content: "";
+    @apply bg-black w-30 sm:w-46 sm:h-8 h-5 absolute skew-x-125 top-0.1 lg:top-0.2  transition-all ease-in-out duration-700
 }
 
 ::-webkit-calendar-picker-indicator{

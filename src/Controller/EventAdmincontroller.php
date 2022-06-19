@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Repository\CategoryRepository;
+use App\Repository\ImageRepository;
 use App\Repository\EventRepository;
 use App\Routing\Attribute\Route;
+use App\Utils\UploadFiles;
 use App\Utils\Validator;
 use DateTime;
-
 
 class EventAdmincontroller extends AbstractController
 {
@@ -28,13 +29,16 @@ class EventAdmincontroller extends AbstractController
     {
         $category = $categoryRepository->findAllCategory();
         $validator = new Validator($_POST);
-
+        var_dump($_FILES);
+        $image = new UploadFiles($_FILES['file']);
+        var_dump($_FILES['file']);
         $validator->required("title", "description", "price")
             ->dateTime("date")
             ->length("title", 2, 250)
             ->length("description", 2, 250)
             ->length("price", 2, 250)
-            ->select('category');
+            ->select('category')
+            ->imagePattern($image->getTypeFile());
 
         if ($validator->isValid()) {
             $event = new Event();
@@ -42,6 +46,7 @@ class EventAdmincontroller extends AbstractController
                 ->setDescriptionEvent($_POST['description'])
                 ->setPriceEvent($_POST['price'])
                 ->setDateEvent(new DateTime($_POST['date']))
+                ->setImageEvent($image->upload())
                 ->setIdCategory(intVal($_POST['category']))
                 ->setIdCreator($_SESSION['userId']);
 
@@ -90,11 +95,20 @@ class EventAdmincontroller extends AbstractController
         $category = $categoryRepository->findAllCategory();
         $event = $eventRepository->findEventById($id);
         $validator = new Validator($_POST);
+//        if($_FILES)
+//        {
+            $image = new UploadFiles($_FILES['file']);
+//        }
 
         $validator->required("title", "description", "price")
             ->length("title", 2, 250)
             ->length("description", 2, 250)
             ->length("price", 2, 250);
+
+        if($_FILES)
+        {
+            $validator->imagePattern($image->getTypeFile());
+        }
 
         if ($validator->isValid()) {
             $eventUpdate = new Event();
@@ -105,7 +119,12 @@ class EventAdmincontroller extends AbstractController
                 ->setIdCategory(intVal($_POST['category']))
                 ->setIdCreator($_SESSION['userId']);
 
+            if($_FILES)
+            {
+                $eventUpdate->setImageEvent($image->upload());
+            }
             $eventRepository->updateEvent($eventUpdate, $id);
+
         }
 
         $errors = $validator->getErrors();
@@ -127,7 +146,7 @@ class EventAdmincontroller extends AbstractController
         $eventRepository->deleteEvent($id);
 
         $message = "L'événement a bien été supprimé";
-
+        header('Location: /admin/list-event');
         echo $this->twig->render('admin/event/list-event.html.twig', [
             'message' => $message
         ]);
