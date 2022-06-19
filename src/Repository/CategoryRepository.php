@@ -20,7 +20,7 @@ final class CategoryRepository extends AbstractRepository
     }
 
     public function findAllCategory(){
-        $stmt = $this->pdo->prepare("SELECT id, title FROM category");
+        $stmt = $this->pdo->prepare("SELECT id, title, color FROM category");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -33,6 +33,15 @@ final class CategoryRepository extends AbstractRepository
             'id' => $id
         ]);
         return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function findCategoryEventById(int $id)
+    {
+        $stmt = $this->pdo->prepare("SELECT title, color FROM category, event WHERE category.id = :id");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
     }
 
     public function updateCategory(Category $category, $id){
