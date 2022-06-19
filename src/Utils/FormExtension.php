@@ -87,14 +87,14 @@ class FormExtension extends AbstractExtension
         
         if($value !== ''){
             foreach ($data as $key => $val) {
-                $select .= "<option value='{$val->id}' " . ($value === $val->id ? "selected" : "") . ">$val->title_category</option>";
+                $select .= "<option value='{$val->id}' " . ($value === $val->id ? "selected" : "") . ">$val->title</option>";
             }
         }else{
             $select .= "<option>Sélectionnez une valeur</option>";
 
             foreach ($data as $d){
 
-                $select .= "<option value='$d->id'>$d->title_category</option>";
+                $select .= "<option value='$d->id'>$d->title</option>";
             }
         }
 

@@ -11,7 +11,7 @@ final class CategoryRepository extends AbstractRepository
 
     public function save(Category $category): bool
     {
-        $stmt = $this->pdo->prepare("INSERT INTO category (title_category, color) VALUES (:title, :color)");
+        $stmt = $this->pdo->prepare("INSERT INTO category (title, color) VALUES (:title, :color)");
 
         return $stmt->execute([
             'title' => $category->getTitle(),
@@ -20,14 +20,14 @@ final class CategoryRepository extends AbstractRepository
     }
 
     public function findAllCategory(){
-        $stmt = $this->pdo->prepare("SELECT id, title_category FROM category");
+        $stmt = $this->pdo->prepare("SELECT id, title, color FROM category");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function findCategoryById(int $id){
-        $stmt = $this->pdo->prepare("SELECT id, title_category, color FROM category WHERE id = :id");
+        $stmt = $this->pdo->prepare("SELECT id, title, color FROM category WHERE id = :id");
 
         $stmt->execute([
             'id' => $id
@@ -37,7 +37,7 @@ final class CategoryRepository extends AbstractRepository
 
     public function findCategoryEventById(int $id)
     {
-        $stmt = $this->pdo->prepare("SELECT title_category, color FROM category, event WHERE category.id = :id");
+        $stmt = $this->pdo->prepare("SELECT title, color FROM category, event WHERE category.id = :id");
 
         return $stmt->execute([
             'id' => $id
@@ -45,7 +45,7 @@ final class CategoryRepository extends AbstractRepository
     }
 
     public function updateCategory(Category $category, $id){
-        $stmt = $this->pdo->prepare("UPDATE category SET title_category = :title, color = :color WHERE id = :id");
+        $stmt = $this->pdo->prepare("UPDATE category SET title = :title, color = :color WHERE id = :id");
 
         return $stmt->execute([
             'title' => $category->getTitle(),

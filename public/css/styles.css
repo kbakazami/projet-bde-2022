@@ -48,7 +48,7 @@
 
 .button-add
 {
-    @apply rounded-full border-3 border-blue py-3 px-7
+    @apply rounded-full border-2 border-blue py-1 px-7 w-full lg:w-auto lg:py-3
 }
 
 .button-edit
@@ -63,7 +63,7 @@
 
 .button-left
 {
-    @apply rounded-full border-2 border-blue py-1 px-3 uppercase text-center
+    @apply rounded-full border-2 border-blue py-2 px-3 uppercase text-center w-36
 }
 
 .form-container
