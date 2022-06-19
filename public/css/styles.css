@@ -66,6 +66,11 @@
     @apply rounded-full border-2 border-blue py-2 px-3 uppercase text-center w-36
 }
 
+.button-submit
+{
+    @apply rounded-full border-2 border-blue py-1 text-center w-full
+}
+
 .form-container
 {
     @apply relative rounded bg-black
@@ -100,6 +105,56 @@ h1
     @apply bg-gradient-to-r from-blue via-purple to-pink font-bold opacity-75
 }
 
+.form-back .form-group
+{
+    @apply w-full lg:w-auto
+}
+
+.form-back input[type="text"]
+{
+    @apply bg-transparent border-2 border-blue w-full lg:w-420 py-1.5 px-2 placeholder:italic placeholder:uppercase mb-4 lg:mb-0
+}
+
+.form-back input[type="color"]
+{
+    @apply w-full lg:w-420 h-9 py-0 bg-transparent border-2 border-blue
+}
+
+.form-back input[type="datetime-local"],
+.form-back input[type="number"]
+
+{
+    @apply bg-transparent border-2 border-blue w-full lg:w-420 py-1.5 px-2 uppercase mb-4 lg:mb-0
+}
+
+/*.form-back .inputTypeFile input[type="file"]*/
+/*{*/
+/*    @apply hidden*/
+/*}*/
+
+/*.form-back .inputTypeFile label*/
+/*{*/
+/*    @apply cursor-pointer bg-transparent border-2 border-blue w-full lg:w-auto py-1.5 px-12 uppercase rounded-full*/
+/*}*/
+
+
+.form-back textarea
+{
+    resize: none;
+    @apply bg-transparent border-2 border-blue w-full h-60 py-1.5 px-2 uppercase
+}
+
+.form-back select
+{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+    background-position: right;
+    background-repeat: no-repeat;
+    @apply bg-black border-2 border-blue w-full lg:w-420 py-1 px-2
+}
+
 .form-front input[type="text"],
 .form-front input[type="date"]
 {
@@ -130,6 +185,11 @@ input[type="date"]:before
     content: 'Date de naissance';
     color: #a9a9a9;
     @apply italic pr-4
+}
+
+.form-back label
+{
+    @apply flex uppercase pl-2 italic
 }
 
 .form-front label

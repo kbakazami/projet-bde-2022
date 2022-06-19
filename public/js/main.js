@@ -29,7 +29,8 @@ function menuMobile()
 /************************* Display Selected Image ********************************/
 const chooseFile = document.querySelector("#file");
 const imgPreview = document.querySelector("#img-preview");
-const editImagePreview = document.querySelector("#edit-image-preview")
+const editImagePreview = document.querySelector("#edit-image-preview");
+const hideImageInBdd = document.querySelector("#image-in-bdd");
 
 chooseFile.addEventListener("change", function () {
     getImgData();
@@ -41,6 +42,7 @@ function getImgData() {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(files);
         fileReader.addEventListener("load", function () {
+            hideImageInBdd.classList.add("hidden");
             editImagePreview.classList.remove("hidden");
             imgPreview.style.display = "block";
             imgPreview.innerHTML = '<img src="' + this.result + '" />';
