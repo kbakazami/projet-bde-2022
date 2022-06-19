@@ -28,6 +28,7 @@ class RegisterController extends AbstractController
             ->length("nom", 2, 250)
             ->length("prenom", 2, 50)
             ->mailPattern("mail")
+            ->mailExist("mail", $userRepository)
             ->dateTime("date")
             ->confirmPasword("password", "confirmPassword");
 
@@ -38,6 +39,7 @@ class RegisterController extends AbstractController
                 ->setEmail($_POST['mail'])
                 ->setPassword($_POST['password'])
                 ->setBirthDate(new DateTime($_POST['date']))
+                ->setIdRole("10")
                 ->setImage("");
 
             $userRepository->save($user);

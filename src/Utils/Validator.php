@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use App\Repository\UserRepository;
+
 class Validator
 {
     /**
@@ -112,6 +114,17 @@ class Validator
 
         if($value === "Sélectionnez une valeur"){
             $this->addError($key, 'select');
+        }
+        return $this;
+    }
+
+    public function mailExist(string $key, UserRepository $userRepository):self
+    {
+        $value = $this->getValue($key);
+        $user = $userRepository->findByMail($value);
+
+        if($user === true){
+            $this->addError($key, 'mailExist');
         }
         return $this;
     }
