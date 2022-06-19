@@ -17,7 +17,7 @@ final class EventRepository extends AbstractRepository
             'title' => $event->getTitleEvent(),
             'description' => $event->getDescriptionEvent(),
             'price' => $event->getPriceEvent(),
-            'date' => $event->getDateEvent()->format('Y-m-d'),
+            'date' => $event->getDateEvent()->format('Y-m-d H:i'),
             'image' => $event->getImageEvent(),
             'id_category' => $event->getIdCategory(),
             'id_users' => $event->getIdCreator()
@@ -47,7 +47,7 @@ final class EventRepository extends AbstractRepository
             'title' => $event->getTitleEvent(),
             'description' => $event->getDescriptionEvent(),
             'price' => $event->getPriceEvent(),
-            'date' => $event->getDateEvent()->format('Y-m-d'),
+            'date' => $event->getDateEvent()->format('Y-m-d H:i'),
             'image' => $event->getImageEvent(),
             'id_category' => $event->getIdCategory(),
             'id_users' => $event->getIdCreator(),

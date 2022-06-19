@@ -25,7 +25,7 @@
             <div id="img-preview"></div>
         </div>
         {{ field("price", "Prix","Prix", "", {type: "number"}) }}
-        {{ field("date", "Date","Date", "", {type: "date"}) }}
+        {{ field("date", "Date","Date", "", {type: "datetime-local"}) }}
         {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
         <div class="customSubmit">
             <input type='submit' class="uppercase text-base" value="Ajouter"/>

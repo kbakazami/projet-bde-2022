@@ -39,6 +39,9 @@ module.exports = {
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
         'glowEffecty':' 0 0 10px blue,  0 0 40px pink, 0 0 10px purple'
       },
+      borderWidth:{
+        '3':'3px',
+      },
       spacing:{
         '15':'60px',
         'pxmd':'1.5px',
