@@ -64,13 +64,13 @@ class RoleAdminController extends AbstractController
     }
 
     #[Route(path: "/admin/update-role/{id}", name: "update-role", httpMethod: "POST")]
-    public function updateRole(RoleRepository $roleRepository,int $id)
+    public function updateRole(RoleRepository $roleRepository, int $id)
     {
         $role = $roleRepository->findRoleById($id);
         $validator = new Validator($_POST);
 
         $validator->required("title")
-            ->length("name", 2, 250);
+            ->length("title", 2, 250);
 
         if ($validator->isValid()) {
             $roleUpdate = new Role();
