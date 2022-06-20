@@ -51,6 +51,11 @@
     @apply rounded-full border-2 border-blue py-1 px-7 w-full lg:w-auto lg:py-3
 }
 
+.button-add:hover
+{
+    
+}
+
 .button-edit
 {
     @apply rounded-full border border-blue uppercase px-3 py-1 w-32
@@ -102,7 +107,7 @@ h1
 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    @apply bg-gradient-to-r from-blue via-purple to-pink font-bold opacity-75
+    @apply bg-gradient-to-r from-blue via-purple to-pink font-bold
 }
 
 .form-back .form-group
