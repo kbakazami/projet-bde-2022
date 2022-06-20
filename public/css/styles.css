@@ -123,7 +123,6 @@ h1
 .form-back input[type="datetime-local"],
 .form-back input[type="number"],
 .form-back input[type="date"]
-
 {
     @apply bg-transparent border-2 border-blue w-full lg:w-420 py-1.5 px-2 uppercase mb-4 lg:mb-0
 }
@@ -174,6 +173,11 @@ input[type="submit"]
     /*outline-0 w-full lg:w-auto uppercase mx-auto lg:px-12 py-2 rounded-full cursor-pointer*/
     /*font-expletus text-sm lg:text-base text-center*/
     @apply font-expletus text-sm lg:text-base
+}
+
+.inputSearchBack
+{
+    @apply bg-transparent border-2 border-blue w-full lg:w-290 py-1 px-2 uppercase placeholder:italic
 }
 
 .form-front input[type="date"]
