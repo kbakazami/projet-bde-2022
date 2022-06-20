@@ -37,7 +37,7 @@ class FormExtension extends AbstractExtension
         }
 
         if($type === 'textarea'){
-            $input = $this->textarea($value, $attributes);
+            $input = $this->textarea($value, $attributes, $placeholder);
         }elseif ($type === 'select'){
             $input = $this->select($value, $attributes, $data);
         }
@@ -70,9 +70,9 @@ class FormExtension extends AbstractExtension
         return'<input type="'. $type .'"'. $this->getHtmlFromArray($attributes) . ' value="' . $value . '" placeholder="'. $placeholder .'" />';
     }
 
-    private function textarea(?string $value, array $attributes): string
+    private function textarea(?string $value, array $attributes, ?string $placeholder): string
     {
-        return '<textarea type="text" '. $this->getHtmlFromArray($attributes) .'>' . $value .'</textarea>';
+        return '<textarea type="text" placeholder="'. $placeholder .'"'. $this->getHtmlFromArray($attributes) .'>' . $value .'</textarea>';
     }
 //
 //    private function file(?string $value, array $attributes, $type, ?string $jsMethod): string

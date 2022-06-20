@@ -1,34 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base-admin.html.twig' %}
 
 {% block body %}
-    <div class="flex flex-col items-center h-full">
 
-        <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
-            <div class="relative">
-                <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
-                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-            </div>
-            <h1 class="absolute top-12 right-px">Ajoutez d'un Utilisateur</h1>
-            <h1 class="h1Gradiant">Ajoutez d'un Utilisateur</h1>
+    <div class="flex flex-col pt-4 pb-24">
+        <div class="w-full text-center pb-10 lg:pb-20">
+            <h1 class="text-4xl lg:text-5xl normal-case">Ajouter d'un Utilisateur</h1>
         </div>
 
-        <div class="form-wrapper pb-28">
-            <div class="form-container">
-                <form action='/admin/create-user' method='POST'
-                      class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
-                    {{ field("nom", "Nom","Nom") }}
-                    {{ field("prenom", "Prénom","Prénom") }}
-                    {{ field("mail", "Email","Email") }}
-                    {{ field("date", "Date de naissance","" ,"", {type: 'date'}) }}
-                    {{ field("role", "Rôle", "", "", {type: "select", data: role}) }}
-                    {{ field("password", "Mot de passe","Mot de passe") }}
-                    {{ field("confirmPassword", "Confirmation du mot de passe","Confirmation du mot de passe") }}
-                    <div class="customSubmit">
-                        <input type='submit' class="uppercase text-base" value="Ajouter"/>
-                    </div>
-                </form>
+        <form action='/admin/create-user' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto">
+            <div class="flex flex-col lg:flex-row items-center lg:space-x-16 uppercase italic mb-8 text-sm lg:text-base" id="image-in-bdd">
+                {% if user.image %}
+                    <div class="rounded-full border border-white h-24 w-24 bg-cover" style="background-image: url('/img/{{ user.image }}')"></div>
+                {% else %}
+                    <div class="rounded-full border border-white h-24 w-24 bg-cover"></div>
+                    <span class="mt-4 lg:mt-0 text-center lg:text-left">L'utilisateur n'aura pas d'image de profil, il devra la définir dans son profil</span>
+                {% endif %}
             </div>
-        </div>
+
+            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
+                {{ field("nom", "Nom","Nom","") }}
+                {{ field("prenom", "Prénom","Prénom","") }}
+            </div>
+            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8 disabledInput">
+                {{ field("mail", "Email","Email","") }}
+                {{ field("date", "Date de naissance","Date de naissance","", {type: 'date'}) }}
+            </div>
+            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
+                {{ field("password", "Mot de passe","Mot de passe","",{type: 'password'}) }}
+                {{ field("confirmPassword", "Confirmation du mot de passe","Confirmation du mot de passe","",{type: 'password'}) }}
+            </div>
+            <div class="pb-4 lg:pb-8">
+                {{ field("role", "Rôle", "", "", {type: "select", data: role}) }}
+            </div>
+            <div class="w-full">
+                <div class="w-full lg:w-40 lg:ml-auto">
+                    <input type='submit' class="button-submit uppercase text-base text-center" value="Ajouter"/>
+                </div>
+            </div>
+        </form>
     </div>
 
 {% endblock %}
