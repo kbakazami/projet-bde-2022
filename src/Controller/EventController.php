@@ -27,10 +27,12 @@ class EventController extends AbstractController
     #[Route(path: "/detail-event/{id}", name: "detail-event")]
     public function detaileEvent(EventRepository $eventRepository, $id)
     {
-        $event = $eventRepository->findEventById($id);
+        $event = $eventRepository->findEventByIdWithCatAndCrea($id);
+        $nbParticipant = $eventRepository->CountUserByEvent($id);
 
         echo $this->twig->render('event/detail_event.html.twig',[
-            'event' => $event
+            'event' => $event,
+            'nbParticipant' => $nbParticipant
         ]);
     }
 }
