@@ -41,6 +41,7 @@ final class EventRepository extends AbstractRepository
         return $stmt->fetch(PDO::FETCH_OBJ);
 
         $stmt = $this->pdo->prepare("UPDATE event SET title = :title, description = :description, price = :price, date = :date, image = :image id_category = :id_category, id_users = :id_users WHERE id = :id");
+        
     public function updateEvent(Event $event, $id){
 
         return $stmt->execute([
@@ -59,8 +60,8 @@ final class EventRepository extends AbstractRepository
         $stmt = $this->pdo->prepare("DELETE FROM event WHERE id = :id");
 
         return $stmt->execute([
-        ]);
             'id' => $id
+        ]);
     }
     
     public function eventByPrix($prixMax){
@@ -69,6 +70,7 @@ final class EventRepository extends AbstractRepository
         $sql->execute();
         return $sql->fetch();
     }
+
     public function rechercheByDescription($recherche){
         $sql = $this->pdo->prepare("SELECT * FROM event WHERE description LIKE :recherche");
         $sql->execute();
@@ -82,5 +84,4 @@ final class EventRepository extends AbstractRepository
         $sql->execute();
         return $sql->fetch();
     }
-    
-}
+};
