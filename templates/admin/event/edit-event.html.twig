@@ -6,7 +6,7 @@
             <h1 class="text-4xl lg:text-5xl normal-case">{{ event.title }}</h1>
         </div>
 
-        <form action='/admin/update-event/{{ event.id }}' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto">
+        <form action='/admin/update-event/{{ event.id }}' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto" enctype="multipart/form-data">
             <div class="flex flex-col lg:flex-row lg:space-x-11 mb-8 lg:mb-16 items-center">
                 <div class="flex flex-col uppercase italic mb-5 lg:mb-0" id="image-in-bdd">
                     <span>Image actuelle :</span>
@@ -25,11 +25,11 @@
                 {{ field("category", "Catégorie", "", event.id_category, {type: "select", data: category}) }}
             </div>
             <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
-                {{ field("date", "Date","Date", event.date, {type: "datetime-local"}) }}
+                {{ field("date", "Date et Heure","Date", event.date, {type: "datetime-local"}) }}
                 {{ field("price", "Prix", "Prix", event.price,{type: "number"} ) }}
             </div>
             <div class="pb-4 lg:pb-8">
-            {{ field("description", "Description", "", event.description, {type: "textarea"}) }}
+            {{ field("description", "Description", "Description", event.description, {type: "textarea"}) }}
             </div>
             <div class="w-full">
                 <div class="w-full lg:w-40 lg:ml-auto">
