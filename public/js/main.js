@@ -49,3 +49,13 @@ function getImgData() {
         });
     }
 }
+
+/************************* Disable Input In Edit User ********************************/
+// const disabledInput = document.querySelector(".disabledInput");
+// const childDivDisabledInput = disabledInput.querySelectorAll(":scope > .form-group");
+// const childDisabledInput = childDivDisabledInput.querySelectorAll(":scope > .form-control");
+//
+// for (var inputChild of childDisabledInput)
+// {
+//     inputChild.setAttribute('disabled');
+// }
