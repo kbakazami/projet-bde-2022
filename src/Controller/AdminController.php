@@ -10,11 +10,15 @@ class AdminController extends AbstractController
     #[Route(path: "/admin")]
     public function index()
     {
-        $title = 'admin';
-        echo $this->twig->render('admin/base-admin.html.twig',[
-            'title' => $title
-        ]);
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if($_SESSION['userRole'] !== 'Admin') {
 
+            echo "<p>Vous n'avez pas les droits pour accéder à cette page</p>";
+        }else{
+            echo $this->twig->render('admin/base-admin.html.twig');
+        }
     }
 
 }

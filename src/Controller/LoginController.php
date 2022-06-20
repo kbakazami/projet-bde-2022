@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Routing\Attribute\Route;
 use App\Repository\UserRepository;
 use App\Session\Session;
+use App\Session\SessionInterface;
 
 class LoginController extends AbstractController
 {
@@ -27,6 +28,7 @@ class LoginController extends AbstractController
 
                     $session = new Session();
                     $session->set('userId', $check->id);
+                    $session->set('userRole', $check->title);
                     header("location: /");
                 }
             }
@@ -34,10 +36,9 @@ class LoginController extends AbstractController
     }
 
     #[Route(path: "/logout", name: "logout")]
-    public function logout()
+    public function logout(SessionInterface $session)
     {
-        if (!isset($_SESSION)) {
-            $session = new Session();
+        if (isset($_SESSION)) {
             $session->destroy();
         }
 
