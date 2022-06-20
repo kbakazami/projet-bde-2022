@@ -24,3 +24,5 @@ Lancer le localhost : ``composer start``.
 Lancer le build du css : ``npm run watch`` /!\ Lancer la commande même si on ajoute seulement des classes dans un template twig /!\.
 
 A la première installation du site il est obligatoire de faire cette commande pour build le css ``npm run watch``.
+
+Pensez également a bien mettre un readme (vous pouvez prendre celui de symfony)
