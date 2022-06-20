@@ -122,7 +122,8 @@ h1
 
 .form-back input[type="datetime-local"],
 .form-back input[type="number"],
-.form-back input[type="date"]
+.form-back input[type="date"],
+.form-back input[type="password"]
 {
     @apply bg-transparent border-2 border-blue w-full lg:w-420 py-1.5 px-2 uppercase mb-4 lg:mb-0
 }
@@ -141,7 +142,7 @@ h1
 .form-back textarea
 {
     resize: none;
-    @apply bg-transparent border-2 border-blue w-full h-60 py-1.5 px-2 uppercase
+    @apply bg-transparent border-2 border-blue w-full h-60 py-1.5 px-2 placeholder:uppercase placeholder:italic
 }
 
 .form-back select
