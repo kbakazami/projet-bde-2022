@@ -12,18 +12,20 @@
 			<h1 class="h1Gradiant">Connexion</h1>
 		</div>
 
-		<div class="relative mb-16 w-300 h-300 lg:w-400 lg:h-400">
-			<div class="box">
-				<span></span>
-				<span></span>
-				<span></span>
-				<span></span>
-				<form action='/connect' method='POST' class="relative w-full h-full flex flex-col justify-center text-center">
-					{% for form in formulaire %}
-						{{form|raw}}
-					{% endfor %}
-					<div class="customSubmit relative">
-						<input type='submit' class="uppercase text-base" value="Connexion"/>
+		<div class="form-wrapper pb-28">
+			<div class="form-container">
+				<form action='/login' method='POST'
+					  class="form-front relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-20 px-10 sm:px-15 rounded mx-auto">
+					{{ field("mail", "Email", "Adresse Email") }}
+					{{ field("password", "Password"," Mot de passe","",  {type: 'password'}) }}
+					<div class="submit-wrapper">
+						<div class="submit-container">
+						<div class="submit-container2">
+						<div class="submit-container-black">
+							<input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="Connexion"/>
+						</div>
+						</div>
+						</div>
 					</div>
 				</form>
 			</div>

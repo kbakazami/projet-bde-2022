@@ -11,7 +11,7 @@ final class UserRepository extends AbstractRepository
 
   public function save(User $user): bool
   {
-    $stmt = $this->pdo->prepare("INSERT INTO users (firstname, lastname, mail, `password`, image, birthDate) VALUES (:firstname, :lastname, :mail, :password, :image, :birthDate)");
+    $stmt = $this->pdo->prepare("INSERT INTO users (firstname, lastname, mail, `password`, image, birthDate, id_role) VALUES (:firstname, :lastname, :mail, :password, :image, :birthDate, :id_role)");
 
     return $stmt->execute([
       'firstname' => $user->getFirstName(),
@@ -19,27 +19,64 @@ final class UserRepository extends AbstractRepository
       'mail' => $user->getEmail(),
       'password' => password_hash($user->getPassword(), PASSWORD_BCRYPT),
       'image' => $user->getImage(),
-      'birthDate' => $user->getBirthDate()->format('Y-m-d')
+      'birthDate' => $user->getBirthDate()->format('Y-m-d'),
+        'id_role' => $user->getIdRole()
     ]);
   }
 
-  public function getIdUser(User $user)
-  {
-    $stmt = $this->pdo->prepare("SELECT id FROM users");
-    return $stmt->execute();
+  public function verifUser($mail){
+      $stmt = $this->pdo->prepare("SELECT id, mail, password FROM users WHERE mail=:mail");
+      $stmt->bindValue("mail", $mail);
+      $stmt->execute();
+      return $stmt->fetch(PDO::FETCH_OBJ);
   }
 
-  protected $table = "users";
-  protected $class = User::class;
 
   public function findByMail(string $mail)
   {
-    $stmt = $this->pdo->prepare("SELECT * FROM " . $this->table . " WHERE mail=:mail");
-
+    $stmt = $this->pdo->prepare("SELECT mail FROM users WHERE mail=:mail");
     $stmt->execute(['mail' => $mail]);
-    $stmt->setFetchMode(PDO::FETCH_CLASS, $this->class);
     $result = $stmt->fetch();
 
-    return ($result !== false) ? $result : [];
+    if($result){
+        return true;
+    }else{
+        return false;
+    }
   }
+
+  public function findAllUser(){
+      $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id");
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_OBJ);
+  }
+
+    public function findUserById(int $id){
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt->execute([
+            'id' => $id
+        ]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function updateUser(User $user, $id){
+        $stmt = $this->pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, mail = :mail,  image = :image, birthDate = :birthDate, id_role = :id_role WHERE id = :id");
+
+        return $stmt->execute([
+            'firstname' => $user->getFirstName(),
+            'lastname' => $user->getlastName(),
+            'mail' => $user->getEmail(),
+            'image' => $user->getImage(),
+            'birthDate' => $user->getBirthDate()->format('Y-m-d'),
+            'id_role' => $user->getIdRole(),
+            'id' => $id
+        ]);
+    }
+
+    public function deleteUser(int $id){
+        $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
 }

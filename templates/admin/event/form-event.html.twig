@@ -1,0 +1,40 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block body %}
+
+    <div class="flex flex-col pt-4 pb-24">
+        <div class="w-full text-center pb-10 px-4 lg:px-0 lg:pb-20">
+            <h1 class="text-4xl lg:text-5xl normal-case">Ajouter un Événement</h1>
+        </div>
+
+        <form action='/admin/create-event' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto" enctype="multipart/form-data">
+            <div class="flex flex-col lg:flex-row mb-8 lg:mb-16 items-center">
+                <div id="edit-image-preview" class="mr-11 hidden mb-5 lg:mb-0 flex flex-col uppercase italic">
+                    <span>Image sélectionnée :</span>
+                    <div id="img-preview" class="mt-2 w-full sm:w-420 lg:w-290 h-auto"></div>
+                </div>
+                <div class="hidden flex flex-col uppercase italic mb-5 lg:mb-0" id="image-in-bdd"></div>
+                {#                <div class="inputTypeFile">#}
+                {{ field("file", "Image", "", "", {type: "file"}) }}
+                {#                </div>#}
+            </div>
+            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center pb-4 lg:pb-8">
+                {{ field("title", "Titre", "Titre" ) }}
+                {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
+            </div>
+            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
+                {{ field("date", "Date et Heure","Date", "", {type: "datetime-local"}) }}
+                {{ field("price", "Prix", "Prix", "", {type: "number"} ) }}
+            </div>
+            <div class="pb-4 lg:pb-8">
+                {{ field("description", "Description", "Description", "", {type: "textarea"}) }}
+            </div>
+            <div class="w-full">
+                <div class="w-full lg:w-40 lg:ml-auto">
+                    <input type='submit' class="button-submit uppercase text-base text-center" value="Ajouter"/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -20,25 +20,40 @@ module.exports = {
         'purple-60': 'rgba(174,32,213, 0.6)',
         'pink': '#FF0A6C',
         'pink-60': 'rgba(255,10,108, 0.6)',
+        'red': '#FF0000'
       },
       fontFamily:{
         hind:["hind","roboto"],
         expletus:["expletus","roboto"],
       },
       width:{
+        '520':'520px',
         '400':'400px',
-        '300':'300px',
-        '220':'220px'
-      },
-      height:{
-        '400':'400px',
-        '300':'300px',
+        '420':'420px',
+        '290':'290px',
+        '50':'200px',
+        '46':'185px',
+        '34':'140px',
+        '30':'125px',
       },
       boxShadow:{
-        'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple'
+        'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
+        'glowEffecty':' 0 0 10px blue,  0 0 40px pink, 0 0 10px purple'
       },
-      rotate:{
-        '270':'270deg',
+      borderWidth:{
+        '3':'3px',
+      },
+      spacing:{
+        '15':'60px',
+        'pxmd':'1.5px',
+        '0.1':'0.1rem',
+        '0.2':'0.2rem',
+      },
+      zIndex:{
+        '1':'1',
+      },
+      skew:{
+        '125':'125deg'
       }
     },
   },

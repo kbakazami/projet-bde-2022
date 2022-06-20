@@ -13,6 +13,24 @@ class User
     private string $email;
     private string $image;
     private DateTime $birthDate;
+    private int $idRole;
+
+    /**
+     * @return int
+     */
+    public function getIdRole(): int
+    {
+        return $this->idRole;
+    }
+
+    /**
+     * @param int $idRole
+     */
+    public function setIdRole(int $idRole): self
+    {
+        $this->idRole = $idRole;
+        return $this;
+    }
 
     public function getId(): int
     {

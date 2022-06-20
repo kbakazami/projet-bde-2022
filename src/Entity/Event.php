@@ -11,6 +11,7 @@ class Event
     private string $descriptionEvent;
     private float $priceEvent;
     private DateTime $dateEvent;
+    private string $imageEvent;
     private int $idCategory;
     private int $idCreator;
 
@@ -63,6 +64,18 @@ class Event
     public function setDateEvent(DateTime $dateEvent): self
     {
         $this->dateEvent = $dateEvent;
+
+        return $this;
+    }
+
+    public function getImageEvent(): string
+    {
+        return $this->imageEvent;
+    }
+
+    public function setImageEvent(string $imageEvent): self
+    {
+        $this->imageEvent = $imageEvent;
 
         return $this;
     }

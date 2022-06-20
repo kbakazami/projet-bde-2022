@@ -20,15 +20,20 @@
 /* RESPONSIVE */
 /**************/
 
-@media screen and (max-width: 760px){
-    .topnav
+@media screen and (max-width: 767px){
+    .nav-menu
     {
-        @apply hidden
+        @apply absolute top-16 hidden overflow-y-auto w-full
     }
 
-    .topnav.openMenuMobile
+    .nav-menu.active
     {
-        @apply absolute text-lg flex top-px pt-12 left-0 justify-center w-full items-center bg-black
+        height: calc(100vh - 4rem);
+        @apply pb-4 right-0 flex bg-black
+    }
+
+    .navbar{
+        z-index: 1000;
     }
 }
 
@@ -41,6 +46,48 @@
     @apply bg-gradient-to-r from-blue via-purple to-pink p-px
 }
 
+.button-add
+{
+    @apply rounded-full border-2 border-blue py-1 px-7 w-full lg:w-auto lg:py-3
+}
+
+.button-edit
+{
+    @apply rounded-full border border-blue uppercase px-3 py-1 w-32
+}
+
+.button-delete
+{
+    @apply rounded-full border border-pink uppercase px-3 py-1 w-32
+}
+
+.button-left
+{
+    @apply rounded-full border-2 border-blue py-2 px-3 uppercase text-center w-36
+}
+
+.button-submit
+{
+    @apply rounded-full border-2 border-blue py-1 text-center w-full
+}
+
+.form-container
+{
+    @apply relative rounded bg-black
+}
+
+.form-wrapper
+{
+    @apply w-290 sm:w-520
+}
+
+.form-container:before{
+    content: "";
+    background: conic-gradient(transparent 20%, #2D27FF 25% 52%, transparent 53% 70%, red 75%);
+    background: -webkit-linear-gradient(to right, #2D27FF, #AE20D5, #FF0A6C);
+    @apply absolute w-full h-full bg-gradient-to-r from-blue via-purple to-pink -z-1 skew-x-3 rotate-2
+}
+
 .glowEffect
 {
     @apply absolute inset-0 bg-gradient-to-r from-blue via-purple to-pink blur
@@ -48,7 +95,7 @@
 
 h1
 {
-    @apply font-expletus uppercase text-xl lg:text-2xl
+    @apply font-expletus uppercase text-base sm:text-xl lg:text-2xl
 }
 
 .h1Gradiant
@@ -58,98 +105,163 @@ h1
     @apply bg-gradient-to-r from-blue via-purple to-pink font-bold opacity-75
 }
 
-.inputFront
+.form-back .form-group
+{
+    @apply w-full lg:w-auto
+}
+
+.form-back input[type="text"]
+{
+    @apply bg-transparent border-2 border-blue w-full lg:w-420 py-1.5 px-2 placeholder:italic placeholder:uppercase mb-4 lg:mb-0
+}
+
+.form-back input[type="color"]
+{
+    @apply w-full lg:w-420 h-9 py-0 bg-transparent border-2 border-blue
+}
+
+.form-back input[type="datetime-local"],
+.form-back input[type="number"],
+.form-back input[type="date"],
+.form-back input[type="password"]
+{
+    @apply bg-transparent border-2 border-blue w-full lg:w-420 py-1.5 px-2 uppercase mb-4 lg:mb-0
+}
+
+/*.form-back .inputTypeFile input[type="file"]*/
+/*{*/
+/*    @apply hidden*/
+/*}*/
+
+/*.form-back .inputTypeFile label*/
+/*{*/
+/*    @apply cursor-pointer bg-transparent border-2 border-blue w-full lg:w-auto py-1.5 px-12 uppercase rounded-full*/
+/*}*/
+
+
+.form-back textarea
+{
+    resize: none;
+    @apply bg-transparent border-2 border-blue w-full h-60 py-1.5 px-2 placeholder:uppercase placeholder:italic
+}
+
+.form-back select
+{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd' /%3E%3C/svg%3E");
+    background-position: right;
+    background-repeat: no-repeat;
+    @apply bg-black border-2 border-blue w-full lg:w-420 py-1 px-2
+}
+
+.form-front input[type="text"],
+.form-front input[type="date"]
 {
     background-color: transparent;
     background-size: calc(100% + 4px) 2px;
 
     @apply bg-gradient-to-r from-blue via-purple to-pink bg-no-repeat bg-bottom
     outline-0
-    placeholder:italic placeholder:uppercase
-    lg:w-300 w-220 mb-14
+    placeholder:italic placeholder:uppercase text-sm lg:text-base
+    lg:w-400 w-full mb-6 lg:mb-14
 }
 
 input[type="submit"]
 {
-    @apply relative bg-gradient-to-t from-blue-60 via-purple-60 to-pink-60
-    outline-0 w-48 uppercase mx-auto py-2 rounded-full cursor-pointer
-    font-expletus text-sm lg:text-base text-center
+    /*@apply relative bg-gradient-to-t from-blue-60 via-purple-60 to-pink-60*/
+    /*outline-0 w-full lg:w-auto uppercase mx-auto lg:px-12 py-2 rounded-full cursor-pointer*/
+    /*font-expletus text-sm lg:text-base text-center*/
+    @apply font-expletus text-sm lg:text-base
 }
 
-input[type="submit"]:hover
+.inputSearchBack
 {
-    @apply relative bg-gradient-to-t from-blue via-purple to-pink shadow-glowEffect
+    @apply bg-transparent border-2 border-blue w-full lg:w-290 py-1 px-2 uppercase placeholder:italic
 }
 
-.labelFront
+.form-front input[type="date"]
+{
+    @apply uppercase text-white
+}
+
+.form-front input[type="date"]:before
+{
+    content: 'Date de naissance';
+    color: #a9a9a9;
+    @apply italic pr-4
+}
+
+.form-back label
+{
+    @apply flex uppercase pl-2 italic
+}
+
+.form-front label
 {
     @apply sr-only
 }
+
+.submit-front
+{
+    @apply cursor-pointer
+}
+
+.submit-wrapper
+{
+    @apply w-34 sm:w-50 mx-auto sm:mt-8 lg:mt-0
+}
+
+.submit-container,
+.submit-container2
+{
+    @apply relative rounded
+}
+
+.submit-container:before,
+.submit-container2:before
+{
+    content: "";
+    background: conic-gradient(transparent 20%, #2D27FF 25% 52%, transparent 53% 70%, red 75%);
+    background: -webkit-linear-gradient(to right, #2D27FF, #AE20D5, #FF0A6C);
+    @apply absolute w-34 sm:w-50 h-full bg-gradient-to-r from-blue via-purple to-pink skew-x-125 left-0
+}
+
+.submit-container-black:hover:before
+{
+    @apply bg-transparent transition-all ease-in-out duration-700
+}
+
+.submit-container-black:hover
+{
+    @apply text-black
+}
+
+.submit-container-black
+{
+    @apply flex justify-center
+}
+
+.submit-container-black:before
+{
+    content: "";
+    @apply bg-black w-30 sm:w-46 sm:h-8 h-5 absolute skew-x-125 top-0.1 lg:top-0.2  transition-all ease-in-out duration-700
+}
+
+::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+}
+
 
 /*****************************************************/
 /* Used to push the footer to the bottom of the page */
 /*****************************************************/
 .page-wrapper {
-    @apply h-screen flex flex-col;
+    height: calc(100vh - 4px);
+    @apply flex flex-col;
 
 }
 #maincontent {
     @apply flex-grow;
-}
-
-/***************************************************/
-/*********** ANIMATE BORDER AROUND FORM ************/
-/***************************************************/
-.box{
-    @apply w-full h-full overflow-hidden
-}
-
-.box span{
-    @apply absolute top-0 left-0 w-full h-full
-}
-
-.box span:nth-child(1)
-{
-    @apply rotate-0
-}
-
-.box span:nth-child(2)
-{
-    @apply rotate-270
-}
-
-.box span:nth-child(3)
-{
-    @apply rotate-180
-}
-
-.box span:nth-child(4)
-{
-    @apply rotate-90
-}
-
-.box span:before
-{
-    animation: animate 4s linear infinite;
-    @apply bg-gradient-to-r from-blue via-purple to-pink w-full absolute h-0.5 content-['']
-}
-
-
-@keyframes animate {
-    0% {
-        transform: scaleX(0);
-        @apply origin-left;
-    }
-    50% {
-        transform: scaleX(1);
-        @apply origin-left;
-    }
-    50.1% {
-        transform: scaleX(1);
-        @apply origin-right;
-    }
-    100% {
-        transform: scaleX(0);
-        @apply origin-right;
-    }
 }

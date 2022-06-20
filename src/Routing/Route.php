@@ -25,9 +25,7 @@ class Route extends AbstractRoute
     // URL parameters into capturing regex parts
     $routeRegex = preg_replace("/\{(\w+)\}/", '(?P<${1}>.+)', $this->getPath());
     // Slashes escaping, add regex delimiters
-    $routeRegex = "/^" . str_replace("/", "\/", $routeRegex) . "$/";
-
-    return $routeRegex;
+      return "/^" . str_replace("/", "\/", $routeRegex) . "$/";
   }
 
   public function getGetParams(): array
