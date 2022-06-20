@@ -17,9 +17,6 @@ class EventController extends AbstractController
         $list = [];
         $list = $event -> getAll();
 
-
-
-
         echo $this->twig->render('event/event.html.twig', [
             "event" => $list
         ]);
