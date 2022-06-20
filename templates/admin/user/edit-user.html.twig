@@ -27,7 +27,7 @@
                 {{ field("date", "Date de naissance","Date de naissance" , user.birthdate, {type: 'date'}) }}
             </div>
             <div class="pb-4 lg:pb-8">
-                {{ field("role", "Rôle", "", "", {type: "select", data: role}) }}
+                {{ field("role", "Rôle", "", user.id_role, {type: "select", data: role}) }}
             </div>
             <div class="w-full">
                 <div class="w-full lg:w-40 lg:ml-auto">

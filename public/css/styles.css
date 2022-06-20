@@ -48,27 +48,40 @@
 
 .button-add
 {
-    @apply rounded-full border-2 border-blue py-1 px-7 w-full lg:w-auto lg:py-3
+    @apply rounded-full border-2 border-blue py-1 px-7 w-full lg:w-auto lg:py-3 transition-all ease-in-out duration-300
+}
+
+.button-add:hover,
+.button-edit:hover,
+.button-left:hover,
+.button-submit:hover
+{
+    @apply bg-blue transition-all ease-in-out duration-300
 }
 
 .button-edit
 {
-    @apply rounded-full border border-blue uppercase px-3 py-1 w-32
+    @apply rounded-full border border-blue uppercase px-3 py-1 w-32 transition-all ease-in-out duration-300
 }
 
 .button-delete
 {
-    @apply rounded-full border border-pink uppercase px-3 py-1 w-32
+    @apply rounded-full border border-pink uppercase px-3 py-1 w-32 transition-all ease-in-out duration-300
+}
+
+.button-delete:hover
+{
+    @apply bg-pink transition-all ease-in-out duration-300
 }
 
 .button-left
 {
-    @apply rounded-full border-2 border-blue py-2 px-3 uppercase text-center w-36
+    @apply rounded-full border-2 border-blue py-2 px-3 uppercase text-center w-36 transition-all ease-in-out duration-300
 }
 
 .button-submit
 {
-    @apply rounded-full border-2 border-blue py-1 text-center w-full
+    @apply cursor-pointer rounded-full border-2 border-blue py-1 text-center w-full transition-all ease-in-out duration-300
 }
 
 .form-container
@@ -102,7 +115,7 @@ h1
 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    @apply bg-gradient-to-r from-blue via-purple to-pink font-bold opacity-75
+    @apply bg-gradient-to-r from-blue via-purple to-pink font-bold
 }
 
 .form-back .form-group
@@ -157,7 +170,8 @@ h1
 }
 
 .form-front input[type="text"],
-.form-front input[type="date"]
+.form-front input[type="date"],
+.form-front input[type="password"]
 {
     background-color: transparent;
     background-size: calc(100% + 4px) 2px;
@@ -165,7 +179,12 @@ h1
     @apply bg-gradient-to-r from-blue via-purple to-pink bg-no-repeat bg-bottom
     outline-0
     placeholder:italic placeholder:uppercase text-sm lg:text-base
-    lg:w-400 w-full mb-6 lg:mb-14
+    lg:w-400 w-full
+}
+
+.form-front .form-group
+{
+    @apply mb-6 lg:mb-14
 }
 
 input[type="submit"]
@@ -198,9 +217,19 @@ input[type="submit"]
     @apply flex uppercase pl-2 italic
 }
 
+.form-back .form-group
+{
+    @apply flex flex-col
+}
+
 .form-front label
 {
     @apply sr-only
+}
+
+small
+{
+    @apply italic text-red mt-2
 }
 
 .submit-front
@@ -246,7 +275,7 @@ input[type="submit"]
 .submit-container-black:before
 {
     content: "";
-    @apply bg-black w-30 sm:w-46 sm:h-8 h-5 absolute skew-x-125 top-0.1 lg:top-0.2  transition-all ease-in-out duration-700
+    @apply bg-black w-30 sm:w-46 sm:h-8 h-5 absolute skew-x-125 top-0.1 lg:top-0.2 transition-all ease-in-out duration-700
 }
 
 ::-webkit-calendar-picker-indicator{

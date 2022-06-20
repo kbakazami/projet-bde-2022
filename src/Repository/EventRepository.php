@@ -25,7 +25,7 @@ final class EventRepository extends AbstractRepository
     }
 
     public function findAllEvent(){
-        $stmt = $this->pdo->prepare("SELECT id, title, description, price, date, image, id_category, id_users FROM event");
+        $stmt = $this->pdo->prepare("SELECT event.*, category.title as 'category_title' FROM event INNER JOIN category ON category.id = event.id_category");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
