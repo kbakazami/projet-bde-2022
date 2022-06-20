@@ -25,7 +25,7 @@ class EventController extends AbstractController
     }
 
     #[Route(path: "/detail-event/{id}", name: "detail-event")]
-    public function detailEvent(EventRepository $eventRepository, $id)
+    public function detaileEvent(EventRepository $eventRepository, $id)
     {
         $event = $eventRepository->findEventById($id);
 
