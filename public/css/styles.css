@@ -121,7 +121,8 @@ h1
 }
 
 .form-back input[type="datetime-local"],
-.form-back input[type="number"]
+.form-back input[type="number"],
+.form-back input[type="date"]
 
 {
     @apply bg-transparent border-2 border-blue w-full lg:w-420 py-1.5 px-2 uppercase mb-4 lg:mb-0
@@ -175,12 +176,12 @@ input[type="submit"]
     @apply font-expletus text-sm lg:text-base
 }
 
-input[type="date"]
+.form-front input[type="date"]
 {
     @apply uppercase text-white
 }
 
-input[type="date"]:before
+.form-front input[type="date"]:before
 {
     content: 'Date de naissance';
     color: #a9a9a9;
