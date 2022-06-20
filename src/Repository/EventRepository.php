@@ -12,8 +12,8 @@ final class EventRepository extends AbstractRepository
     public function save(Event $event): bool
     {
         $stmt = $this->pdo->prepare("INSERT INTO event (title, description, price, date, image, id_category, id_users) VALUES (:title, :description, :price, :date, :image, :id_category, :id_users)");
-        return $stmt->execute([
 
+        return $stmt->execute([
             'title' => $event->getTitleEvent(),
             'description' => $event->getDescriptionEvent(),
             'price' => $event->getPriceEvent(),
@@ -28,34 +28,33 @@ final class EventRepository extends AbstractRepository
         $stmt = $this->pdo->prepare("SELECT id, title, description, price, date, image, id_category, id_users FROM event");
 
         $stmt->execute();
-    }
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function findEventById(int $id){
-
         $stmt = $this->pdo->prepare("SELECT id, title, description, price, date, image, id_category, id_users FROM event WHERE id = :id");
+
         $stmt->execute([
             'id' => $id
         ]);
-    }
         return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 
-        $stmt = $this->pdo->prepare("UPDATE event SET title = :title, description = :description, price = :price, date = :date, image = :image id_category = :id_category, id_users = :id_users WHERE id = :id");
-        
     public function updateEvent(Event $event, $id){
+        $stmt = $this->pdo->prepare("UPDATE event SET title = :title, description = :description, price = :price, date = :date, image = :image id_category = :id_category, id_users = :id_users WHERE id = :id");
 
         return $stmt->execute([
             'title' => $event->getTitleEvent(),
             'description' => $event->getDescriptionEvent(),
             'price' => $event->getPriceEvent(),
-            'image' => $event->getImageEvent(),
             'date' => $event->getDateEvent()->format('Y-m-d H:i'),
+            'image' => $event->getImageEvent(),
             'id_category' => $event->getIdCategory(),
             'id_users' => $event->getIdCreator(),
             'id' => $id
         ]);
-
     }
+
     public function deleteEvent(int $id){
         $stmt = $this->pdo->prepare("DELETE FROM event WHERE id = :id");
 
