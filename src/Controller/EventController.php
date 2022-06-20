@@ -16,7 +16,8 @@ class EventController extends AbstractController
     #[Route(path: "/list-event", name: "list-event")]
     public function listeEvent(EventRepository $eventRepository)
     {
-        $events = $eventRepository->findAllEvent();
+        $events = $eventRepository->findAllEventwithCategory();
+        
 
         echo $this->twig->render('event/list_event.html.twig',[
             'events' => $events
