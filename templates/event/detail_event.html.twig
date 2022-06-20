@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block body %}
     {{ event.image }}
     {{ event.titre_event }}
     {{ event.titre_category }}
     {{ event.description }}
     {{ event.date }}
-    {{ event.price }}
+    {{ event.price }} €
     {{ event.nom }} {{ event.prenom }}
     {{ nbParticipant.nombre }}
+{% endblock %}

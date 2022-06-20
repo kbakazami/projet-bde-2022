@@ -25,7 +25,7 @@ class EventController extends AbstractController
     }
 
     #[Route(path: "/detail-event/{id}", name: "detail-event")]
-    public function detaileEvent(EventRepository $eventRepository, $id)
+    public function detaileEvent(EventRepository $eventRepository,int $id)
     {
         $event = $eventRepository->findEventByIdWithCatAndCrea($id);
         $nbParticipant = $eventRepository->CountUserByEvent($id);
