@@ -9,19 +9,27 @@ use App\Repository\UserRepository;
 use App\Utils\UploadFiles;
 use App\Utils\Validator;
 use DateTime;
+use App\Repository\EventRepository;
 
 class UserController extends AbstractController
 {
     #[Route(path: "/my-account", name: "my-account")]
-    public function myAccount(UserRepository $userRepository, RoleRepository $roleRepository)
+    public function myAccount(UserRepository $userRepository, EventRepository $eventRepository)
     {
         $userId = $_SESSION["userId"];
         $user = $userRepository->findUserById($userId);
-        $role = $roleRepository->findAllRole();
+
+        $events = $eventRepository->findAllEventByUser($userId);
+        $lesEvent = [];
+        
+        foreach($events as $events){
+            $nb = $eventRepository->CountUserByEvent($events->id_event); 
+            $lesEvent[]=["event" => $events, "nb" => $nb];
+        }
 
         echo $this->twig->render('/user/account.html.twig',[
             'user' => $user,
-            'role' => $role
+            'events' => $lesEvent
         ]);
     }
 
