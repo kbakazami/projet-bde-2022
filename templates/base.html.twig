@@ -1,4 +1,7 @@
 {% include 'partials/header.html.twig'%}
+
+{% set admin = admin() %}
+
 {% block nav %}
     <header>
         <nav class="relative navbar pb-px uppercase bg-gradient-to-r from-blue via-purple to-pink text-sm lg:text-base font-expletus h-16">
@@ -39,6 +42,7 @@
                             </a>
                         </li>
 
+
                         <li class="nav-item">
                             <a class="flex md:pr-5
                         md:before:w-0.5 md:before:h-6 md:before:mr-5
@@ -61,8 +65,20 @@
                             S'inscrire
                         </a>
                         </li>
-                    </ul>
 
+
+                        {% if admin == "Admin" %}
+                        <li class="nav-item">
+                            <a class="flex
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
+
+                               href="/admin">
+                                Admin
+                            </a>
+                        </li>
+                    </ul>
+                    {% endif %}
 
                     <div class="hamburger-menu md:hidden">
                             <svg id="burgerMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">

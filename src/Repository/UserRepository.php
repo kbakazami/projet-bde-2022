@@ -25,7 +25,7 @@ final class UserRepository extends AbstractRepository
   }
 
   public function verifUser($mail){
-      $stmt = $this->pdo->prepare("SELECT id, mail, password FROM users WHERE mail=:mail");
+      $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM users INNER JOIN roles ON users.id_role = roles.id WHERE mail=:mail");
       $stmt->bindValue("mail", $mail);
       $stmt->execute();
       return $stmt->fetch(PDO::FETCH_OBJ);

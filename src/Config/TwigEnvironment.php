@@ -3,6 +3,7 @@
 namespace App\Config;
 
 use App\Utils\FormExtension;
+use App\Utils\ValdiationAccess;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -18,7 +19,9 @@ class TwigEnvironment
         'debug' => true,
       ]);
       $form = new FormExtension();
+      $acces = new ValdiationAccess();
       $twig->addExtension($form);
+      $twig->addExtension($acces);
       return $twig;
   }
 

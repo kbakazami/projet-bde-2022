@@ -10,9 +10,9 @@ class IndexController extends AbstractController
     #[Route(path: "/")]
     public function index()
     {
-
         echo $this->twig->render('index/home.html.twig');
-
     }
+
+
 
 }

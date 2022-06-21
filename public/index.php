@@ -24,6 +24,7 @@ use App\Routing\Router;
 use App\Session\Session;
 use App\Session\SessionInterface;
 use App\Utils\FormExtension;
+use App\Utils\ValdiationAccess;
 use Symfony\Component\Dotenv\Dotenv;
 use Twig\Environment;
 
@@ -48,6 +49,7 @@ $newsRepository = new NewsRepository($pdoConnection->getPdoConnection());
 $twigEnvironment = new TwigEnvironment();
 $twig = $twigEnvironment->init();
 $formTwig = new FormExtension();
+$AccessRole = new ValdiationAccess();
 
 // Service Container
 $container = new Container();
@@ -58,6 +60,7 @@ $container->set(CategoryRepository::class,$categoryRepository);
 $container->set(EventRepository::class, $eventRepository);
 $container->set(RoleRepository::class, $roleRepository);
 $container->set(FormExtension::class, $formTwig);
+$container->set(ValdiationAccess::class, $AccessRole);
 $container->set(NewsRepository::class, $newsRepository);
 
 // Routage

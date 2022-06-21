@@ -43,7 +43,7 @@ class RegisterController extends AbstractController
                 ->setImage("");
 
             $userRepository->save($user);
-            header("location: /login");
+            header("location: /form-login");
         }
         $errors = $validator->getErrors();
 
