@@ -43,6 +43,8 @@
                         </li>
 
 
+                        {% if admin == null %}
+
                         <li class="nav-item">
                             <a class="flex md:pr-5
                         md:before:w-0.5 md:before:h-6 md:before:mr-5
@@ -65,7 +67,17 @@
                             S'inscrire
                         </a>
                         </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="flex
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
 
+                                   href="/my-account">
+                                    Mon compte
+                                </a>
+                            </li>
+                        {% endif %}
 
                         {% if admin == "Admin" %}
                         <li class="nav-item">
