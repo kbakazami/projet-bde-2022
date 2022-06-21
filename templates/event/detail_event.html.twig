@@ -5,9 +5,17 @@
         <h1 class="absolute top-1/2 left-1/2 text-center">{{ event.titre_event }}</h1>
         {{ event.image }}
     </div>
+
     {{ message }}
+
     <a href"{{ event.id_cat }}"> {{ event.titre_category }} </a>
-    <a href="/participer/{{ event.id_event }}"> Participer </a>
+
+    {% if participate == true %}
+        <span> Inscrit </span>
+    {% else %}
+        <a href="/participer/{{ event.id_event }}"> Participer </a>
+    {% endif %}
+
     <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
         <div class="relative">
             <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>

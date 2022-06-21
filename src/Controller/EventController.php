@@ -31,22 +31,44 @@ class EventController extends AbstractController
         $nbParticipant = $eventRepository->CountUserByEvent($id);
         $message ="";
 
+        $estDeja = false;
+        if(isset($_SESSION["userId"]))
+        {
+            $participate = $eventRepository->isParticipate($id, $_SESSION["userId"]);
+            if($participate>0){
+                $estDeja=true;
+            }
+        }      
+
         echo $this->twig->render('event/detail_event.html.twig',[
             'event' => $event,
             'nbParticipant' => $nbParticipant,
-            'message' => $message
+            'message' => $message,
+            'participate' => $estDeja
         ]);
+
+        
     }
 
     #[Route(path: "/participer/{id}", name: "participer")]
     public function participer(EventRepository $eventRepository,int $id)
     {
-        if(!isset($_SESSION["userID"]))
+        $estDeja = false;
+        if(!isset($_SESSION["userId"]))
         {
             $message="Vous devez vous inscire ou vous connecter.";
-        } else {
-            $event = $eventRepository->addParticipant($id, $_SESSION["userId"]);
-            $message="Vous êtes inscrit à l'événement";
+        } 
+        else {       
+            $participate = $eventRepository->isParticipate($id, $_SESSION["userId"]);
+            if($participate>0){
+                $estDeja=true;
+            }
+            else{
+                $event = $eventRepository->addParticipant($id, $_SESSION["userId"]);
+                $message="Vous êtes inscrit à l'événement";
+            }
+            
+            
         }
         
         $event = $eventRepository->findEventByIdWithCatAndCrea($id);
@@ -56,7 +78,8 @@ class EventController extends AbstractController
         echo $this->twig->render('event/detail_event.html.twig',[
             'event' => $event,
             'nbParticipant' => $nbParticipant,
-            'message' => $message
+            'message' => $message,
+            'participate' => $estDeja
         ]);
     }
     
