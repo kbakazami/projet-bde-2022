@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use App\Routing\Attribute\Route;
 use App\Utils\Validator;
+use App\Repository\EventRepository;
 
 
 class CategoryAdminController extends AbstractController
@@ -71,9 +72,34 @@ class CategoryAdminController extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
-            $category = $categoryRepository->findAllCategory();
+            $category = $categoryRepository->findAllCategoryCountEvent();
 
             echo $this->twig->render('admin/category/list-category.html.twig', [
+                'category' => $category
+            ]);
+        }
+    }
+
+    #[Route(path: "/admin/liste-event-by-cat/{id}", name: "admin-list-event-by-cat")]
+    public function listEventByCat(EventRepository $eventRepository, int $id, CategoryRepository $categoryRepository)
+    {
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+            $events = $eventRepository->findEventByCate($id);
+            $category = $categoryRepository->findCategoryById($id);
+            $lesEvent = [];
+            
+            foreach($events as $events){
+                $nb = $eventRepository->CountUserByEvent($events->id_event); 
+                $lesEvent[]=["event" => $events, "nb" => $nb];
+            }
+
+            echo $this->twig->render('admin/category/list-event-by-category.html.twig',[
+                'events' => $lesEvent,
                 'category' => $category
             ]);
         }

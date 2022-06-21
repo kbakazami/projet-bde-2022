@@ -26,6 +26,14 @@ final class CategoryRepository extends AbstractRepository
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findAllCategoryCountEvent()
+    {
+        $stmt = $this->pdo->prepare(" SELECT category.id AS id ,category.title AS title,color,COUNT(event.id) AS nombre FROM category LEFT JOIN event ON category.id = event.id_category GROUP BY 1,2,3");
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function findCategoryById(int $id){
         $stmt = $this->pdo->prepare("SELECT id, title, color FROM category WHERE id = :id");
 

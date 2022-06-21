@@ -1,0 +1,95 @@
+{% extends 'admin/base-admin.html.twig' %}
+
+{% block body %}
+    {#    {% if message %}#}
+    {{ message }}
+    {#    {% endif %}#}
+    <div class="flex flex-col pt-4 pb-24">
+        <div class="w-full">
+            <div class="w-full text-center">
+                <h1 class="text-4xl lg:text-5xl normal-case">{{ category.title }}</h1>
+            </div>
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
+                <div class="flex flex-row items-center space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        <defs>
+                            <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <input type="search" id="search" class="inputSearchBack" placeholder="Recherche">
+                </div>
+                <a href="/admin/form-create-event" class="button-add text-center mt-4 lg:mt-0">Ajouter un événement</a>
+            </div>
+
+            <table class="min-w-full border-collapse block lg:table">
+                <thead class="block lg:table-header-group">
+                <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
+{#                    <td class="pl-9 py-2 text-left block lg:table-cell"><input type="checkbox"/></td>#}
+                    <td class="w-1/12 lg:pl-9 py-2 text-left block lg:table-cell">Image</td>
+                    <td class="w-1/12 py-2 text-left block lg:table-cell">Nom</td>
+                    <td class="w-1/12 py-2 text-left block lg:table-cell">Catégorie</td>
+                    <td class="w-1/12 py-2 text-left block lg:table-cell">Description</td>
+                    <td class="w-1/12 py-2 text-center block lg:table-cell">Prix</td>
+                    <td class="w-1/12 py-2 text-center block lg:table-cell">Date</td>
+                    <td class="w-1/12 py-2 text-center block lg:table-cell">Créateur</td>
+                    <td class="w-1/12 py-2 text-center block lg:table-cell">Participant</td>
+                    <td class="w-1/12 lg:pr-9 py-2 text-right block lg:table-cell">Action</td>
+                </tr>
+                </thead>
+                <tbody class="block lg:table-row-group">
+                {% for event in events %}
+                    <tr class="block lg:table-row border-b border-t border-white px-4 mb-10 lg:mb-0 text-sm xl:text-base">
+{#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
+                        <td class="pt-7 pb-2 lg:py-2 lg:pl-9 text-left flex flex-row justify-center lg:table-cell">
+                            <div class="w-full sm:w-3/4 lg:w-24 h-full">
+                                <img src="/img/{{ event.event.image }}" alt="{{ event.event.title }}"/>
+                            </div>
+                        </td>
+                        <td class="py-2 text-left block lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Nom</span>
+                            <span>{{ event.event.titre_event }}</span>
+                        </td>
+                        <td class="py-2 text-left block lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Catégorie</span>
+                            <span>{{ event.event.titre_category }}</span>
+                        </td>
+                        <td class="py-2 text-left block lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Description</span><br class="lg:hidden">
+                            <span>{{ event.event.description|striptags|length > 100 ? event.event.description|striptags|slice(0, 100) ~ '...' : event.event.description|striptags }}</span>
+                        </td>
+                        <td class="py-2 text-left block lg:table-cell lg:text-center">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Prix</span>
+                            <span>{{ event.event.price }} €</span>
+                        </td>
+                        <td class="py-2 text-left lg:text-center block lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Date</span>
+                            <span>{{ event.event.date }}</span>
+                        </td>
+                        <td class="py-2 text-left block lg:table-cell lg:text-center">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Créateur</span>
+                            <span>{{ event.user.username }}</span>
+                            <span>Ouai</span>
+                        </td>
+                        <td class="lg:pr-4 py-2 text-left flex flex-row items-center lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Participant</span>
+                            <div class="flex flex-col space-y-2 text-center lg:items-end">
+                                <a href="/admin/voir-participant/{{ event.event.id_event }}" class="button-delete">Voir ( {{event.nb.nombre}} )</a>
+                            </div>
+                        </td>
+                        <td class="lg:pr-4 py-2 text-left flex flex-row items-center lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Actions</span>
+                            <div class="flex flex-col space-y-2 text-center lg:items-end">
+                                <a href="/admin/form-edit-event/{{ event.event.id_event }}" class="button-edit">Modifier</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
