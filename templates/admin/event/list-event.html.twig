@@ -36,6 +36,7 @@
                     <td class="w-1/12 py-2 text-center block lg:table-cell">Prix</td>
                     <td class="w-1/12 py-2 text-center block lg:table-cell">Date</td>
                     <td class="w-1/12 py-2 text-center block lg:table-cell">Créateur</td>
+                    <td class="w-1/12 py-2 text-center block lg:table-cell">Participant</td>
                     <td class="w-1/12 lg:pr-9 py-2 text-right block lg:table-cell">Action</td>
                 </tr>
                 </thead>
@@ -45,28 +46,28 @@
 {#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
                         <td class="pt-7 pb-2 lg:py-2 lg:pl-9 text-left flex flex-row justify-center lg:table-cell">
                             <div class="w-full sm:w-3/4 lg:w-24 h-full">
-                                <img src="/img/{{ event.image }}" alt="{{ event.title }}"/>
+                                <img src="/img/{{ event.event.image }}" alt="{{ event.event.title }}"/>
                             </div>
                         </td>
                         <td class="py-2 text-left block lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Nom</span>
-                            <span>{{ event.title }}</span>
+                            <span>{{ event.event.titre_event }}</span>
                         </td>
                         <td class="py-2 text-left block lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Catégorie</span>
-                            <span>{{ event.category_title }}</span>
+                            <span>{{ event.event.titre_category }}</span>
                         </td>
                         <td class="py-2 text-left block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Description</span>
-                            <span>{{ event.description }}</span>
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Description</span><br class="lg:hidden">
+                            <span>{{ event.event.description|striptags|length > 100 ? event.event.description|striptags|slice(0, 100) ~ '...' : event.event.description|striptags }}</span>
                         </td>
                         <td class="py-2 text-left block lg:table-cell lg:text-center">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Prix</span>
-                            <span>{{ event.price }}</span>
+                            <span>{{ event.event.price }} €</span>
                         </td>
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Date</span>
-                            <span>{{ event.date }}</span>
+                            <span>{{ event.event.date }}</span>
                         </td>
                         <td class="py-2 text-left block lg:table-cell lg:text-center">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Créateur</span>
@@ -74,10 +75,16 @@
                             <span>Ouai</span>
                         </td>
                         <td class="lg:pr-4 py-2 text-left flex flex-row items-center lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Participant</span>
+                            <div class="flex flex-col space-y-2 text-center lg:items-end">
+                                <a href="/admin/voir-participant/{{ event.event.id_event }}" class="button-delete">Voir ( {{event.nb.nombre}} )</a>
+                            </div>
+                        </td>
+                        <td class="lg:pr-4 py-2 text-left flex flex-row items-center lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Actions</span>
                             <div class="flex flex-col space-y-2 text-center lg:items-end">
-                                <a href="/admin/form-edit-event/{{ event.id }}" class="button-edit">Modifier</a>
-                                <a href="/admin/delete-event/{{ event.id }}" class="button-delete">Supprimer</a>
+                                <a href="/admin/form-edit-event/{{ event.event.id_event }}" class="button-edit">Modifier</a>
+                                <a href="/admin/delete-event/{{ event.event.id_event }}" class="button-delete">Supprimer</a>
                             </div>
                         </td>
                     </tr>

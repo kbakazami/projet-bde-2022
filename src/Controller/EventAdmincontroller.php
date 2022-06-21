@@ -91,11 +91,56 @@ class EventAdmincontroller extends AbstractController
         if ($_SESSION['userRole'] !== 'Admin') {
             echo $this->twig->render('/access.html.twig');
         } else {
+            $events = $eventRepository->findAllEventwithCategory();
 
-            $events = $eventRepository->findAllEvent();
+            $lesEvent = [];
+            
+            foreach($events as $events){
+                $nb = $eventRepository->CountUserByEvent($events->id_event); 
+                $lesEvent[]=["event" => $events, "nb" => $nb];
+            }
 
-            echo $this->twig->render('admin/event/list-event.html.twig', [
-                'events' => $events
+            echo $this->twig->render('admin/event/list-event.html.twig',[
+                'events' => $lesEvent
+            ]);
+        }
+    }
+
+    #[Route(path: "/admin/voir-participant/{id}" , name: "voir-participant")]
+    public function voirParticipant(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
+    {
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+
+            $participant = $eventRepository->findParticipantByEvent($id);
+
+
+            echo $this->twig->render('admin/event/list-participant.html.twig', [
+                'participant' => $participant,
+                'id_event' => $id
+            ]);
+        }
+    }
+
+    #[Route(path: "/admin/delete-user-event/{id}/{id_event}" , name: "delete-user-event")]
+    public function deletUserEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
+    {
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+
+            $participant = $eventRepository->findParticipantByEvent($id);
+
+
+            echo $this->twig->render('admin/event/list-participant.html.twig', [
+                'participant' => $participant
             ]);
         }
     }
