@@ -38,16 +38,17 @@ class EventController extends AbstractController
         $event = $eventRepository->findEventByIdWithCatAndCrea($id);
         $nbParticipant = $eventRepository->CountUserByEvent($id);
         $message ="";
-
+        $participate="";
         $estDeja = false;
         if(isset($_SESSION["userId"]))
         {
             $participate = $eventRepository->isParticipate($id, $_SESSION["userId"]);
-            if($participate=="0"){
+            if($participate->nombre!=="0"){
                 $estDeja=true;
             }
         }      
 
+        // var_dump($participate);
         echo $this->twig->render('event/detail_event.html.twig',[
             'event' => $event,
             'nbParticipant' => $nbParticipant,

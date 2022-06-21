@@ -66,7 +66,7 @@ final class EventRepository extends AbstractRepository
     }
 
     public function isParticipate(int $id_event, int $id_user){
-        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM participer WHERE id=:id AND id_users=:id_user");
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) AS nombre FROM participer WHERE id=:id AND id_users=:id_user");
 
         $stmt->execute([
             'id' => $id_event,
