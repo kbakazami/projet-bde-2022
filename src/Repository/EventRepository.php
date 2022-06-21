@@ -57,21 +57,22 @@ final class EventRepository extends AbstractRepository
     }
 
     public function addParticipant(int $id_event, int $id_user){
-        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname AS nom, users.firstname AS prenom FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users WHERE event.id = :id");
+        $stmt = $this->pdo->prepare("INSERT INTO participer (id, is_users) VALUES (:id, :id_user)");
 
         $stmt->execute([
-            'id' => $id
+            'id' => $id_event,
+            'id_user' =>$id_user
         ]);
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
     public function CountUserByEvent(int $id){
-        $stmt = $this->pdo->prepare("INSERT INTO participer (id, id_users) VALUES (:id, :id_users)");
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) AS nombre FROM participer WHERE id= :id");
 
         $stmt->execute([
-            'id' => $id,
-            'id_users' => $id_user,
+            'id' => $id
         ]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
     
     public function updateEvent(Event $event, $id){

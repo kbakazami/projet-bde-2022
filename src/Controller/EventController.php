@@ -29,23 +29,34 @@ class EventController extends AbstractController
     {
         $event = $eventRepository->findEventByIdWithCatAndCrea($id);
         $nbParticipant = $eventRepository->CountUserByEvent($id);
+        $message ="";
 
         echo $this->twig->render('event/detail_event.html.twig',[
             'event' => $event,
-            'nbParticipant' => $nbParticipant
+            'nbParticipant' => $nbParticipant,
+            'message' => $message
         ]);
     }
 
     #[Route(path: "/participer/{id}", name: "participer")]
     public function participer(EventRepository $eventRepository,int $id)
     {
-        $event = $eventRepository->addParticipant($id, $_SESSION["id_users"]);
+        if(!isset($_SESSION["userID"]))
+        {
+            $message="Vous devez vous inscire ou vous connecter.";
+        } else {
+            $event = $eventRepository->addParticipant($id, $_SESSION["userId"]);
+            $message="Vous êtes inscrit à l'événement";
+        }
+        
         $event = $eventRepository->findEventByIdWithCatAndCrea($id);
         $nbParticipant = $eventRepository->CountUserByEvent($id);
+
         
         echo $this->twig->render('event/detail_event.html.twig',[
             'event' => $event,
-            'nbParticipant' => $nbParticipant
+            'nbParticipant' => $nbParticipant,
+            'message' => $message
         ]);
     }
     
