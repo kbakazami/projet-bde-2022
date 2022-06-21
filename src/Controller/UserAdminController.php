@@ -168,6 +168,7 @@ class UserAdminController extends AbstractController
         if($_SESSION['userRole'] !== 'Admin') {
             echo $this->twig->render('/access.html.twig');
         }else {
+            $userRepository->deleteUserParticiper($id);
             $userRepository->deleteUser($id);
             header('Location: /admin/list-user');
         }

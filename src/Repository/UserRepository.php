@@ -73,6 +73,13 @@ final class UserRepository extends AbstractRepository
         ]);
     }
 
+    public function deleteUserParticiper(int $id){
+        $stmt = $this->pdo->prepare("DELETE FROM participer WHERE id_users = :id");
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
+
     public function deleteUser(int $id){
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = :id");
         return $stmt->execute([
