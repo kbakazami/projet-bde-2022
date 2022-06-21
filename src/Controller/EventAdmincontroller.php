@@ -127,7 +127,7 @@ class EventAdmincontroller extends AbstractController
     }
 
     #[Route(path: "/admin/delete-user-event/{id}/{id_event}" , name: "delete-user-event")]
-    public function deletUserEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
+    public function deletUserEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id, int $id_event)
     {
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
@@ -136,8 +136,8 @@ class EventAdmincontroller extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
+            $eventRepository->desinscrire($id_event,$id);
             $participant = $eventRepository->findParticipantByEvent($id);
-
 
             echo $this->twig->render('admin/event/list-participant.html.twig', [
                 'participant' => $participant
