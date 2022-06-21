@@ -85,7 +85,7 @@ class UserAdminController extends AbstractController
             $errors = $validator->getErrors();
 
             if (!empty($errors)) {
-                echo $this->twig->render('admin/event/form-event.html.twig', [
+                echo $this->twig->render('admin/event/form-create-user.html.twig', [
                     'errors' => $errors,
                 ]);
             } else {
