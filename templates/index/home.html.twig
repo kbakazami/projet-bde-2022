@@ -1,8 +1,95 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <h1>Welcome</h1>
+  <div class="flex flex-col">
+    <div class="border border-red w-full">Bannière event + actu</div>
+    <div class="flex flex-col px-4 lg:px-16 pt-20">
 
+      <div class="flex flex-col lg:flex-row">
+      {#Evenements#}
+      <div class="border border-pink w-full lg:w-1/2">
+        <div class="relative flex flex-row items-center space-x-4 pb-16 w-full">
+          <div class="relative">
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">événements</h1>
+          </div>
+          <div>
+            {% for event in events %}
+              <div>
+                {{ event.title }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      {#Recherche + Actualités#}
+      <div class="border border-blue w-full lg:w-1/2 flex flex-col">
+        <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
+          <div class="relative">
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">Recherche<br>événements</h1>
+          </div>
+          {% for new in news %}
+          <div>
+              {{ new.name }}
+          </div>
+          {% endfor %}
+        </div>
+
+        <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
+          <div class="relative">
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">Actualités</h1>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+      {#Qui sommes nous#}
+      <div class="relative w-full h-auto mt-32 mb-24">
+      <div class="box">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class=" flex flex-row items-center space-x-4 px-4 lg:px-0 py-6 sm:py-8 lg:py-14 justify-center">
+          <div class="relative">
+            <div class="relative borderGradiantEffect w-32  lg:w-40 opacity-90 mt-px pt-1 mr-1"></div>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">Qui sommes nous ?</h1>
+          </div>
+        </div>
+        <div class="px-4 lg:px-24 xl:px-60 pb-6 sm:pb-8 lg:pb-12 text-center">
+          <div class="pb-2">Aibyu est une équipe de 3 personnes, tous passionés par le développement Web et bien d'autres choses.</div>
+          <p>Cette équipe  est composée de trois personnes :</p>
+
+        <div class="flex flex-col lg:flex-row justify-center text-center lg:space-x-4 pt-4 lg:pt-8">
+          <div class="relative">
+            <h1 class="h1Gradiant">STRYUS Wyvin</h1>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">CHAUDHRY Sofia</h1>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">SCHWALLER Nadia</h1>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+
+  </div>
 {% endblock %}
 
 
