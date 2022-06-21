@@ -49,8 +49,10 @@ class UserAdminController extends AbstractController
     }
 
     #[Route(path: "/admin/create-user", name: "create-user", httpMethod: "POST")]
-    public function createUser(UserRepository $userRepository,)
+    public function createUser(UserRepository $userRepository, RoleRepository $roleRepository)
     {
+        $role = $roleRepository->findAllRole();
+
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
@@ -85,8 +87,9 @@ class UserAdminController extends AbstractController
             $errors = $validator->getErrors();
 
             if (!empty($errors)) {
-                echo $this->twig->render('admin/event/form-create-user.html.twig', [
+                echo $this->twig->render('admin/user/form-user.html.twig', [
                     'errors' => $errors,
+                    'role' => $role
                 ]);
             } else {
                 header('Location: /admin/list-user');
