@@ -25,7 +25,7 @@
                 {{ field("category", "Catégorie", "", event.id_category, {type: "select", data: category}) }}
             </div>
             <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
-                {{ field("date", "Date et Heure","Date et Heure", event.date, {type: "datetime-local"}) }}
+                {{ field("date", "Date et Heure","Date et Heure", date, {type: "datetime-local"}) }}
                 {{ field("price", "Prix", "Prix", event.price,{type: "number"} ) }}
             </div>
             <div class="pb-4 lg:pb-8">

@@ -148,6 +148,7 @@ class EventAdmincontroller extends AbstractController
     #[Route(path: "/admin/form-edit-event/{id}" , name: "form-edit-event")]
     public function editFormEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
     {
+
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
@@ -155,13 +156,16 @@ class EventAdmincontroller extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
+
             $event = $eventRepository->findEventById($id);
 
+            $date = str_replace(' ', 'T', $event->date);
             $category = $categoryRepository->findAllCategory();
 
             echo $this->twig->render('admin/event/edit-event.html.twig', [
                 'event' => $event,
                 'category' => $category,
+                'date' => $date
             ]);
         }
     }
@@ -169,6 +173,9 @@ class EventAdmincontroller extends AbstractController
     #[Route(path: "/admin/update-event/{id}", name: "update-event", httpMethod: "POST")]
     public function updateEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
     {
+
+        $date = str_replace('T', ' ', $_POST["date"]);
+
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
@@ -179,6 +186,7 @@ class EventAdmincontroller extends AbstractController
             $category = $categoryRepository->findAllCategory();
             $event = $eventRepository->findEventById($id);
             $validator = new Validator($_POST);
+
 //        if($_FILES)
 //        {
             $image = new UploadFiles($_FILES['file']);
@@ -194,11 +202,12 @@ class EventAdmincontroller extends AbstractController
             }
 
             if ($validator->isValid()) {
+
                 $eventUpdate = new Event();
                 $eventUpdate->setTitleEvent($_POST['title'])
                     ->setDescriptionEvent($_POST['description'])
                     ->setPriceEvent($_POST['price'])
-                    ->setDateEvent(new DateTime())
+                    ->setDateEvent(new DateTime($date))
                     ->setIdCategory(intVal($_POST['category']))
                     ->setIdCreator($_SESSION['userId']);
 
@@ -206,16 +215,16 @@ class EventAdmincontroller extends AbstractController
                     $eventUpdate->setImageEvent($image->upload());
                 }
                 $eventRepository->updateEvent($eventUpdate, $id);
-
             }
-
+            var_dump($date);
             $errors = $validator->getErrors();
 
             if (!empty($errors)) {
-                echo $this->twig->render('admin/event/form-event.html.twig', [
+                echo $this->twig->render('admin/event/edit-event.html.twig', [
                     'errors' => $errors,
                     'category' => $category,
-                    'event' => $event
+                    'event' => $event,
+                    'date' => $date
                 ]);
             } else {
                 header('Location: /admin/list-event');

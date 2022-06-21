@@ -122,7 +122,7 @@ final class EventRepository extends AbstractRepository
     }
     
     public function updateEvent(Event $event, $id){
-        $stmt = $this->pdo->prepare("UPDATE event SET title = :title, description = :description, price = :price, date = :date, image = :image id_category = :id_category, id_users = :id_users WHERE id = :id");
+        $stmt = $this->pdo->prepare("UPDATE event SET title = :title, description = :description, price = :price, date = :date, image = :image, id_category = :id_category, id_users = :id_users WHERE id = :id");
 
         return $stmt->execute([
             'title' => $event->getTitleEvent(),
