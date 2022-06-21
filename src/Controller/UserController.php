@@ -16,6 +16,7 @@ class UserController extends AbstractController
     #[Route(path: "/my-account", name: "my-account")]
     public function myAccount(UserRepository $userRepository, EventRepository $eventRepository)
     {
+        $message ="";
         $userId = $_SESSION["userId"];
         $user = $userRepository->findUserById($userId);
 
@@ -29,7 +30,32 @@ class UserController extends AbstractController
 
         echo $this->twig->render('/user/account.html.twig',[
             'user' => $user,
-            'events' => $lesEvent
+            'events' => $lesEvent,
+            'message' => $message
+        ]);
+    }
+
+    #[Route(path: "/my-account/delet-event/{id}", name: "my-account/delet-event")]
+    public function deletEventUser(UserRepository $userRepository, EventRepository $eventRepository, int $id)
+    {
+        $userId = $_SESSION["userId"];
+        $user = $userRepository->findUserById($userId);
+
+        $desincrire = $eventRepository->desinscrire($id, $_SESSION["userId"]);
+        $message="Vous êtes désinscrit de l'événement";  
+
+        $events = $eventRepository->findAllEventByUser($userId);
+        $lesEvent = [];
+        
+        foreach($events as $events){
+            $nb = $eventRepository->CountUserByEvent($events->id_event); 
+            $lesEvent[]=["event" => $events, "nb" => $nb];
+        }
+
+        echo $this->twig->render('/user/account.html.twig',[
+            'user' => $user,
+            'events' => $lesEvent,
+            'message' => $message
         ]);
     }
 
