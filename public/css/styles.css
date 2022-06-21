@@ -190,7 +190,7 @@ h1
 
 .form-front input[type="checkbox"]
 {
-    -webkit-appearance: none;
+    /*-webkit-appearance: none;*/
     @apply text-blue border-2 border-white p-2
 }
 
@@ -206,7 +206,7 @@ h1
 
 .form-front #userProfilePicture .form-group
 {
-    @apply pb-0
+    @apply pb-0 pl-8
 }
 
 input[type="submit"]

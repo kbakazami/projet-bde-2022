@@ -32,16 +32,24 @@ class UserController extends AbstractController
         $validator = new Validator($_POST);
         $image = new UploadFiles($_FILES['file']);
 
-        $validator->confirmPasword("password", "confirmPassword")
-            ->imagePattern($image->getTypeFile());
-
-        if($validator->isValid())
+        if (password_verify($_POST['oldPassword'], $user->password))
         {
-            $userUpdate = new User();
-            $userUpdate->setPassword($_POST['password'])
-                ->setImage($image->upload());
+            $validator->confirmPasword("password", "confirmPassword")
+                ->imagePattern($image->getTypeFile());
 
-            $userRepository->updateUser($userUpdate, $id);
+            if($validator->isValid())
+            {
+                $userUpdate = new User();
+                $userUpdate->setFirstName($_POST['prenom'])
+                    ->setLastName($_POST['nom'])
+                    ->setEmail($_POST['mail'])
+                    ->setBirthDate(new DateTime($_POST['date']))
+                    ->setPassword($_POST['password'])
+                    ->setIdRole("10")
+                    ->setImage($image->upload());
+
+                $userRepository->updateUser($userUpdate, $id);
+            }
         }
 
         $errors = $validator->getErrors();

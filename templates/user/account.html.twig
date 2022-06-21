@@ -10,9 +10,9 @@
         <h1 class="h1Gradiant">Mon compte</h1>
     </div>
 
-    <div class="flex flex-col px pt-4 pb-24 lg:w-1080 lg:mx-auto">
+    <div class="flex flex-col pt-4 pb-24 w-290 lg:w-1080 mx-auto">
         <div class="form-container">
-        <form action='/update-user/{{ user.id }}' method='POST' class="form-front relative px-4 lg:px-28 lg:py-10">
+        <form action='/update-user/{{ user.id }}' method='POST' class="form-front relative w-full px-4 py-7 lg:px-28 lg:py-10" enctype="multipart/form-data">
 {#            <div class="flex flex-col lg:flex-row items-center lg:space-x-16 uppercase italic mb-8 text-sm lg:text-base hidden" id="edit-image-preview">#}
 {#                {% if user.image %}#}
 {#                    <div class="rounded-full border border-white h-24 w-24 bg-cover" style="background-image: url('/img/{{ user.image }}')"></div>#}
@@ -20,30 +20,35 @@
 {#                    <div id="img-preview"></div>#}
 {#                {% endif %}#}
 {#            </div>#}
-            <div class="flex flex-row items-center" id="userProfilePicture">
+            <div class="flex flex-col lg:flex-row items-center pb-4 lg:pb-8" id="userProfilePicture">
                 {% if user.image %}
-
+                    <div id="image-user" class="rounded-full border border-white w-24 h-24 bg-cover bg-center"
+                         style="background-image: url('img/{{ user.image }}')">
+                    </div>
+                    <div id="edit-image-user-preview" class="hidden rounded-full border border-white h-24 w-24 bg-cover bg-center">
+                    </div>
                 {% else %}
                     <div id="image-user-preview" class="rounded-full border border-white h-24 w-24 bg-cover bg-center">
                     </div>
                 {% endif %}
                 {{ field("file", "Image", "", "", {type: "file"}) }}
             </div>
-            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center">
+            <div class="flex flex-col lg:flex-row lg:space-x-11 lg:items-center">
                 {{ field("nom", "Nom","Nom", user.lastname) }}
                 {{ field("prenom", "Prénom","Prénom", user.firstname) }}
             </div>
-            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center disabledInput">
+            <div class="flex flex-col lg:flex-row lg:space-x-11 lg:items-center">
                 {{ field("mail", "Email","Email", user.mail) }}
                 {{ field("date", "Date de naissance","Date de naissance" , user.birthdate, {type: 'date'}) }}
             </div>
-            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
+            <div class="flex flex-col lg:flex-row lg:space-x-11 lg:items-center lg:pb-8">
             <div class="flex flex-col">
-                <div class="flex flex-row pb-4 passwordDisplay items-center  sm:w-400">
+                <div class="flex flex-row pb-4 passwordDisplay lg:items-center w-full sm:w-400 space-x-4">
                     <input type="checkbox" id="checkboxChangePassword" class="cursor-pointer checked:glowEffect">
                     <label for="checkboxChangePassword" class="cursor-pointer">Modifier le mot de passe</label>
                 </div>
                 <div class="flex flex-col hidden" id="divPassword">
+                    {{ field("oldPassword", "Ancien mot de passe","Ancien mot de passe",'',  {type: "password"}) }}
                     {{ field("password", "Mot de passe","Mot de passe",'',  {type: "password"}) }}
                     {{ field("confirmPassword", "Confirmation du mot de passe","Confirmation du mot de passe","", {type: "password"}) }}
                 </div>
