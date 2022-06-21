@@ -2,7 +2,8 @@ module.exports = {
   content: [
       "./src/**/*.{html,js}",
     './templates/**/*.html.twig',
-    './node_modules/tw-elements/dist/js/**/*.js'
+      './js/*.js',
+      './**/js/*.js',
   ],
   theme: {
     screens: {
@@ -35,6 +36,7 @@ module.exports = {
         '46':'185px',
         '34':'140px',
         '30':'125px',
+        '1080':'1080px',
       },
       boxShadow:{
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
