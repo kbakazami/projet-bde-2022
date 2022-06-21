@@ -136,6 +136,13 @@ final class EventRepository extends AbstractRepository
         ]);
     }
 
+    public function deleteEventParticiper(int $id){
+        $stmt = $this->pdo->prepare("DELETE FROM participer WHERE id = :id");
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
+
     public function deleteEvent(int $id){
         $stmt = $this->pdo->prepare("DELETE FROM event WHERE id = :id");
 

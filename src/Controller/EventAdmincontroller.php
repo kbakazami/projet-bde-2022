@@ -233,6 +233,7 @@ class EventAdmincontroller extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
+            $eventRepository->deleteEventParticiper($id);
             $eventRepository->deleteEvent($id);
 
             $message = "L'événement a bien été supprimé";
