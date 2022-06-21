@@ -75,6 +75,15 @@ final class EventRepository extends AbstractRepository
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function desinscrire(int $id_event, int $id_user){
+        $stmt = $this->pdo->prepare("DELETE FROM participer WHERE id=:id AND id_users=:id_user");
+
+        $stmt->execute([
+            'id' => $id_event,
+            'id_user' =>$id_user
+        ]);
+    }
+
     public function CountUserByEvent(int $id){
         $stmt = $this->pdo->prepare("SELECT COUNT(*) AS nombre FROM participer WHERE id= :id");
 

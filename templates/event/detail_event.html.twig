@@ -11,7 +11,7 @@
     <a href"{{ event.id_cat }}"> {{ event.titre_category }} </a>
 
     {% if participate == true %}
-        <span> Inscrit </span>
+       <a href="/desinscrire/{{ event.id_event }}"> Se désinscrire </a>
     {% else %}
         <a href="/participer/{{ event.id_event }}"> Participer </a>
     {% endif %}

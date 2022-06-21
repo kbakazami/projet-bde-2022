@@ -14,19 +14,20 @@
         {# Content #}
         {% for event in events %}
         
-            <div class="bg-[url('/img/{{ event.image }}')]">
+            <div class="bg-[url('/img/{{ event.event.image }}')]">
                 <div class="card_event">
-                    <h2 class="title">{{ event.titre_event }}</h2> 
-                    <a href="detail-category/{{ event.id_cat }}"> {{ event.titre_category }} </a>
-                    <span> {{ event.price }} € </span>
+                    <h2 class="title">{{ event.event.titre_event }}</h2> 
+                    <a href="detail-category/{{ event.event.id_cat }}"> {{ event.event.titre_category }} </a>
+                    <span> {{ event.event.price }} € </span>
                     <br>
-                    {{ event.date }}
+                    {{ event.event.date }}
                     <br>
-                    {{ event.image }}
+                    {{ event.event.image }}
                     {# Compte le nombre de caractère et affiche maximum x caractère + ... #}
-                    {{ event.description|striptags|length > 50 ? event.description|striptags|slice(0, 50) ~ '...' : event.description|striptags }}
+                    {{ event.event.description|striptags|length > 100 ? event.event.description|striptags|slice(0, 100) ~ '...' : event.event.description|striptags }}
                     <br>
-                    <a href="detail-event/{{ event.id_event }}"> Plus </a>
+                    <a href="detail-event/{{ event.event.id_event }}"> Plus </a>
+                    {{event.nb.nombre}}
                 </div>
             </div>
             
