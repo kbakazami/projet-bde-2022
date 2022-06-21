@@ -171,7 +171,8 @@ h1
 
 .form-front input[type="text"],
 .form-front input[type="date"],
-.form-front input[type="password"]
+.form-front input[type="password"],
+.form-front select
 {
     background-color: transparent;
     background-size: calc(100% + 4px) 2px;
@@ -182,9 +183,30 @@ h1
     lg:w-400 w-full
 }
 
+.form-front select
+{
+    @apply bg-black
+}
+
+.form-front input[type="checkbox"]
+{
+    -webkit-appearance: none;
+    @apply text-blue border-2 border-white p-2
+}
+
+.form-front input[type="checkbox"]:checked
+{
+    @apply bg-gradient-to-r from-blue via-purple to-pink
+}
+
 .form-front .form-group
 {
-    @apply mb-6 lg:mb-14
+    @apply pb-4 lg:pb-8
+}
+
+.form-front #userProfilePicture .form-group
+{
+    @apply pb-0
 }
 
 input[type="submit"]
@@ -225,6 +247,11 @@ input[type="submit"]
 .form-front label
 {
     @apply sr-only
+}
+
+.passwordDisplay label
+{
+    @apply not-sr-only ml-2
 }
 
 small

@@ -46,9 +46,43 @@ function getImgData() {
             editImagePreview.classList.remove("hidden");
             imgPreview.style.display = "block";
             imgPreview.innerHTML = '<img src="' + this.result + '" />';
+            // imageUserPreview.innerHTML = '<img class="border-2 border-white rounded-full w-32 h-32" src="' + this.result + '" />';
+
         });
     }
 }
+
+/************************* Display Selected Image User ********************************/
+const imageUserPreview = document.querySelector("#image-user-preview");
+const choosePicture = document.querySelector(" #file");
+
+choosePicture.addEventListener("change", getUserImgData)
+
+function getUserImgData()
+{
+    const files = choosePicture.files[0];
+    if(files) {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(files);
+        fileReader.addEventListener("load", function () {
+            imageUserPreview.style.backgroundImage = "url('"+  this.result +"')";
+            // imageUserPreview.innerHTML = '<img class="border-2 border-white rounded-full w-32 h-32" src="' + this.result + '" />';
+
+        });
+    }
+}
+
+/************************* Display Input To Change Password ********************************/
+const checkboxDisplay = document.querySelector("#checkboxChangePassword");
+const divPassword = document.querySelector("#divPassword");
+checkboxDisplay.addEventListener("click", displayDivPassword);
+
+function displayDivPassword()
+{
+    divPassword.classList.toggle("hidden");
+}
+
+
 
 /************************* Disable Input In Edit User ********************************/
 // const disabledInput = document.querySelector(".disabledInput");
