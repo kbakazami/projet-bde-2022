@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="bg-[url('/img/{{ event.image }}')]" >
-        <h1>{{ event.titre_event }}</h1>
+    <div class="bg-[url('/img/{{ event.image }}')] w-full h-96 relative" >
+        <h1 class="absolute top-1/2 left-1/2 text-center">{{ event.titre_event }}</h1>
+        {{ event.image }}
     </div>
-    
+    {{ message }}
     <a href"{{ event.id_cat }}"> {{ event.titre_category }} </a>
     <a href="#"> Participer </a>
     <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
@@ -12,7 +13,7 @@
             <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
             <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
         </div>
-        <h1 class="absolute top-12 right-px">Description</h1>
+        {# <h1 class="absolute top-12 right-px">Description</h1> #}
         <h1 class="h1Gradiant">Description</h1>
     </div>
     {{ event.description }}
@@ -21,7 +22,7 @@
             <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
             <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
         </div>
-        <h1 class="absolute top-12 right-px">Information</h1>
+        {# <h1 class="absolute top-12 right-px">Information</h1> #}
         <h1 class="h1Gradiant">Information</h1>
     </div>
     {{ event.date }}

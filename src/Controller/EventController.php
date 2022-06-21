@@ -35,4 +35,18 @@ class EventController extends AbstractController
             'nbParticipant' => $nbParticipant
         ]);
     }
+
+    #[Route(path: "/participer/{id}", name: "participer")]
+    public function participer(EventRepository $eventRepository,int $id)
+    {
+        $event = $eventRepository->addParticipant($id, $_SESSION["id_users"]);
+        $event = $eventRepository->findEventByIdWithCatAndCrea($id);
+        $nbParticipant = $eventRepository->CountUserByEvent($id);
+        
+        echo $this->twig->render('event/detail_event.html.twig',[
+            'event' => $event,
+            'nbParticipant' => $nbParticipant
+        ]);
+    }
+    
 }
