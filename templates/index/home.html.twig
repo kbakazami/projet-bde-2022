@@ -18,24 +18,33 @@
                 <div class="event-wrapper mb-28">
                   <div class="event-container">
                     <div class="event-container-black">
-                      <div class="relative w-full py-7 sm:py-20 px-10 sm:px-15 rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.image }}')">
+                      <div class="relative w-full py-7 sm:py-20 px-10 sm:px-15 rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
                         <div class="bg-black opacity-75 border border-white rounded-md absolute top-4 bottom-4 right-4 w-4/6">
                           <div class="relative p-4 flex flex-col">
                             <div class="flex flex-row justify-between items-center relative">
-                              <span class="uppercase text-2xl">{{ event.title }}</span>
-                              <div class="before:bg-pink before:w-20 before:h-5 before:absolute before:skew-x-125">
-                                <span class="relative">{{ event.category_title }}</span>
+                              <span class="uppercase text-2xl">{{ event.event.titre_event }}</span>
+                              {% if event.event.id_cat != 0 %}
+                              <div class="before:w-20 before:h-5 before:absolute before:skew-x-125 py-1 px-5 text-black" style="background-color: {{ event.event.color_category }}">
+                                <span class="relative">{{ event.event.titre_category }}</span>
                               </div>
-                              <span class="text-xl">{{ event.price }}€</span>
+                              {% endif %}
+                              <span class="text-xl">{{ event.event.price }}€</span>
                             </div>
                             <div class="flex flex-col">
-                            <span class="uppercase text-xl italic">{{ event.date|date("d/m/Y") }}</span>
-                            <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0
+                            <span class="uppercase text-lg italic">{{ event.event.date|date("d/m/Y") }}</span>
+                            <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
-                                         py-2 relative">{{ event.description }}</span>
+                                         py-2 relative">{{event.event.description|striptags|length > 100 ? event.event.description|striptags|slice(0, 100) ~ '...' : event.event.description|striptags}}</span>
                             </div>
-                            <span>Nbr participant</span>
-                            <a href="*" class="w-full ml-auto">Plus</a>
+                            <div class="nbrParticipant-wrapper">
+                              <div class="nbrParticipant-container">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                              </svg>
+                              <span>{{event.nb.nombre}}</span>
+                              </div>
+                            </div>
+{#                            <a href="detail-event/{{ event.event.id_event }}" class="w-full ml-auto">Plus</a>#}
                           </div>
                         </div>
                       </div>

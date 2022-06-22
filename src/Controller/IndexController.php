@@ -14,7 +14,14 @@ class IndexController extends AbstractController
     #[Route(path: "/")]
     public function index(EventRepository $eventRepository, NewsRepository $newsRepository,CategoryRepository $categoryRepository)
     {
-        $events = $eventRepository->findAllEvent();
+        $events = $eventRepository->findAllEventwithCategory();
+
+        $lesEvent = [];
+
+        foreach($events as $events){
+            $nb = $eventRepository->CountUserByEvent($events->id_event);
+            $lesEvent[]=["event" => $events, "nb" => $nb];
+        }
 
         $news = $newsRepository->findAllNews();
 

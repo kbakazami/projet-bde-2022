@@ -293,6 +293,17 @@ input[type="submit"]
     @apply sr-only
 }
 
+.nbrParticipant-container
+{
+
+    @apply w-11.5 h-6  flex flex-row items-center absolute bg-black top-0.5 left-0.5 rounded-full justify-center
+}
+
+.nbrParticipant-wrapper
+{
+    @apply w-13 h-7 mt-2 bg-gradient-to-r from-blue via-purple to-pink relative rounded-full
+}
+
 .passwordDisplay label
 {
     @apply not-sr-only ml-2

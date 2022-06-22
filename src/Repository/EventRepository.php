@@ -32,7 +32,7 @@ final class EventRepository extends AbstractRepository
     }
 
     public function findAllEventwithCategory(){
-        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, image, category.title AS titre_category, id_users, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category");
+        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, image, category.title AS titre_category, category.color as color_category, id_users, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
