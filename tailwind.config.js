@@ -42,7 +42,9 @@ module.exports = {
         '11.5':'46px'
       },
       height:{
-        '320':'320px'
+        '320':'320px',
+        '220':'220px',
+        '34':'136px',
       },
       boxShadow:{
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
@@ -65,7 +67,7 @@ module.exports = {
       },
       minHeight:{
         '34':'136px'
-      }
+      },
     },
   },
   variants:{

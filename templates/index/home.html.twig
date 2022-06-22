@@ -3,41 +3,44 @@
 {% block body %}
   <div class="flex flex-col">
     <div class="border border-red w-full">Bannière event + actu</div>
-    <div class="flex flex-col px-4 lg:px-16 pt-20">
+    <div class="flex flex-col px-4 lg:px-28 pt-20 2xl:px-48">
 
       <div class="flex flex-col lg:flex-row">
         {#Evenements#}
-        <div class="border border-pink w-1/2">
+        <div class="w-full lg:w-1/2">
           <div class="relative flex flex-col pb-16 w-full">
             <div class="flex flex-row items-center space-x-4">
               <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
               <h1 class="h1Gradiant">événements</h1>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col pt-7 px-4 lg:px-0">
               {% for event in events %}
-                <div class="event-wrapper mb-28">
+                <div class="event-wrapper mb-14 lg:mb-28">
                   <div class="event-container">
                     <div class="event-container-black">
-                      <div class="relative w-full py-7 sm:py-20 px-10 sm:px-15 rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
-                        <div class="bg-black opacity-80 border border-white rounded-md absolute top-4 bottom-4 right-4 w-4/6">
-                          <div class="relative p-4 flex flex-col">
+                      <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
+                        <div class="bg-black opacity-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
+                          <div class="relative justify-center flex flex-col p-4">
                             <div class="flex flex-row justify-between items-center relative">
-                              <span class="uppercase text-2xl">{{ event.event.titre_event }}</span>
-                              {% if event.event.id_cat != 0 %}
-                              <div class="before:w-20 before:h-5 before:absolute before:skew-x-125 py-1 px-5 text-black" style="background-color: {{ event.event.color_category }}">
-                                <span class="relative">{{ event.event.titre_category }}</span>
+                              <span class="uppercase text-lg xl:text-2xl">{{ event.event.titre_event }}</span>
+                              <div class="flex flex-row space-x-4 items-center">
+                                <span class="text-xl">{{ event.event.price }}€</span>
                               </div>
-                              {% endif %}
-                              <span class="text-xl">{{ event.event.price }}€</span>
                             </div>
-{#                            <div class="flex flex-col">#}
-                            <span class="uppercase text-lg italic">{{ event.event.date|date("d/m/Y") }}</span>
-                            <div class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
+                            {% if event.event.id_cat != 0 %}
+                              <div>
+                              <span class="text-sm xl:text-base text-center rounded-md py-px px-5 text-black" style="background-color: {{ event.event.color_category }}">
+                                  {{ event.event.titre_category }}
+                                </span>
+                              </div>
+                            {% endif %}
+                            <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
+                            <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
-                                         py-2 relative min-h-34">{{event.event.description|striptags|length > 300 ? event.event.description|striptags|slice(0, 300) ~ '...' : event.event.description|striptags}}
-                            </div>
-{#                            </div>#}
-                            <div class="flex flex-row items-center justify-between mt-4">
+                                         py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
+                              {{event.event.description|striptags|length > 300 ? event.event.description|striptags|slice(0, 300) ~ '...' : event.event.description|striptags}}
+                            </span>
+                            <div class="flex flex-row items-center justify-between mt-2">
                             <div class="nbrParticipant-wrapper">
                               <div class="nbrParticipant-container">
                               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
@@ -46,8 +49,8 @@
                               <span>{{event.nb.nombre}}</span>
                               </div>
                             </div>
-                            <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md">
-                              <a href="detail-event/{{ event.event.id_event }}" class="px-4 uppercase">Plus</a>
+                            <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
+                              <a href="detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
                             </span>
                             </div>
                           </div>
@@ -68,7 +71,7 @@
       </div>
 
       {#Recherche + Actualités#}
-      <div class="border border-blue w-full lg:w-1/2 flex flex-col">
+      <div class="border border-blue w-full lg:w-1/2 flex flex-col  items-end xl:items-center">
         <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
           <div class="relative">
             <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
@@ -102,12 +105,40 @@
           {% endfor %}
         </div>
 
-          <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
-            <div class="relative">
+
+          </div>
+          <div class="relative flex flex-col items-center pb-16 justify-center lg:justify-end w-full lg:w-auto">
+            <div class="flex flex-row items-center space-x-4">
               <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-            </div>
-            <div class="relative">
               <h1 class="h1Gradiant">Actualités</h1>
+            </div>
+            <div class="flex flex-row lg:flex-col pt-7 w-full justify-around lg:w-3/4">
+              {% for new in news %}
+{#                <a href="{{ new.link }}" class="transition duration-300 hover:hover:scale-110">#}
+                <div class="h-32 sm:w-2/6 lg:w-full mb-12">
+                  <div class="relative h-full before:absolute before:h-2/3 before:w-2/3 before:-translate-y-2 before:-translate-x-2 before:bg-pink before:rounded-md before:-z-1
+                              after:absolute after:h-2/3 after:w-2/3 after:translate-y-2 after:translate-x-2 after:bg-blue after:rounded-md after:right-0 after:top-1/3 after:-z-1">
+
+                    <div class="relative h-full before:absolute before:h-2/3 before:w-2/3 before:-translate-y-1.5 before:-translate-x-1.5 before:bg-black before:rounded-md before:-z-1
+                                after:absolute after:h-2/3 after:w-2/3 after:translate-y-1.5 after:translate-x-1.5 after:bg-black after:rounded-md after:right-0 after:top-1/3 before:-z-1">
+                      <div class="relative w-full h-full rounded-md mx-auto bg-gradient-to-t from-blue via-purple to-pink z-1">
+                        <div class="absolute bg-black inset-2 rounded-md opacity-80 p-2 flex flex-col">
+
+                          <span class="uppercase text-xs lg:text-sm font-bold relative
+                          after:absolute after:w-1/3 after:h-0.5 after:bg-white after:bottom-0 after:left-0">
+                            {{ new.name|striptags|length > 25 ? new.name|striptags|slice(0, 25) ~ '...' : new.name|striptags }}
+                          </span>
+                          <span class="italic pt-1">{{ new.date|date("d/m/Y") }}</span>
+<span class="text-xs lg:text-sm">
+                {{ new.description|striptags|length > 50 ? new.description|striptags|slice(0, 50) ~ '...' : new.description|striptags }}
+      </span>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                </div>
+{#                </a>#}
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -116,10 +147,6 @@
       {#Qui sommes nous#}
       <div class="relative w-full h-auto mt-32 mb-24">
         <div class="box">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
           <div class=" flex flex-row items-center space-x-4 px-4 lg:px-0 py-6 sm:py-8 lg:py-14 justify-center">
             <div class="relative">
               <div class="relative borderGradiantEffect w-32  lg:w-40 opacity-90 mt-px pt-1 mr-1"></div>
