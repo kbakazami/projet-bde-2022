@@ -142,6 +142,7 @@ class RoleAdminController extends AbstractController
         if ($_SESSION['userRole'] !== 'Admin') {
             echo $this->twig->render('/access.html.twig');
         } else {
+            $roleRepository->setDefaultRole($id);
             $roleRepository->deleteRole($id);
             header('Location: /admin/list-role');
         }

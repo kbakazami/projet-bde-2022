@@ -51,4 +51,12 @@ final class RoleRepository extends AbstractRepository
             'id' => $id
         ]);
     }
+
+    public function setDefaultRole(int $id){
+        $stmt = $this->pdo->prepare("UPDATE users SET id_role = 10 WHERE id_role = :id");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
 }
