@@ -34,6 +34,25 @@
           <div class="relative">
             <h1 class="h1Gradiant">Recherche<br>événements</h1>
           </div>
+          <form action='/recherche_home' method='POST'
+              class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
+            {{ field("recherche", "Recherche","Recherche") }}
+            Catégorie
+            {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
+            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
+                {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
+            </div>
+            
+            <div class="submit-wrapper">
+                <div class="submit-container">
+                    <div class="submit-container2">
+                        <div class="submit-container-black">
+                            <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="Rechercher"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </form>
           {% for new in news %}
           <div>
               {{ new.name }}

@@ -171,4 +171,44 @@ final class EventRepository extends AbstractRepository
         $sql->execute();
         return $sql->fetch();
     }
+
+    public function rechercheHome(string $recherche, int $id_cat, float $prix){
+        $pdo = "SELECT event.id AS id_event , event.title AS titre_event, description, price, date, image, category.title AS titre_category, id_users, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category";
+        $i = 0;
+        $table = [];
+        // var_dump($i);
+        // if($recherche != ""){
+        //     var_dump("oui");
+        // }
+        
+        if($recherche != "" || $id_cat != 0 || $prix > -1){
+            $pdo.= " WHERE";
+            if($recherche != ""){
+                $i = 1;
+                $pdo.= " event.title LIKE :recherche OR description LIKE :recherche";
+                $table['recherche']= '%'.$recherche.'%';
+            }
+            if($id_cat != 0){
+                if($i == 1){
+                    $pdo.= " AND";
+                }
+                $pdo.= " id_category = :cat";
+                var_dump($i);
+                $i = 1;
+                $table['cat']= $id_cat;
+            }
+            if($prix > -1)
+            {
+                if($i == 1){
+                    $pdo.= " AND";
+                }
+                $pdo.= " price <= :price";
+                $table['price']=$prix;
+            }                  
+        }
+
+        $stmt = $this->pdo->prepare($pdo);
+        $stmt->execute($table);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 };
