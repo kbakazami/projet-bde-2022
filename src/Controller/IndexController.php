@@ -47,7 +47,7 @@ class IndexController extends AbstractController
         // var_dump($_POST);
 
         $events = $eventRepository->rechercheHome($_POST["recherche"],intval($_POST["category"]),$prix);
-        var_dump($events);
+        // var_dump($events);
         echo $this->twig->render('index/recherche_home.html.twig', [
             'events'=>$events
         ]);

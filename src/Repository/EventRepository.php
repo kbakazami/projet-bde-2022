@@ -173,14 +173,9 @@ final class EventRepository extends AbstractRepository
     }
 
     public function rechercheHome(string $recherche, int $id_cat, float $prix){
-        $pdo = "SELECT event.id AS id_event , event.title AS titre_event, description, price, date, image, category.title AS titre_category, id_users, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category";
+        $pdo = "SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname as prenom, users.firstname as nom FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users";
         $i = 0;
-        $table = [];
-        // var_dump($i);
-        // if($recherche != ""){
-        //     var_dump("oui");
-        // }
-        
+        $table = [];      
         if($recherche != "" || $id_cat != 0 || $prix > -1){
             $pdo.= " WHERE";
             if($recherche != ""){
@@ -193,7 +188,7 @@ final class EventRepository extends AbstractRepository
                     $pdo.= " AND";
                 }
                 $pdo.= " id_category = :cat";
-                var_dump($i);
+                // var_dump($i);
                 $i = 1;
                 $table['cat']= $id_cat;
             }

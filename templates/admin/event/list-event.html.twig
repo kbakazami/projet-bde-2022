@@ -91,36 +91,6 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {#        </div>#}
-            {#    <table>#}
-            {#        <tr>#}
-            {#            <th>Id</th>#}
-            {#            <th>Image</th>#}
-            {#            <th>Titre</th>#}
-            {#            <th>Catégorie</th>#}
-            {#            <th>Description</th>#}
-            {#            <th>Price</th>#}
-            {#            <th>Date</th>#}
-            {#            <th>Créateur</th>#}
-            {#            <th>Action</th>#}
-            {#        </tr>#}
-            {#        {% for event in events %}#}
-            {#            <tr>#}
-            {#                <td>{{ event.id }}</td>#}
-            {#                <td><img src="/img/{{ event.image }}" alt="e"/></td>#}
-            {#                <td>{{ event.title }}</td>#}
-            {#                <td>{{ event.category.name }}</td>#}
-            {#                <td>{{ event.description }}</td>#}
-            {#                <td>{{ event.price }}</td>#}
-            {#                <td>{{ event.date }}</td>#}
-            {#                <td>{{ event.user.username }}</td>#}
-            {#                <td>#}
-            {#                    <a href="/admin/form-edit-event/{{ event.id }}">Modifier</a>#}
-            {#                    <a href="/admin/delete-event/{{ event.id }}">Supprimer</a>#}
-            {#                </td>#}
-            {#            </tr>#}
-            {#        {% endfor %}#}
-            {#    </table>#}
         </div>
     </div>
 {% endblock %}
