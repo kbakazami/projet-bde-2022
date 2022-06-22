@@ -21,8 +21,8 @@ class IndexController extends AbstractController
         foreach($events as $events){
             $nb = $eventRepository->CountUserByEvent($events->id_event);
             $lesEvent[]=["event" => $events, "nb" => $nb];
-        }
 
+        }
         $news = $newsRepository->findThirdLastNews();
 
         $category = $categoryRepository->findAllCategory();
@@ -35,7 +35,7 @@ class IndexController extends AbstractController
         }
 
         echo $this->twig->render('index/home.html.twig', [
-            'events' => $events,
+            'events' => $lesEvent,
             'news' => $news,
             'category' => $cat
         ]);
