@@ -40,6 +40,14 @@ final class NewsRepository extends AbstractRepository
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function findThirdLastNews()
+    {
+        $stmt = $this->pdo->prepare("SELECT id, name, description, date, link FROM news ORDER BY date DESC LIMIT 3");
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function updateNews(News $news, $id)
     {
         $stmt = $this->pdo->prepare("UPDATE news SET name = :name, description = :description, date = :date, link = :link WHERE id = :id");
