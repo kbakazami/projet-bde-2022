@@ -62,6 +62,9 @@ module.exports = {
       },
       skew:{
         '125':'125deg'
+      },
+      minHeight:{
+        '34':'136px'
       }
     },
   },

@@ -301,7 +301,7 @@ input[type="submit"]
 
 .nbrParticipant-wrapper
 {
-    @apply w-13 h-7 mt-2 bg-gradient-to-r from-blue via-purple to-pink relative rounded-full
+    @apply w-13 h-7 bg-gradient-to-r from-blue via-purple to-pink relative rounded-full
 }
 
 .passwordDisplay label

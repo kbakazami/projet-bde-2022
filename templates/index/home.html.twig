@@ -19,7 +19,7 @@
                   <div class="event-container">
                     <div class="event-container-black">
                       <div class="relative w-full py-7 sm:py-20 px-10 sm:px-15 rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
-                        <div class="bg-black opacity-75 border border-white rounded-md absolute top-4 bottom-4 right-4 w-4/6">
+                        <div class="bg-black opacity-80 border border-white rounded-md absolute top-4 bottom-4 right-4 w-4/6">
                           <div class="relative p-4 flex flex-col">
                             <div class="flex flex-row justify-between items-center relative">
                               <span class="uppercase text-2xl">{{ event.event.titre_event }}</span>
@@ -30,12 +30,14 @@
                               {% endif %}
                               <span class="text-xl">{{ event.event.price }}€</span>
                             </div>
-                            <div class="flex flex-col">
+{#                            <div class="flex flex-col">#}
                             <span class="uppercase text-lg italic">{{ event.event.date|date("d/m/Y") }}</span>
-                            <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
+                            <div class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
-                                         py-2 relative">{{event.event.description|striptags|length > 100 ? event.event.description|striptags|slice(0, 100) ~ '...' : event.event.description|striptags}}</span>
+                                         py-2 relative min-h-34">{{event.event.description|striptags|length > 300 ? event.event.description|striptags|slice(0, 300) ~ '...' : event.event.description|striptags}}
                             </div>
+{#                            </div>#}
+                            <div class="flex flex-row items-center justify-between mt-4">
                             <div class="nbrParticipant-wrapper">
                               <div class="nbrParticipant-container">
                               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
@@ -44,7 +46,10 @@
                               <span>{{event.nb.nombre}}</span>
                               </div>
                             </div>
-{#                            <a href="detail-event/{{ event.event.id_event }}" class="w-full ml-auto">Plus</a>#}
+                            <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md">
+                              <a href="detail-event/{{ event.event.id_event }}" class="px-4 uppercase">Plus</a>
+                            </span>
+                            </div>
                           </div>
                         </div>
                       </div>
