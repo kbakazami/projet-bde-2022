@@ -31,6 +31,11 @@ class LoginController extends AbstractController
                     $session->set('userRole', $check->title);
                     header("location: /");
                 }
+            }else{
+                $message = 'Email ou Mot de passe incorrecte';
+                echo $this->twig->render('login/login.html.twig', [
+                    'message' => $message
+                ]);
             }
         }
     }

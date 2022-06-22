@@ -182,7 +182,7 @@ class EventAdmincontroller extends AbstractController
         if ($_SESSION['userRole'] !== 'Admin') {
             echo $this->twig->render('/access.html.twig');
         } else {
-
+            var_dump($_FILES);
             $category = $categoryRepository->findAllCategory();
             $event = $eventRepository->findEventById($id);
             $validator = new Validator($_POST);

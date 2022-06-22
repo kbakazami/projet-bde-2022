@@ -18,7 +18,7 @@ class ValidationError {
         'confirmPassword' => 'Les mots de passes sont différents',
         'select' => 'Veuillez choisir une valeur',
         "imagePattern' => 'Veuillez selectionner un format d'image autorisé (png, jpg ou jpeg)",
-        'mailExist' => "Cette email existe déjà"
+        'mailExist' => "Cet email existe déjà"
     ];
 
     public function __construct(string $key, string $rule, array $attributes= []) {
