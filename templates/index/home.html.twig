@@ -5,7 +5,7 @@
     <div class="border border-red w-full">Bannière event + actu</div>
     <div class="flex flex-col px-4 lg:px-28 pt-20 2xl:px-48">
 
-      <div class="flex flex-col lg:flex-row">
+      <div class="flex flex-col lg:flex-row lg:justify-around">
         {#Evenements#}
         <div class="w-full lg:w-1/2">
           <div class="relative flex flex-col pb-16 w-full">
@@ -41,15 +41,15 @@
                               {{event.event.description|striptags|length > 300 ? event.event.description|striptags|slice(0, 300) ~ '...' : event.event.description|striptags}}
                             </span>
                             <div class="flex flex-row items-center justify-between mt-2">
-                            <div class="nbrParticipant-wrapper">
-                              <div class="nbrParticipant-container">
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                              </svg>
-                              <span>{{event.nb.nombre}}</span>
+                              <div class="nbrParticipant-wrapper">
+                                <div class="nbrParticipant-container">
+                                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                                  </svg>
+                                  <span>{{event.nb.nombre}}</span>
+                                </div>
                               </div>
-                            </div>
-                            <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
+                              <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
                               <a href="detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
                             </span>
                             </div>
@@ -64,57 +64,45 @@
             </div>
           </div>
         </div>
+
+        <div class="flex flex-col">
+        {#Recherche#}
+          <div class="w-full lg:w-auto flex flex-col  items-end xl:items-center">
+            <div class="relative flex flex-col items-center space-x-4 pb-16 justify-end">
+              <div class="relative">
+                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
               </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      {#Recherche + Actualités#}
-      <div class="border border-blue w-full lg:w-1/2 flex flex-col  items-end xl:items-center">
-        <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
-          <div class="relative">
-            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-          </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">Recherche<br>événements</h1>
-          </div>
-          <form action='/recherche_home' method='POST'
-              class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
-            {{ field("recherche", "Recherche","Recherche") }}
-            Catégorie
-            {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
-            <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
-                {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
-            </div>
-            
-            <div class="submit-wrapper">
-                <div class="submit-container">
+              <div class="relative">
+                <h1 class="h1Gradiant">Recherche<br>événements</h1>
+              </div>
+              <form action='/recherche_home' method='POST'
+                    class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
+                {{ field("recherche", "Recherche","Recherche") }}
+                Catégorie
+                {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
+                  {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
+                <div class="submit-wrapper">
+                  <div class="submit-container">
                     <div class="submit-container2">
-                        <div class="submit-container-black">
-                            <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="Rechercher"/>
-                        </div>
+                      <div class="submit-container-black">
+                        <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="Rechercher"/>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </form>
             </div>
-          </form>
-          {% for new in news %}
-          <div>
-              {{ new.name }}
           </div>
-          {% endfor %}
-        </div>
 
-
+        {#Actualités#}
+        <div class="relative flex flex-col items-center pb-16 w-full lg:w-auto">
+          <div class="flex flex-row items-center space-x-4">
+            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+            <h1 class="h1Gradiant">Actualités</h1>
           </div>
-          <div class="relative flex flex-col items-center pb-16 justify-center lg:justify-end w-full lg:w-auto">
-            <div class="flex flex-row items-center space-x-4">
-              <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-              <h1 class="h1Gradiant">Actualités</h1>
-            </div>
-            <div class="flex flex-col sm:flex-row lg:flex-col pt-7 w-full justify-around lg:w-3/4">
-              {% for new in news %}
-                <a href="{{ new.link }}" class="transition duration-300 hover:hover:scale-110 sm:w-2/6 lg:w-full">
+          <div class="flex flex-col sm:flex-row lg:flex-col pt-7 w-full justify-around lg:w-3/4 px-4 lg:px-0">
+            {% for new in news %}
+              <a href="{{ new.link }}" class="transition duration-300 hover:hover:scale-110 sm:w-2/6 lg:w-full">
                 <div class="h-32 w-full mb-12">
                   <div class="relative h-full before:absolute before:h-2/3 before:w-2/3 before:-translate-y-2 before:-translate-x-2 before:bg-pink before:rounded-md before:-z-1
                               after:absolute after:h-2/3 after:w-2/3 after:translate-y-2 after:translate-x-2 after:bg-blue after:rounded-md after:right-0 after:top-1/3 after:-z-1">
@@ -129,55 +117,52 @@
                             {{ new.name|striptags|length > 25 ? new.name|striptags|slice(0, 25) ~ '...' : new.name|striptags }}
                           </span>
                           <span class="italic pt-1">{{ new.date|date("d/m/Y") }}</span>
-<span class="text-xs lg:text-sm">
+                          <span class="text-xs lg:text-sm">
                 {{ new.description|striptags|length > 50 ? new.description|striptags|slice(0, 50) ~ '...' : new.description|striptags }}
       </span>
                         </div>
                       </div>
+                    </div>
                   </div>
                 </div>
-                </div>
-                </a>
-              {% endfor %}
-            </div>
+              </a>
+            {% endfor %}
           </div>
         </div>
-      </div>
-
-      {#Qui sommes nous#}
-      <div class="relative w-full h-auto mt-32 mb-24">
-        <div class="box">
-          <div class=" flex flex-row items-center space-x-4 px-4 lg:px-0 py-6 sm:py-8 lg:py-14 justify-center">
-            <div class="relative">
-              <div class="relative borderGradiantEffect w-32  lg:w-40 opacity-90 mt-px pt-1 mr-1"></div>
-            </div>
-            <div class="relative">
-              <h1 class="h1Gradiant">Qui sommes nous ?</h1>
-            </div>
-          </div>
-          <div class="px-4 lg:px-24 xl:px-60 pb-6 sm:pb-8 lg:pb-12 text-center">
-            <div class="pb-2">Aibyu est une équipe de 3 personnes, tous passionés par le développement Web et bien d'autres choses.</div>
-            <p>Cette équipe  est composée de trois personnes :</p>
-
-            <div class="flex flex-col lg:flex-row justify-center text-center lg:space-x-4 pt-4 lg:pt-8">
-              <div class="relative">
-                <h1 class="h1Gradiant">STRYUS Wyvin</h1>
-              </div>
-              <div class="relative">
-                <h1 class="h1Gradiant">CHAUDHRY Sofia</h1>
-              </div>
-              <div class="relative">
-                <h1 class="h1Gradiant">SCHWALLER Nadia</h1>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-
     </div>
-
-
   </div>
+  {#Qui sommes nous#}
+  <div class="relative w-full h-auto mt-32 mb-24">
+    <div class="box">
+      <div class=" flex flex-row items-center space-x-4 px-4 lg:px-0 py-6 sm:py-8 lg:py-14 justify-center">
+        <div class="relative">
+          <div class="relative borderGradiantEffect w-32  lg:w-40 opacity-90 mt-px pt-1 mr-1"></div>
+        </div>
+        <div class="relative">
+          <h1 class="h1Gradiant">Qui sommes nous ?</h1>
+        </div>
+      </div>
+      <div class="px-4 lg:px-24 xl:px-60 pb-6 sm:pb-8 lg:pb-12 text-center">
+        <div class="pb-2">Aibyu est une équipe de 3 personnes, tous passionés par le développement Web et bien d'autres choses.</div>
+        <p>Cette équipe  est composée de trois personnes :</p>
+
+        <div class="flex flex-col lg:flex-row justify-center text-center lg:space-x-4 pt-4 lg:pt-8">
+          <div class="relative">
+            <h1 class="h1Gradiant">STRYUS Wyvin</h1>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">CHAUDHRY Sofia</h1>
+          </div>
+          <div class="relative">
+            <h1 class="h1Gradiant">SCHWALLER Nadia</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
 
 
