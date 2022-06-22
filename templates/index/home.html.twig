@@ -6,19 +6,47 @@
     <div class="flex flex-col px-4 lg:px-16 pt-20">
 
       <div class="flex flex-col lg:flex-row">
-      {#Evenements#}
-      <div class="border border-pink w-full lg:w-1/2">
-        <div class="relative flex flex-row items-center space-x-4 pb-16 w-full">
-          <div class="relative">
-            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+        {#Evenements#}
+        <div class="border border-pink w-1/2">
+          <div class="relative flex flex-col pb-16 w-full">
+            <div class="flex flex-row items-center space-x-4">
+              <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+              <h1 class="h1Gradiant">événements</h1>
+            </div>
+            <div class="flex flex-col">
+              {% for event in events %}
+                <div class="event-wrapper mb-28">
+                  <div class="event-container">
+                    <div class="event-container-black">
+                      <div class="relative w-full py-7 sm:py-20 px-10 sm:px-15 rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.image }}')">
+                        <div class="bg-black opacity-75 border border-white rounded-md absolute top-4 bottom-4 right-4 w-4/6">
+                          <div class="relative p-4 flex flex-col">
+                            <div class="flex flex-row justify-between items-center relative">
+                              <span class="uppercase text-2xl">{{ event.title }}</span>
+                              <div class="before:bg-pink before:w-20 before:h-5 before:absolute before:skew-x-125">
+                                <span class="relative">{{ event.category_title }}</span>
+                              </div>
+                              <span class="text-xl">{{ event.price }}€</span>
+                            </div>
+                            <div class="flex flex-col">
+                            <span class="uppercase text-xl italic">{{ event.date|date("d/m/Y") }}</span>
+                            <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0
+                                         after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
+                                         py-2 relative">{{ event.description }}</span>
+                            </div>
+                            <span>Nbr participant</span>
+                            <a href="*" class="w-full ml-auto">Plus</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              {% endfor %}
+            </div>
           </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">événements</h1>
-          </div>
-          <div>
-            {% for event in events %}
-              <div>
-                {{ event.title }}
+        </div>
               </div>
             {% endfor %}
           </div>
@@ -60,49 +88,49 @@
           {% endfor %}
         </div>
 
-        <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
-          <div class="relative">
-            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-          </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">Actualités</h1>
+          <div class="relative flex flex-row items-center space-x-4 pb-16 justify-end">
+            <div class="relative">
+              <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+            </div>
+            <div class="relative">
+              <h1 class="h1Gradiant">Actualités</h1>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-      
+
       {#Qui sommes nous#}
       <div class="relative w-full h-auto mt-32 mb-24">
-      <div class="box">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <div class=" flex flex-row items-center space-x-4 px-4 lg:px-0 py-6 sm:py-8 lg:py-14 justify-center">
-          <div class="relative">
-            <div class="relative borderGradiantEffect w-32  lg:w-40 opacity-90 mt-px pt-1 mr-1"></div>
+        <div class="box">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class=" flex flex-row items-center space-x-4 px-4 lg:px-0 py-6 sm:py-8 lg:py-14 justify-center">
+            <div class="relative">
+              <div class="relative borderGradiantEffect w-32  lg:w-40 opacity-90 mt-px pt-1 mr-1"></div>
+            </div>
+            <div class="relative">
+              <h1 class="h1Gradiant">Qui sommes nous ?</h1>
+            </div>
           </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">Qui sommes nous ?</h1>
-          </div>
-        </div>
-        <div class="px-4 lg:px-24 xl:px-60 pb-6 sm:pb-8 lg:pb-12 text-center">
-          <div class="pb-2">Aibyu est une équipe de 3 personnes, tous passionés par le développement Web et bien d'autres choses.</div>
-          <p>Cette équipe  est composée de trois personnes :</p>
+          <div class="px-4 lg:px-24 xl:px-60 pb-6 sm:pb-8 lg:pb-12 text-center">
+            <div class="pb-2">Aibyu est une équipe de 3 personnes, tous passionés par le développement Web et bien d'autres choses.</div>
+            <p>Cette équipe  est composée de trois personnes :</p>
 
-        <div class="flex flex-col lg:flex-row justify-center text-center lg:space-x-4 pt-4 lg:pt-8">
-          <div class="relative">
-            <h1 class="h1Gradiant">STRYUS Wyvin</h1>
-          </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">CHAUDHRY Sofia</h1>
-          </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">SCHWALLER Nadia</h1>
+            <div class="flex flex-col lg:flex-row justify-center text-center lg:space-x-4 pt-4 lg:pt-8">
+              <div class="relative">
+                <h1 class="h1Gradiant">STRYUS Wyvin</h1>
+              </div>
+              <div class="relative">
+                <h1 class="h1Gradiant">CHAUDHRY Sofia</h1>
+              </div>
+              <div class="relative">
+                <h1 class="h1Gradiant">SCHWALLER Nadia</h1>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
       </div>
 
     </div>

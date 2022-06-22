@@ -37,6 +37,10 @@ module.exports = {
         '34':'140px',
         '30':'125px',
         '1080':'1080px',
+        '700':'700px'
+      },
+      height:{
+        '320':'320px'
       },
       boxShadow:{
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
