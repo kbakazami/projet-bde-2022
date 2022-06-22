@@ -35,15 +35,17 @@ class NewsAdminController extends AbstractController
 
             $validator = new Validator($_POST);
 
-            $validator->required("name", "description")
+            $validator->required("name", "description", "link")
                 ->dateTime("date")
                 ->length("name", 2, 250)
+                ->length("link", 2)
                 ->length("description", 2, 250);
 
             if ($validator->isValid()) {
                 $news = new News();
                 $news->setNameNews($_POST['name'])
                     ->setDescriptionNews($_POST['description'])
+                    ->setLinkNews($_POST['link'])
                     ->setDateNews(new DateTime($_POST['date']));
 
                 $newsRepository->save($news);
@@ -112,14 +114,16 @@ class NewsAdminController extends AbstractController
             $news = $newsRepository->findNewsById($id);
             $validator = new Validator($_POST);
 
-            $validator->required("name", "description")
+            $validator->required("name", "description","link")
                 ->length("name", 2, 250)
+                ->length("link",2)
                 ->length("description", 2, 250);
 
             if ($validator->isValid()) {
                 $newsUpdate = new News();
                 $newsUpdate->setNameNews($_POST['name'])
                     ->setDescriptionNews($_POST['description'])
+                    ->setLinkNews($_POST['link'])
                     ->setDateNews(new DateTime());
 
                 $newsRepository->updateNews($newsUpdate, $id);

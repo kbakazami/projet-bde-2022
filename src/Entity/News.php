@@ -10,6 +10,7 @@ class News
     private string $nameNews;
     private string $descriptionNews;
     private DateTime $dateNews;
+    private string $linkNews;
 
     public function getId(): int
     {
@@ -48,5 +49,17 @@ class News
     public function setDateNews(DateTime $dateNews): void
     {
         $this->dateNews = $dateNews;
+    }
+
+    public function getLinkNews(): string
+    {
+        return $this->linkNews;
+    }
+
+    public function setLinkNews(string $linkNews): self
+    {
+        $this->linkNews = $linkNews;
+
+        return $this;
     }
 }
