@@ -51,7 +51,6 @@ class LoginController extends AbstractController
         if (isset($_SESSION)) {
             $session->destroy();
         }
-
-        echo $this->twig->render('index/home.html.twig');
+        header('location: /');
     }
 }
