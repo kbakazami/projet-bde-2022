@@ -50,7 +50,7 @@ class EventAdmincontroller extends AbstractController
             $validator->required("title", "description", "price")
                 ->dateTime("date")
                 ->length("title", 2, 250)
-                ->length("description", 2, 250)
+                ->length("description", 2, 2500)
                 ->length("price", 2, 250)
                 ->select('category')
                 ->imagePattern($image->getTypeFile());
@@ -194,7 +194,7 @@ class EventAdmincontroller extends AbstractController
 
             $validator->required("title", "description", "price")
                 ->length("title", 2, 250)
-                ->length("description", 2, 250)
+                ->length("description", 2, 2500)
                 ->length("price", 2, 250);
 
             if ($_FILES) {

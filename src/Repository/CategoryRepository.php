@@ -69,4 +69,12 @@ final class CategoryRepository extends AbstractRepository
             'id' => $id
         ]);
     }
+
+    public function setParDefaut(int $id){
+        $stmt = $this->pdo->prepare("UPDATE event SET id_category = 0 WHERE id_category = :id ");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
 }
