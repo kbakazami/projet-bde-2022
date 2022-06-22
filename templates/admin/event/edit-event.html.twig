@@ -9,7 +9,7 @@
         <form action='/admin/update-event/{{ event.id }}' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto" enctype="multipart/form-data">
             <div class="flex flex-col lg:flex-row lg:space-x-11 mb-8 lg:mb-16 items-center">
                 <div class="flex flex-col uppercase italic mb-5 lg:mb-0" id="image-in-bdd">
-                    <span>Image actuelle :</span>
+                    <span>Image actuelle (Re-upload image obligatoire) :</span>
                     <div class="mt-2 w-full sm:w-420 lg:w-290 h-auto"><img src="/img/{{ event.image }}" alt="{{ event.title }}"/></div>
                 </div>
                 <div id="edit-image-preview" class="hidden mb-5 lg:mb-0 flex flex-col uppercase italic">
