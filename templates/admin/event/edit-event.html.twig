@@ -17,7 +17,7 @@
                     <div id="img-preview" class="mt-2 w-full sm:w-420 lg:w-290 h-auto"></div>
                 </div>
 {#                <div class="inputTypeFile">#}
-                    {{ field("file", "Image", "", "", {type: "file"}) }}
+                    {{ field("file", "Image", "", event.image, {type: "file"}) }}
 {#                </div>#}
             </div>
             <div class="flex flex-col lg:flex-row lg:space-x-11 items-center pb-4 lg:pb-8">

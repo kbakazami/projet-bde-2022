@@ -216,7 +216,7 @@ class EventAdmincontroller extends AbstractController
                 }
                 $eventRepository->updateEvent($eventUpdate, $id);
             }
-            var_dump($date);
+
             $errors = $validator->getErrors();
 
             if (!empty($errors)) {
