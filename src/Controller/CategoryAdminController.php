@@ -170,6 +170,7 @@ class CategoryAdminController extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
+            $categoryRepository->setParDefaut($id);
             $categoryRepository->deleteCategory($id);
 
             $message = "La catégorie a bien été supprimée";

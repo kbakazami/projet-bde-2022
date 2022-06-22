@@ -56,13 +56,20 @@
                                     <a href="/admin/liste-event-by-cat/{{ category.id }}" class="button-edit">Voir ( {{ category.nombre }} ) </a>
                                 </div>
                             </td>
-                            <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
-                                <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
-                                <div class="flex flex-col space-y-2 text-center lg:items-center">
-                                    <a href="/admin/form-edit-category/{{ category.id }}" class="button-edit">Modifier</a>
-                                    <a href="/admin/delete-category/{{ category.id }}" class="button-delete">Supprimer</a>
-                                </div>
-                            </td>
+                            {% if category.id == 0 %}
+                                <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
+                                    <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
+                                    <span> Non modifiable / supprimable</span>
+                                </td>
+                            {% else %}
+                                <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
+                                    <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
+                                    <div class="flex flex-col space-y-2 text-center lg:items-center">
+                                        <a href="/admin/form-edit-category/{{ category.id }}" class="button-edit">Modifier</a>
+                                        <a href="/admin/delete-category/{{ category.id }}" class="button-delete">Supprimer</a>
+                                    </div>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
