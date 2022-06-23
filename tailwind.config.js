@@ -37,6 +37,14 @@ module.exports = {
         '34':'140px',
         '30':'125px',
         '1080':'1080px',
+        '700':'700px',
+        '13':'50px',
+        '11.5':'46px'
+      },
+      height:{
+        '320':'320px',
+        '220':'220px',
+        '34':'136px',
       },
       boxShadow:{
         'glowEffect':'inset 0 0 10px blue, inset 0 0 40px pink, 0 0 20px purple',
@@ -56,7 +64,10 @@ module.exports = {
       },
       skew:{
         '125':'125deg'
-      }
+      },
+      minHeight:{
+        '34':'136px'
+      },
     },
   },
   variants:{

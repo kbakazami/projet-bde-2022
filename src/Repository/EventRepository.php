@@ -38,6 +38,14 @@ final class EventRepository extends AbstractRepository
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function findThirdLastEvent()
+    {
+        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category,category.color as color_category, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category ORDER BY event.date DESC LIMIT 3");
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function findParticipantByEvent($id){
         $stmt = $this->pdo->prepare("SELECT users.id AS id, users.firstname AS prenom, users.lastname AS nom, users.mail AS mail FROM users INNER JOIN participer ON users.id = participer.id_users INNER JOIN event ON event.id = participer.id WHERE participer.id = :id");
 

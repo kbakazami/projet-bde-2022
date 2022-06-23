@@ -14,9 +14,16 @@ class IndexController extends AbstractController
     #[Route(path: "/")]
     public function index(EventRepository $eventRepository, NewsRepository $newsRepository,CategoryRepository $categoryRepository)
     {
-        $events = $eventRepository->findAllEvent();
+        $events = $eventRepository->findThirdLastEvent();
 
-        $news = $newsRepository->findAllNews();
+        $lesEvent = [];
+
+        foreach($events as $events){
+            $nb = $eventRepository->CountUserByEvent($events->id_event);
+            $lesEvent[]=["event" => $events, "nb" => $nb];
+
+        }
+        $news = $newsRepository->findThirdLastNews();
 
         $category = $categoryRepository->findAllCategory();
         $cat=[];
@@ -28,7 +35,7 @@ class IndexController extends AbstractController
         }
 
         echo $this->twig->render('index/home.html.twig', [
-            'events' => $events,
+            'events' => $lesEvent,
             'news' => $news,
             'category' => $cat
         ]);

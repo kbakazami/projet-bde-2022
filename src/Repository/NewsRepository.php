@@ -11,18 +11,19 @@ final class NewsRepository extends AbstractRepository
 
     public function save(News $news): bool
     {
-        $stmt = $this->pdo->prepare("INSERT INTO news (name, description,date) VALUES (:name , :description, :date)");
+        $stmt = $this->pdo->prepare("INSERT INTO news (name, description,date, link) VALUES (:name , :description, :date, :link)");
 
         return $stmt->execute([
             'name' => $news->getNameNews(),
             'description' => $news->getDescriptionNews(),
-            'date' => $news->getDateNews()->format('Y-m-d')
+            'date' => $news->getDateNews()->format('Y-m-d'),
+            'link' => $news->getLinkNews()
         ]);
     }
 
     public function findAllNews()
     {
-        $stmt = $this->pdo->prepare("SELECT id, name, description, date FROM news");
+        $stmt = $this->pdo->prepare("SELECT id, name, description, date, link FROM news");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -30,7 +31,7 @@ final class NewsRepository extends AbstractRepository
 
     public function findNewsById(int $id)
     {
-        $stmt = $this->pdo->prepare("SELECT id, name, description, date FROM news WHERE id = :id");
+        $stmt = $this->pdo->prepare("SELECT id, name, description, date, link FROM news WHERE id = :id");
 
         $stmt->execute([
             'id' => $id
@@ -39,14 +40,23 @@ final class NewsRepository extends AbstractRepository
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
+    public function findThirdLastNews()
+    {
+        $stmt = $this->pdo->prepare("SELECT id, name, description, date, link FROM news ORDER BY date DESC LIMIT 3");
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
     public function updateNews(News $news, $id)
     {
-        $stmt = $this->pdo->prepare("UPDATE news SET name = :name, description = :description, date = :date WHERE id = :id");
+        $stmt = $this->pdo->prepare("UPDATE news SET name = :name, description = :description, date = :date, link = :link WHERE id = :id");
 
         return $stmt->execute([
             'name' => $news->getNameNews(),
             'description' => $news->getDescriptionNews(),
             'date' => $news->getDateNews()->format('Y-m-d'),
+            'link' => $news->getLinkNews(),
             'id' => $id
         ]);
     }

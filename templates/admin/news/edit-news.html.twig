@@ -12,6 +12,9 @@
                     {{ field("name", "Nom", "Nom", news.name ) }}
                     {{ field("date", "Date","Date", news.date, {type: "date"}) }}
                 </div>
+                <div class="lg:pb-8">
+                    {{ field("link", "Lien vers l'actualité", "Lien vers l'actualité", news.link) }}
+                </div>
                 {{ field("description", "Description", "Description", news.description, {type: "textarea"}) }}
             <div class="w-full">
                 <div class="w-full lg:w-40 lg:ml-auto mt-5">

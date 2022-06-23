@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="bg-[url('/img/{{ event.image }}')] w-full h-96 relative" >
+    <div class="bg-[url('/img/{{ event.image }}')] w-full h-96 relative" style="background-image: url('/img/{{ event.image }}')">
         <h1 class="absolute top-1/2 left-1/2 text-center">{{ event.titre_event }}</h1>
         {{ event.image }}
     </div>
