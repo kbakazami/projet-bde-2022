@@ -7,6 +7,7 @@ use App\Routing\Attribute\Route;
 
 class AdminController extends AbstractController
 {
+    // Test si le personne a les droits admin
     #[Route(path: "/admin")]
     public function index()
     {

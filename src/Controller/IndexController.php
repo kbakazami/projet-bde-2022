@@ -11,25 +11,23 @@ use App\Repository\CategoryRepository;
 
 class IndexController extends AbstractController
 {
+    // Affichage des 3 derniers évenement (date passé ou non)
+    // Affichage des 3 dernières actualités
     #[Route(path: "/")]
     public function index(EventRepository $eventRepository, NewsRepository $newsRepository,CategoryRepository $categoryRepository)
     {
         $events = $eventRepository->findThirdLastEvent();
 
         $lesEvent = [];
-        // var_dump(date("Y-m-d H:i:s"));
         foreach($events as $events){
             $date = false;
-            // var_dump($events->date);
             if($events->date >= date("Y-m-d H:i:s"))
             {
                 $date = true;
-                // var_dump('oui');
             }
 
             $nb = $eventRepository->CountUserByEvent($events->id_event);
             $lesEvent[]=["event" => $events, "nb" => $nb, 'date' => $date];
-            var_dump($date);
         }
         $news = $newsRepository->findThirdLastNews();
       
@@ -49,6 +47,7 @@ class IndexController extends AbstractController
         ]);
     }
 
+    // Afficaheg de la page de recherche en fonction de la recherche de l'accueil
     #[Route(path: "/recherche_home", name: "recherche_home", httpMethod: "POST")]
     public function recherche_home(EventRepository $eventRepository){
         
@@ -59,14 +58,9 @@ class IndexController extends AbstractController
             $prix = floatval($_POST["prix_max"]);
         }
         
-        // var_dump($_POST);
-
         $events = $eventRepository->rechercheHome($_POST["recherche"],intval($_POST["category"]),$prix);
-        // var_dump($events);
         echo $this->twig->render('index/recherche_home.html.twig', [
             'events'=>$events
         ]);
     }
-    
-
 }

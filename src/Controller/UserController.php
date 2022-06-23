@@ -13,6 +13,7 @@ use App\Repository\EventRepository;
 
 class UserController extends AbstractController
 {
+    // Affichage des informations de l'utilisateur et de ses events
     #[Route(path: "/my-account", name: "my-account")]
     public function myAccount(UserRepository $userRepository, EventRepository $eventRepository)
     {
@@ -35,6 +36,7 @@ class UserController extends AbstractController
         ]);
     }
 
+    // Suppression d'un evenement (bouton suppression sur les evenements de l'utilisateur)
     #[Route(path: "/my-account/delet-event/{id}", name: "my-account/delet-event")]
     public function deletEventUser(UserRepository $userRepository, EventRepository $eventRepository, int $id)
     {
@@ -59,6 +61,7 @@ class UserController extends AbstractController
         ]);
     }
 
+    // Validation des modifications de l'utilisateur
     #[Route(path: "/update-user/{id}", httpMethod: "POST", name: "update-user")]
     public function updateUser(UserRepository $userRepository, int $id)
     {

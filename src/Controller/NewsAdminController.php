@@ -10,6 +10,7 @@ use DateTime;
 
 class NewsAdminController extends AbstractController
 {
+    // Affichage du formulaire de création d'actualité
     #[Route(path: "/admin/form-create-news", name: "create-form-news")]
     public function createFormNews()
     {
@@ -23,6 +24,7 @@ class NewsAdminController extends AbstractController
         }
     }
 
+    // Validation du formulaire de création d'actualité
     #[Route(path: "/admin/create-news", httpMethod: "POST", name: "create-news")]
     public function createNews(NewsRepository $newsRepository)
     {
@@ -62,6 +64,7 @@ class NewsAdminController extends AbstractController
         }
     }
 
+    // Affichage de la liste des actualités
     #[Route(path: "/admin/list-news", name: "admin-list-news")]
     public function listNews(NewsRepository $newsRepository)
     {
@@ -81,6 +84,7 @@ class NewsAdminController extends AbstractController
         }
     }
 
+    // Affichage du formulaire d'edition d'actualité
     #[Route(path: "/admin/form-edit-news/{id}", name: "form-edit-news")]
     public function editFormNews(NewsRepository $newsRepository, int $id)
     {
@@ -100,6 +104,7 @@ class NewsAdminController extends AbstractController
         }
     }
 
+    // Edition de l'actualité
     #[Route(path: "/admin/update-news/{id}", httpMethod: "POST", name: "update-news")]
     public function updateNews(NewsRepository $newsRepository, int $id)
     {
@@ -142,6 +147,7 @@ class NewsAdminController extends AbstractController
         }
     }
 
+    // Suppression d'actualité
     #[Route(path: "/admin/delete-news/{id}" , name: "delete-news")]
     public function deleteNews(NewsRepository $newsRepository, int $id)
     {

@@ -11,6 +11,7 @@ use App\Repository\EventRepository;
 
 class CategoryAdminController extends AbstractController
 {
+    // Formulaire de creéation de catégorie 
     #[Route(path: "/admin/form-create-category", name: "create-form-category")]
     public function createFormCategory()
     {
@@ -25,6 +26,7 @@ class CategoryAdminController extends AbstractController
         }
     }
 
+    // Validation du formulaire de création de catégorie avec affichage erreur 
     #[Route(path: "/admin/create-category", name: "create-category", httpMethod: "POST")]
     public function createCategory(CategoryRepository $categoryRepository)
     {
@@ -62,6 +64,7 @@ class CategoryAdminController extends AbstractController
         }
     }
 
+    // Affichage des la list de toutes les catégorie existante 
     #[Route(path: "/admin/list-category", name: "admin-list-category")]
     public function listCategory(CategoryRepository $categoryRepository)
     {
@@ -80,6 +83,7 @@ class CategoryAdminController extends AbstractController
         }
     }
 
+    // Affichage des événements contenu dans une catégorie 
     #[Route(path: "/admin/liste-event-by-cat/{id}", name: "admin-list-event-by-cat")]
     public function listEventByCat(EventRepository $eventRepository, int $id, CategoryRepository $categoryRepository)
     {
@@ -105,6 +109,7 @@ class CategoryAdminController extends AbstractController
         }
     }
 
+    // Formulaire de modification de catégorie 
     #[Route(path: "/admin/form-edit-category/{id}", name: "form-edit-category")]
     public function editFormCategory(CategoryRepository $categoryRepository, int $id)
     {
@@ -122,6 +127,7 @@ class CategoryAdminController extends AbstractController
         }
     }
 
+    // Validation des modification d'une catégorie avec gestion d'erreur
     #[Route(path: "/admin/update-category/{id}", httpMethod: "POST", name: "update-category")]
     public function updateCategory(CategoryRepository $categoryRepository, int $id)
     {
@@ -160,6 +166,7 @@ class CategoryAdminController extends AbstractController
         }
     }
 
+    // Suppression d'une catégorie avec mise par défaut des événement lié a la catégorie supprimé
     #[Route(path: "/admin/delete-category/{id}", name: "delete-category")]
     public function deleteCategory(CategoryRepository $categoryRepository, int $id)
     {

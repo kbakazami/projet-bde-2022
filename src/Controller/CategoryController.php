@@ -13,6 +13,7 @@ use DateTime;
 
 class CategoryController extends AbstractController
 {
+    // Affichage des evenements lié a une catégorie
     #[Route(path: "/detail-category/{id}", name: "detail-category")]
     public function detaileCategory(EventRepository $eventRepository,int $id)
     {
@@ -25,8 +26,6 @@ class CategoryController extends AbstractController
             $lesEvent[]=["event" => $events, "nb" => $nb];
             $titre = $events->titre_category;
         }
-
-        // var_dump($lesEvent);
 
         echo $this->twig->render('category/detail_category.html.twig',[
             'events' => $lesEvent,

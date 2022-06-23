@@ -13,6 +13,7 @@ use DateTime;
 class UserAdminController extends AbstractController
 {
 
+    // Affichage de la liste des utilisateur par ordre alphabétique
     #[Route(path: "/admin/list-user", name: "list-user")]
     public function listUser(UserRepository $userRepository)
     {
@@ -31,6 +32,7 @@ class UserAdminController extends AbstractController
         }
     }
 
+    // Formulaire de créationn d'utilisateur
     #[Route(path: "/admin/form-create-user", name: "create-form-user")]
     public function createFormUser(RoleRepository $roleRepository,)
     {
@@ -48,6 +50,7 @@ class UserAdminController extends AbstractController
         }
     }
 
+    // Validation du formulaire de création d'user
     #[Route(path: "/admin/create-user", name: "create-user", httpMethod: "POST")]
     public function createUser(UserRepository $userRepository, RoleRepository $roleRepository)
     {
@@ -97,6 +100,7 @@ class UserAdminController extends AbstractController
         }
     }
 
+    // Formulaire d'edition d'utilisateur
     #[Route(path: "/admin/form-edit-user/{id}", name: "edit-form-user")]
     public function editFormUser(UserRepository $userRepository, RoleRepository $roleRepository, int $id)
     {
@@ -116,6 +120,7 @@ class UserAdminController extends AbstractController
         }
     }
 
+    // Formulaire de modification d'utilisateur
     #[Route(path: "/admin/update-user/{id}", name: "update-user", httpMethod: "POST")]
     public function updateUser(UserRepository $userRepository,int $id)
     {
@@ -162,6 +167,7 @@ class UserAdminController extends AbstractController
         }
     }
 
+    // Suppression d'un utilisateur avec le lien entre lui et les evenements
     #[Route(path: "/admin/delete-user/{id}", name: "delete-user")]
     public function deleteUser(UserRepository $userRepository,int $id)
     {
