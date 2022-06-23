@@ -1,16 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class=\"container\">
-        <div class=\"row\">
-            <div class=\"col-md-12\">
-                <h1>Erreur d'accès</h1>
-            </div>
-        </div>
-        <div class=\"row\">
-            <div class=\"col-md-12\">
-                <p>Vous n'avez pas les droits pour accéder à cette page</p>
-            </div>
-        </div>
-    </div>
+    <section class="text-center font-expletus pt-12">
+        <p class="uppercase">Erreur</p>
+        <h1 class="mb-8">On dirait que vous n'avez pas les droits ...</h1>
+        <a href="/" class="bg-gradient-to-t from-blue via-purple to-pink rounded-md px-3 py-px uppercase">
+            Accueil
+        </a>
+    </section>
 {% endblock %}

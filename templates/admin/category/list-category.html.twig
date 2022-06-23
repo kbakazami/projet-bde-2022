@@ -12,29 +12,26 @@
                     Si vous supprimez un catégorie, tout les events lié iront dans la catégorie par défaut.
                 </div>
                 <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
-                    <div class="flex flex-row items-center space-x-4">
-                    <form method='POST' action="/admin/recherche-crud-cat">
+                    <form method='POST' action="/admin/recherche-crud-cat"  class="flex flex-row items-center space-x-4">
                         <button name="ok" id="ok">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            <defs>
-                                <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                <defs>
+                                    <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
                         </button>
                         <input type="search" name="search" id="search" class="inputSearchBack" placeholder="Recherche">
                     </form>
-                    </div>
                     <a href="/admin/form-create-category" class="button-add text-center mt-4 lg:mt-0">Ajouter une catégorie</a>
                 </div>
 
                 <table class="min-w-full border-collapse block lg:table">
                     <thead class="block lg:table-header-group">
                     <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
-                        {#                    <td class="pl-9 py-2 text-left block lg:table-cell"><input type="checkbox"/></td>#}
                         <td class="py-2 w-1/3 text-center block lg:table-cell">Nom</td>
                         <td class="py-2 w-1/3 text-center block lg:table-cell">Couleur</td>
                         <td class="py-2 w-1/3 text-center block lg:table-cell">Evenement</td>
@@ -44,7 +41,6 @@
                     <tbody class="block lg:table-row-group">
                     {% for category in category %}
                         <tr class="block lg:table-row border-b border-t border-white px-4 uppercase mb-10 lg:mb-0 text-sm xl:text-base">
-                            {#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
                             <td class="py-2 text-left lg:text-center block lg:table-cell">
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Nom</span>
                                 <span>{{ category.title }}</span>
@@ -53,10 +49,10 @@
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Couleur</span>
                                 <span style="background-color: {{ category.color }}"
                                       class="px-8 lg:px-6 py-2 rounded-full {% if category.color is same as "#000000" %} text-white border-white border {% else %} text-black {% endif %}  font-bold">
-                                    Couleur
+                                    {{ category.color }}
                                 </span>
                             </td>
-                            <td class="py-2 text-left lg:text-center block lg:table-cell">
+                            <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Evenement</span>
                                 <div class="flex flex-col space-y-2 text-center lg:items-center">
                                     <a href="/admin/liste-event-by-cat/{{ category.id }}" class="button-edit">Voir ( {{ category.nombre }} ) </a>
@@ -83,4 +79,4 @@
             </div>
         </div>
 
-{% endblock %}
+    {% endblock %}

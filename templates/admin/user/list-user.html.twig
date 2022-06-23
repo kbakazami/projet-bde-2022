@@ -11,22 +11,20 @@
                 <h1 class="text-4xl lg:text-5xl normal-case">Utilisateurs</h1>
             </div>
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
-                <div class="flex flex-row items-center space-x-4">
-                    <form method='POST' action="/admin/recherche-crud-user">
-                        <button name="ok" id="ok">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                <defs>
-                                    <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </button>
-                        <input type="search" name="search" id="search" class="inputSearchBack" placeholder="Recherche">
-                    </form>
-                </div>
+                <form method='POST' action="/admin/recherche-crud-user" class="flex flex-row items-center space-x-4">
+                    <button name="ok" id="ok">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            <defs>
+                                <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </button>
+                    <input type="search" name="search" id="search" class="inputSearchBack" placeholder="Recherche">
+                </form>
                 {% if admin == "Admin" %}
                 <a href="/admin/form-create-user" class="button-add text-center mt-4 lg:mt-0">Ajouter un utilisateur</a>
                 {% endif %}
@@ -51,10 +49,10 @@
                         {#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
                         <td class="pt-7 pb-2 lg:py-2 lg:pl-9 text-left flex flex-row justify-center lg:table-cell">
                             {% if user.image %}
-                            <div class="w-full sm:w-3/4 lg:w-24 h-full">
-                                <img src="/img/{{ user.image }}" alt="{{ user.lastname }}"/>
-                            </div>
-                                {% else %}
+                                <div class="w-full sm:w-3/4 lg:w-24 h-full">
+                                    <img src="/img/{{ user.image }}" alt="{{ user.lastname }}"/>
+                                </div>
+                            {% else %}
                                 <p>Image non définie</p>
                             {% endif %}
                         </td>
