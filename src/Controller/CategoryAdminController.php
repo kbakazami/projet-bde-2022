@@ -18,7 +18,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -34,7 +34,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -71,7 +71,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -90,7 +90,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
             $events = $eventRepository->findEventByCate($id);
@@ -116,7 +116,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
             $category = $categoryRepository->findCategoryById($id);
@@ -134,7 +134,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -173,7 +173,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -197,7 +197,7 @@ class CategoryAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 

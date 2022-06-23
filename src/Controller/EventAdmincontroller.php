@@ -21,7 +21,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -40,7 +40,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -91,7 +91,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
             $events = $eventRepository->findAllEventwithCategory();
@@ -116,7 +116,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -137,7 +137,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -158,7 +158,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -186,7 +186,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -243,7 +243,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -265,7 +265,7 @@ class EventAdmincontroller extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 

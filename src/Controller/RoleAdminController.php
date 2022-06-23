@@ -71,14 +71,16 @@ class RoleAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
             $roles = $roleRepository->findAllRole();
+            $admin = $_SESSION['userRole'];
 
             echo $this->twig->render('admin/role/list-role.html.twig', [
-                'roles' => $roles
+                'roles' => $roles,
+                'admin' => $admin
             ]);
         }
     }

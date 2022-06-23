@@ -13,9 +13,11 @@
                 <br>
                     Si vous supprimez un rôle, tout les utilisateur ayant le rôle, recevront le rôle user.
             </div>
+             {% if admin == "Admin" %}
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
                 <a href="/admin/form-create-role" class="button-add text-center mt-4 lg:mt-0">Ajouter un rôle</a>
             </div>
+            {% endif %}
 
             <table class="min-w-full border-collapse block lg:table">
                 <thead class="block lg:table-header-group">
@@ -33,18 +35,25 @@
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Nom</span>
                             <span>{{ role.title }}</span>
                         </td>
-                        {% if role.id == 8 or role.id == 10 %}
-                            <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
-                                <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
-                                <span> Rôle par défaut </span>
-                            </td>
+                        {% if admin == "Admin" %}
+                            {% if role.id == 8 or role.id == 10 or role.id == 9 %}
+                                <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
+                                    <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
+                                    <span> Rôle par défaut </span>
+                                </td>
+                            {% else %}
+                                <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
+                                    <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
+                                    <div class="flex flex-col space-y-2 text-center lg:items-center">
+                                        <a href="/admin/form-update-role/{{ role.id }}" class="button-edit">Modifier</a>
+                                        <a href="/admin/delete-role/{{ role.id }}" class="button-delete">Supprimer</a>
+                                    </div>
+                                </td>
+                            {% endif %}
                         {% else %}
                             <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
-                                <div class="flex flex-col space-y-2 text-center lg:items-center">
-                                    <a href="/admin/form-update-role/{{ role.id }}" class="button-edit">Modifier</a>
-                                    <a href="/admin/delete-role/{{ role.id }}" class="button-delete">Supprimer</a>
-                                </div>
+                                <span> Vous n'avez pas les droits </span>
                             </td>
                         {% endif %}
                     </tr>
