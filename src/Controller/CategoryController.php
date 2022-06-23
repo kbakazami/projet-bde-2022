@@ -14,23 +14,23 @@ use DateTime;
 class CategoryController extends AbstractController
 {
     #[Route(path: "/detail-category/{id}", name: "detail-category")]
-    public function detaileCategory(EventRepository $eventRepository,int $id)
+    public function detaileCategory(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
     {
         $events = $eventRepository->findAllEventwithCategoryByID($id);
+        $category = $categoryRepository->findCategoryById($id);
 
         $lesEvent = [];
         
         foreach($events as $events){
             $nb = $eventRepository->CountUserByEvent($events->id_event); 
             $lesEvent[]=["event" => $events, "nb" => $nb];
-            $titre = $events->titre_category;
+
         }
 
-        // var_dump($lesEvent);
 
         echo $this->twig->render('category/detail_category.html.twig',[
             'events' => $lesEvent,
-            'titre' => $titre
+            'category' => $category
         ]);
     }
 }
