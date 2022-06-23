@@ -9,6 +9,21 @@
                 <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
             </div>
 
+                <form action='/recherche_home' method='POST'
+                    class=" w-full flex flex-col justify-center items-center text-center mx-auto form-search pt-4 lg:pt-8">
+                {{ field("recherche", "Recherche","Rechercher...") }}
+                {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
+                  {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
+                <span class="w-50 bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:hover:scale-110">
+                  <button class="px-6 py-1 uppercase">Rechercher</button>
+                </span>
+                </form>
+
+                {% if date == 1 %}
+                <a href="/event-date/{{date}}"> Date &uarr; </a>
+                {% else %}
+                <a href="/event-date/{{date}}"> Date &darr; </a>
+                {% endif %}
             <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center">
                 {% for event in events %}
                     {% if event.event.id_cat != 0 %}
