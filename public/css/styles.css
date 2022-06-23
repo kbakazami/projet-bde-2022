@@ -227,6 +227,20 @@ h1
     lg:w-400 w-full
 }
 
+.form-front-user input[type="text"],
+.form-front-user input[type="date"],
+.form-front-user input[type="password"],
+.form-front-user select
+{
+    background-color: transparent;
+    background-size: calc(100% + 4px) 2px;
+
+    @apply bg-gradient-to-r from-blue via-purple to-pink bg-no-repeat bg-bottom
+    outline-0
+    placeholder:italic placeholder:uppercase text-sm lg:text-base
+    lg:w-290 xl:w-400 w-full
+}
+
 .form-front select
 {
     @apply bg-black
@@ -243,12 +257,13 @@ h1
     @apply bg-gradient-to-r from-blue via-purple to-pink
 }
 
-.form-front .form-group
+.form-front .form-group,
+.form-front-user .form-group
 {
     @apply pb-4 lg:pb-8
 }
 
-.form-front #userProfilePicture .form-group
+.form-front-user #userProfilePicture .form-group
 {
     @apply pb-0 pl-8
 }
@@ -271,7 +286,8 @@ input[type="submit"]
     @apply uppercase text-white
 }
 
-.form-front input[type="date"]:before
+.form-front input[type="date"]:before,
+.form-front-user input[type="date"]:before
 {
     content: 'Date de naissance';
     color: #a9a9a9;
@@ -289,7 +305,8 @@ input[type="submit"]
 }
 
 .form-front label,
-.form-search label
+.form-search label,
+.form-front-user label
 {
     @apply sr-only
 }
