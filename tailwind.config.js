@@ -21,7 +21,8 @@ module.exports = {
         'purple-60': 'rgba(174,32,213, 0.6)',
         'pink': '#FF0A6C',
         'pink-60': 'rgba(255,10,108, 0.6)',
-        'red': '#FF0000'
+        'red': '#FF0000',
+        'black-80':'rgba(0, 0, 0, 0.8)'
       },
       fontFamily:{
         hind:["hind","roboto"],

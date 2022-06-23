@@ -5,21 +5,22 @@
     <div class="border border-red w-full">Bannière event + actu</div>
     <div class="flex flex-col px-4 lg:px-28 pt-20 2xl:px-48">
 
-      <div class="flex flex-col lg:flex-row lg:justify-around">
+      <div class="flex flex-col lg:flex-row lg:justify-between xl:justify-around">
         {#Evenements#}
         <div class="w-full lg:w-1/2">
-          <div class="relative flex flex-col pb-16 w-full">
+          <div class="relative flex flex-col pb-4 lg:pb-16 w-full">
             <div class="flex flex-row items-center space-x-4">
               <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
               <h1 class="h1Gradiant">événements</h1>
             </div>
             <div class="flex flex-col pt-7 px-4 lg:px-0">
               {% for event in events %}
+                {% if event.event.id_cat != 0 %}
                 <div class="event-wrapper mb-14 lg:mb-28">
                   <div class="event-container">
                     <div class="event-container-black">
                       <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
-                        <div class="bg-black opacity-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
+                        <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
                           <div class="relative justify-center flex flex-col p-4">
                             <div class="flex flex-row justify-between items-center relative">
                               <span class="uppercase text-lg xl:text-2xl">{{ event.event.titre_event }}</span>
@@ -27,13 +28,13 @@
                                 <span class="text-xl">{{ event.event.price }}€</span>
                               </div>
                             </div>
-                            {% if event.event.id_cat != 0 %}
+
                               <div>
                               <span class="text-sm xl:text-base text-center rounded-md py-px px-5 text-black" style="background-color: {{ event.event.color_category }}">
                                   {{ event.event.titre_category }}
                                 </span>
                               </div>
-                            {% endif %}
+
                             <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
                             <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
@@ -49,9 +50,11 @@
                                   <span>{{event.nb.nombre}}</span>
                                 </div>
                               </div>
+{#                              {% if event.date %}#}
                               <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
-                              <a href="detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
+                              <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
                             </span>
+{#                                {% endif %}#}
                             </div>
                           </div>
                         </div>
@@ -60,47 +63,43 @@
                   </div>
                 </div>
 
+                {% endif %}
               {% endfor %}
             </div>
           </div>
         </div>
 
-        <div class="flex flex-col">
+        <div class="flex flex-col order-first lg:order-none">
         {#Recherche#}
-          <div class="w-full lg:w-auto flex flex-col  items-end xl:items-center">
-            <div class="relative flex flex-col items-center space-x-4 pb-16 justify-end">
+          <div class="w-full lg:w-auto flex flex-col items-center">
+            <div class="relative flex flex-col items-center pb-16 justify-end">
               <div class="flex flex-row items-center space-x-4">
                 <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
                 <h1 class="h1Gradiant">Recherche<br>événements</h1>
               </div>
               <form action='/recherche_home' method='POST'
-                    class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
-                {{ field("recherche", "Recherche","Recherche") }}
-                Catégorie
+                    class=" w-full flex flex-col justify-center items-center text-center mx-auto form-search pt-4 lg:pt-8">
+                {{ field("recherche", "Recherche","Rechercher...") }}
+{#                <span class="category">#}
                 {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
+{#                  </span>#}
                   {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
-                <div class="submit-wrapper">
-                  <div class="submit-container">
-                    <div class="submit-container2">
-                      <div class="submit-container-black">
-                        <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="Rechercher"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <span class="w-50 bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:hover:scale-110">
+                  <button class="px-6 py-1 uppercase">Rechercher</button>
+                </span>
               </form>
             </div>
           </div>
 
         {#Actualités#}
-        <div class="relative flex flex-col items-center pb-16 w-full lg:w-auto">
+        <div class="relative flex flex-col items-center  pb-4 lg:pb-16 w-full lg:w-auto">
           <div class="flex flex-row items-center space-x-4">
             <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
             <h1 class="h1Gradiant">Actualités</h1>
           </div>
-          <div class="flex flex-col sm:flex-row lg:flex-col pt-7 w-full justify-around lg:w-3/4 px-4 lg:px-0">
+          <div class="flex flex-col sm:flex-row sm:flex-wrap sm:gap-x-16 lg:flex-col  lg:items-center pt-7 w-full justify-center lg:w-3/4 px-4 lg:px-0">
             {% for new in news %}
-              <a href="{{ new.link }}" class="transition duration-300 hover:hover:scale-110 sm:w-2/6 lg:w-full">
+              <a href="{{ new.link }}" target="_blank" class="transition duration-300 hover:hover:scale-110 sm:w-2/6 lg:w-11/12">
                 <div class="h-32 w-full mb-12">
                   <div class="relative h-full before:absolute before:h-2/3 before:w-2/3 before:-translate-y-2 before:-translate-x-2 before:bg-pink before:rounded-md before:-z-1
                               after:absolute after:h-2/3 after:w-2/3 after:translate-y-2 after:translate-x-2 after:bg-blue after:rounded-md after:right-0 after:top-1/3 after:-z-1">
