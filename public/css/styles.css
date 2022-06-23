@@ -41,6 +41,13 @@
 /* REUSABLES COMPONENTS */
 /************************/
 
+.banner
+{
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/img/bg-base.jpg") no-repeat center;
+
+    @apply h-48 lg:h-96 w-full bg-cover relative
+}
+
 .borderGradiantEffect
 {
     @apply bg-gradient-to-r from-blue via-purple to-pink p-px
