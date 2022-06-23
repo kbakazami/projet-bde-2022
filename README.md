@@ -25,4 +25,4 @@ Lancer le build du css : ``npm run watch`` /!\ Lancer la commande même si on aj
 
 A la première installation du site il est obligatoire de faire cette commande pour build le css ``npm run watch``.
 
-Pensez également a bien mettre un readme (vous pouvez prendre celui de symfony)
+Pensez également a bien mettre un .htaccess (vous pouvez prendre celui de symfony)
