@@ -16,7 +16,7 @@ class EventController extends AbstractController
     #[Route(path: "/list-event", name: "list-event")]
     public function listeEvent(EventRepository $eventRepository)
     {
-        $events = $eventRepository->findAllEventwithCategory();
+        $events = $eventRepository->findAllEventWithDate();
 
         $lesEvent = [];
         

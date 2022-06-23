@@ -24,8 +24,8 @@ final class EventRepository extends AbstractRepository
         ]);
     }
 
-    public function findAllEvent(){
-        $stmt = $this->pdo->prepare("SELECT event.*, category.title as 'category_title' FROM event INNER JOIN category ON category.id = event.id_category ORDER BY event.id DESC");
+    public function findAllEventWithDate(){
+        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname as prenom, users.firstname as nom, category.color as color FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users WHERE date >= CURRENT_DATE ORDER BY event.id DESC");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -39,7 +39,7 @@ final class EventRepository extends AbstractRepository
     }
 
     public function findAllEventwithCategoryByID(int $id){
-        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname as prenom, users.firstname as nom, category.color as color FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users WHERE event.id_category = :id ORDER BY event.id DESC");
+        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname as prenom, users.firstname as nom, category.color as color FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users WHERE event.id_category = :id AND date >= CURRENT_DATE ORDER BY event.id DESC");
 
         $stmt->execute([
             'id' => $id
