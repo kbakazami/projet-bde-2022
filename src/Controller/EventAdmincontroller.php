@@ -257,4 +257,34 @@ class EventAdmincontroller extends AbstractController
             ]);
         }
     }
+
+    // Recherche 
+    #[Route(path: "/admin/recherche-crud-event", name: "recherhce-crud-event", httpMethod: "POST")]
+    public function rechercheCrudEvent(EventRepository $eventRepository)
+    {
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+
+            $lesEvent = [];
+
+            if($_POST["search"] != ""){
+                $events = $eventRepository->findAllEventSearch($_POST["search"]);
+            }else{
+                $events = $eventRepository->findAllEventwithCategory();
+            }
+           
+            foreach($events as $events){
+                $nb = $eventRepository->CountUserByEvent($events->id_event); 
+                $lesEvent[]=["event" => $events, "nb" => $nb];
+            }
+
+            echo $this->twig->render('admin/event/list-event.html.twig', [
+                'events' => $lesEvent
+            ]);
+        }
+    }
 }
