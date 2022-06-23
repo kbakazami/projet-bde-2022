@@ -39,26 +39,26 @@
                 </thead>
                 <tbody class="block lg:table-row-group">
                 {% for new in news %}
-                    <tr class="block lg:table-row border-b border-t border-white px-4 uppercase mb-10 lg:mb-0 text-sm xl:text-base">
+                    <tr class="block lg:table-row border-b border-t border-white px-4 mb-10 lg:mb-0 text-sm xl:text-base">
                         {#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Nom</span>
+                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Nom</span>
                             <span>{{ new.name }}</span>
                         </td>
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Description</span>
-                            <span>{{ new.description }}</span>
+                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Description</span>
+                            <span>{{ new.description|striptags|length > 100 ? new.description|striptags|slice(0, 100) ~ '...' : new.description|striptags }}</span>
                         </td>
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Date</span>
+                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Date</span>
                             <span>{{ new.date }}</span>
                         </td>
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Lien</span>
+                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Lien</span>
                             <span>{{ new.link }}</span>
                         </td>
                         <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
+                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Actions</span>
                             <div class="flex flex-col space-y-2 text-center lg:items-center">
                                 <a href="/admin/form-edit-news/{{ new.id }}" class="button-edit">Modifier</a>
                                 <a href="/admin/delete-news/{{ new.id }}" class="button-delete">Supprimer</a>

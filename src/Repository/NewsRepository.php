@@ -23,7 +23,7 @@ final class NewsRepository extends AbstractRepository
 
     public function findAllNews()
     {
-        $stmt = $this->pdo->prepare("SELECT id, name, description, date, link FROM news");
+        $stmt = $this->pdo->prepare("SELECT id, name, description, date, link FROM news ORDER BY id DESC");
 
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);

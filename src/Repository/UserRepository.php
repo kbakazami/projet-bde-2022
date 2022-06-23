@@ -46,7 +46,7 @@ final class UserRepository extends AbstractRepository
   }
 
   public function findAllUser(){
-      $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id");
+      $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id ORDER BY lastname ASC");
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_OBJ);
   }
