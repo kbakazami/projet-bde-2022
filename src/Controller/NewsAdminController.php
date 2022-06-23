@@ -120,9 +120,9 @@ class NewsAdminController extends AbstractController
             $validator = new Validator($_POST);
 
             $validator->required("name", "description","link")
-                ->length("name", 2, 250)
+                ->length("name", 2, 25)
                 ->length("link",2)
-                ->length("description", 2, 250);
+                ->length("description", 2, 54);
 
             if ($validator->isValid()) {
                 $newsUpdate = new News();
