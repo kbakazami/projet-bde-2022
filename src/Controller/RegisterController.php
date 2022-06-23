@@ -12,12 +12,14 @@ use DateTime;
 class RegisterController extends AbstractController
 {
 
+    // Formulaire d'inscription
     #[Route(path: "/form-register", name: "form-register")]
     public function formRegister()
     {
         echo $this->twig->render('register/register.html.twig');
     }
 
+    // Validation de l'inscription
     #[Route(path: "/register", name: "register", httpMethod: "POST")]
     public function register(UserRepository $userRepository,)
     {

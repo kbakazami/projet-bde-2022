@@ -14,6 +14,7 @@ use DateTime;
 class EventAdmincontroller extends AbstractController
 {
 
+    // Formulaire de création d'évenement
     #[Route(path: "/admin/form-create-event", name: "create-form-event")]
     public function createFormEvent(CategoryRepository $categoryRepository)
     {
@@ -32,6 +33,7 @@ class EventAdmincontroller extends AbstractController
         }
     }
 
+    // Validation du formulaire de création d'évenement
     #[Route(path: "/admin/create-event", name: "create-event", httpMethod: "POST")]
     public function createEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository)
     {
@@ -82,6 +84,7 @@ class EventAdmincontroller extends AbstractController
         }
     }
 
+    // Affichage de la liste d'évenement complète
     #[Route(path: "/admin/list-event", name: "admin-list-event")]
     public function listEvent(EventRepository $eventRepository)
     {
@@ -106,6 +109,7 @@ class EventAdmincontroller extends AbstractController
         }
     }
 
+    // Affichage de tout les participants pour un évenement par ordre alphabétique
     #[Route(path: "/admin/voir-participant/{id}" , name: "voir-participant")]
     public function voirParticipant(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
     {
@@ -126,6 +130,7 @@ class EventAdmincontroller extends AbstractController
         }
     }
 
+    // Suppression d'un participant à un évenement
     #[Route(path: "/admin/delete-user-event/{id}/{id_event}" , name: "delete-user-event")]
     public function deletUserEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id, int $id_event)
     {
@@ -145,6 +150,7 @@ class EventAdmincontroller extends AbstractController
         }
     }
 
+    // Formulaire d'édition d'évenement
     #[Route(path: "/admin/form-edit-event/{id}" , name: "form-edit-event")]
     public function editFormEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
     {
@@ -170,6 +176,7 @@ class EventAdmincontroller extends AbstractController
         }
     }
 
+    // Edition de l'évenement dans la bdd
     #[Route(path: "/admin/update-event/{id}", name: "update-event", httpMethod: "POST")]
     public function updateEvent(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
     {
@@ -187,10 +194,7 @@ class EventAdmincontroller extends AbstractController
             $event = $eventRepository->findEventById($id);
             $validator = new Validator($_POST);
 
-//        if($_FILES)
-//        {
             $image = new UploadFiles($_FILES['file']);
-//        }
 
             $validator->required("title", "description", "price")
                 ->length("title", 2, 250)
@@ -232,6 +236,7 @@ class EventAdmincontroller extends AbstractController
         }
     }
 
+    // Suppression d'évenement (donc également des liens de participation entre évenement et particiapnt)
     #[Route(path: "/admin/delete-event/{id}" , name: "delete-event")]
     public function deleteEvent(EventRepository $eventRepository, int $id)
     {
@@ -252,5 +257,4 @@ class EventAdmincontroller extends AbstractController
             ]);
         }
     }
-
 }

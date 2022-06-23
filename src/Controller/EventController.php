@@ -13,6 +13,7 @@ use DateTime;
 
 class EventController extends AbstractController
 {
+    // Affichage des évenements dont la date n'est pas encore passé
     #[Route(path: "/list-event", name: "list-event")]
     public function listeEvent(EventRepository $eventRepository)
     {
@@ -25,13 +26,12 @@ class EventController extends AbstractController
             $lesEvent[]=["event" => $events, "nb" => $nb];
         }
 
-        // var_dump($lesEvent);
-
         echo $this->twig->render('event/list_event.html.twig',[
             'events' => $lesEvent
         ]);
     }
 
+    // Affichage d'un événement
     #[Route(path: "/detail-event/{id}", name: "detail-event")]
     public function detaileEvent(EventRepository $eventRepository,int $id)
     {
@@ -42,13 +42,13 @@ class EventController extends AbstractController
         $estDeja = false;
         if(isset($_SESSION["userId"]))
         {
+            // On test si la persone participe déjà à l'évenement
             $participate = $eventRepository->isParticipate($id, $_SESSION["userId"]);
             if($participate->nombre!=="0"){
                 $estDeja=true;
             }
         }      
 
-        // var_dump($participate);
         echo $this->twig->render('event/detail_event.html.twig',[
             'event' => $event,
             'nbParticipant' => $nbParticipant,
@@ -59,6 +59,7 @@ class EventController extends AbstractController
         
     }
 
+    // Inscription d'un utilisateur à un évenement
     #[Route(path: "/participer/{id}", name: "participer")]
     public function participer(EventRepository $eventRepository,int $id)
     {
@@ -85,6 +86,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    // Désinscription d'un participant à un événement
     #[Route(path: "/desinscrire/{id}", name: "desinscrire")]
     public function desinscrire(EventRepository $eventRepository,int $id)
     {
@@ -104,5 +106,4 @@ class EventController extends AbstractController
             'participate' => $estDeja
         ]);
     }
-    
 }

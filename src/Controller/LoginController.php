@@ -9,13 +9,14 @@ use App\Session\SessionInterface;
 
 class LoginController extends AbstractController
 {
+    // Affichage du formulaire de connexion
     #[Route(path: "/form-login", name: "form-login")]
     public function formLogin()
     {
         echo $this->twig->render('login/login.html.twig');
     }
 
-
+    // Verification des données dans le formulaire de connexion
     #[Route(path: "/login", name: "login", httpMethod: "POST")]
     public function login(UserRepository $userRepository)
     {
@@ -45,6 +46,7 @@ class LoginController extends AbstractController
         }
     }
 
+    // Deconnexion
     #[Route(path: "/logout", name: "logout")]
     public function logout(SessionInterface $session)
     {

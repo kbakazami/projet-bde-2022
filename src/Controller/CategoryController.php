@@ -13,6 +13,7 @@ use DateTime;
 
 class CategoryController extends AbstractController
 {
+    // Affichage des evenements lié a une catégorie
     #[Route(path: "/detail-category/{id}", name: "detail-category")]
     public function detaileCategory(EventRepository $eventRepository, CategoryRepository $categoryRepository, int $id)
     {

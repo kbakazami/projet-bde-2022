@@ -10,6 +10,7 @@ use App\Utils\Validator;
 
 class RoleAdminController extends AbstractController
 {
+    // Formulaire de création de rôle
     #[Route(path: "/admin/form-create-role", name: "create-form-role")]
     public function createFormRole()
     {
@@ -25,6 +26,7 @@ class RoleAdminController extends AbstractController
 
     }
 
+    // Validation de la création de rôle
     #[Route(path: "/admin/create-role", name: "create-role", httpMethod: "POST")]
     public function createRole(RoleRepository $roleRepository)
     {
@@ -62,6 +64,7 @@ class RoleAdminController extends AbstractController
         }
     }
 
+    // Affichage de la liste des rôles
     #[Route(path: "/admin/list-role", name: "list-role")]
     public function listRole(RoleRepository $roleRepository)
     {
@@ -80,6 +83,7 @@ class RoleAdminController extends AbstractController
         }
     }
 
+    // Formulaire de modification des rôles
     #[Route(path: "/admin/form-update-role/{id}", name: "form-update-role")]
     public function formUpdateRole(RoleRepository $roleRepository,int $id)
     {
@@ -98,6 +102,7 @@ class RoleAdminController extends AbstractController
         }
     }
 
+    // Validation de l'edition du rôle
     #[Route(path: "/admin/update-role/{id}", name: "update-role", httpMethod: "POST")]
     public function updateRole(RoleRepository $roleRepository, int $id)
     {
@@ -133,6 +138,7 @@ class RoleAdminController extends AbstractController
         }
     }
 
+    // Suppression d'un rôle avec mise au rôle "user" pour les utilsiateur qui avait le rôle
     #[Route(path: "/admin/delete-role/{id}", name: "delete-role")]
     public function deleteRole(RoleRepository $roleRepository,int $id)
     {
