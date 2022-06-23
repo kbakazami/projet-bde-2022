@@ -27,7 +27,7 @@ class CategoryAdminController extends AbstractController
     }
 
     // Validation du formulaire de création de catégorie avec affichage erreur 
-    #[Route(path: "/admin/create-category", name: "create-category", httpMethod: "POST")]
+    #[Route(path: "/admin/create-category", name: "create-category")]
     public function createCategory(CategoryRepository $categoryRepository)
     {
 
@@ -186,6 +186,29 @@ class CategoryAdminController extends AbstractController
 
             echo $this->twig->render('admin/category/list-category.html.twig', [
                 'message' => $message
+            ]);
+        }
+    }
+
+    // Recherche 
+    #[Route(path: "/admin/recherche-crud-cat", name: "recherhce-crud-cat", httpMethod: "POST")]
+    public function rechercheCrudCat(CategoryRepository $categoryRepository)
+    {
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+
+            if($_POST["search"] != ""){
+                $category = $categoryRepository->findCatByRecherche($_POST["search"]);
+            }else{
+                $category = $categoryRepository->findAllCategoryCountEvent();
+            }
+           
+            echo $this->twig->render('admin/category/list-category.html.twig', [
+                'category' => $category
             ]);
         }
     }
