@@ -84,7 +84,7 @@ final class EventRepository extends AbstractRepository
     }
 
     public function findEventByIdWithCatAndCrea(int $id){
-        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname AS nom, users.firstname AS prenom FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users WHERE event.id = :id");
+        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, category.color AS color, id_users, event.id_category as id_cat, users.lastname AS nom, users.firstname AS prenom FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users WHERE event.id = :id");
 
         $stmt->execute([
             'id' => $id

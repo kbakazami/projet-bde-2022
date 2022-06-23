@@ -22,6 +22,7 @@ module.exports = {
         'pink': '#FF0A6C',
         'pink-60': 'rgba(255,10,108, 0.6)',
         'red': '#FF0000',
+        'green':'#2EA233',
         'black-80':'rgba(0, 0, 0, 0.8)'
       },
       fontFamily:{
@@ -69,6 +70,12 @@ module.exports = {
       minHeight:{
         '34':'136px'
       },
+      keyframes: {
+        translateBorder:{
+          '0%, 100%':{transform: 'rotate(-3deg)'},
+          '50%':{transform: 'rotate(3deg)'},
+        }
+      }
     },
   },
   variants:{

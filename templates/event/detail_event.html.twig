@@ -1,40 +1,93 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="bg-[url('/img/{{ event.image }}')] w-full h-96 relative" style="background-image: url('/img/{{ event.image }}')">
-        <h1 class="absolute top-1/2 left-1/2 text-center">{{ event.titre_event }}</h1>
-        {{ event.image }}
+    <div class="w-full h-48 md:h-60 lg:h-96 relative bg-center bg-no-repeat bg-cover text-center mb-6 lg:mb-12" style="background-image: url('/img/{{ event.image }}')">
+        <h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 text-center bg-black-80 px-8 py-3 rounded-md w-11/12 sm:w-auto
+                   before:absolute before:w-full before:top-0 before:h-1 before:left-0 before:rounded-md
+                   before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink before:opacity-80
+                   before:animate-translateBorder
+                   after:absolute after:w-full after:bottom-0 after:h-1 after:right-0 after:rounded-md
+                   after:bg-gradient-to-r after:from-blue after:via-purple after:to-pink after:opacity-80">
+            {{ event.titre_event }}
+        </h1>
     </div>
 
-    {{ message }}
+    <section class="px-4 xl:px-24 pb-8 lg:pb-16">
+        {% if message %}
+        <span class="flex flex-row items-center text-green border-green border py-1 px-5 text-sm mb-6 lg:w-1/2 justify-center mx-auto">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        {{ message }}
+    </span>
+        {% endif %}
+        <div class="flex flex-row justify-between">
+            <a href="/detail-category/{{ event.id_cat }}" style="background-color: {{ event.color }}"
+               class="flex items-center text-sm xl:text-base text-center rounded-md py-px px-5 text-black transition duration-300 hover:hover:scale-110">
+                {{ event.titre_category }}
+            </a>
 
-    <a href"{{ event.id_cat }}"> {{ event.titre_category }} </a>
-
-    {% if participate == true %}
-       <a href="/desinscrire/{{ event.id_event }}"> Se désinscrire </a>
-    {% else %}
-        <a href="/participer/{{ event.id_event }}"> Participer </a>
-    {% endif %}
-
-    <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
-        <div class="relative">
-            <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
-            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+            {% if participate == true %}
+                <a href="/desinscrire/{{ event.id_event }}" class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110 px-3 py-px uppercase"> Se désinscrire </a>
+            {% else %}
+                <a href="/participer/{{ event.id_event }}" class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110 px-3 py-px uppercase"> Participer </a>
+            {% endif %}
         </div>
-        {# <h1 class="absolute top-12 right-px">Description</h1> #}
-        <h1 class="h1Gradiant">Description</h1>
-    </div>
-    {{ event.description }}
-    <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
-        <div class="relative">
-            <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
+        <div class="relative flex flex-row items-center space-x-4 pt-12 pb-8">
             <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+            <h1 class="h1Gradiant">Description</h1>
         </div>
-        {# <h1 class="absolute top-12 right-px">Information</h1> #}
-        <h1 class="h1Gradiant">Information</h1>
-    </div>
-    {{ event.date }}
-    {{ event.price }} €
-    {{ event.nom }} {{ event.prenom }}
-    {{ nbParticipant.nombre }}
+        {{ event.description }}
+        <section class="flex flex-col">
+            <div class="relative flex flex-row items-center space-x-4 pt-10 pb-8">
+                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+                <h1 class="h1Gradiant">Informations</h1>
+            </div>
+            <div class="flex flex-col lg:flex-row justify-start lg:items-center lg:justify-between space-y-8 lg:space-y-0">
+                <div class="flex flex-row lg:flex-col text-center items-center text-base">
+                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
+                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
+                        <h1 class="h1Gradiant text-base">Date</h1>
+                    </div>
+                    {{ event.date|date("d/m/Y") }}
+                </div>
+                <div class="flex flex-row lg:flex-col text-center items-center text-base">
+                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
+                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
+                        <h1 class="h1Gradiant text-base">Heure</h1>
+                    </div>
+                    {{ event.date|date("H:i") }}
+                </div>
+                <div class="flex flex-row lg:flex-col text-center items-center text-base">
+                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
+                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
+                        <h1 class="h1Gradiant text-base">Prix</h1>
+                    </div>
+                    {{ event.price }} €
+                </div>
+                <div class="flex flex-row lg:flex-col text-center items-center text-base">
+                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
+                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
+                        <h1 class="h1Gradiant text-base">Créé par</h1>
+                    </div>
+                    {{ event.nom }} {{ event.prenom }}
+                </div>
+                <div class="flex flex-col sm:flex-row lg:flex-col text-center items-center text-base">
+                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-full sm:w-1/2 lg:w-auto">
+                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
+                        <h1 class="h1Gradiant text-base">Nombre de participant</h1>
+                    </div>
+                    <div class="nbrParticipant-wrapper mt-2 sm:mt-0">
+                        <div class="nbrParticipant-container">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                            <span>{{nbParticipant.nombre}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </section>
 {% endblock %}
