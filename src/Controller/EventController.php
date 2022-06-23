@@ -93,7 +93,7 @@ class EventController extends AbstractController
         $estDeja = false;
         
         $event = $eventRepository->desinscrire($id, $_SESSION["userId"]);
-        $message="Vous êtes désinscrit de l'événement";    
+        $message ="Vous êtes désinscrit de l'événement";
         
         $event = $eventRepository->findEventByIdWithCatAndCrea($id);
         $nbParticipant = $eventRepository->CountUserByEvent($id);
@@ -102,7 +102,7 @@ class EventController extends AbstractController
         echo $this->twig->render('event/detail_event.html.twig',[
             'event' => $event,
             'nbParticipant' => $nbParticipant,
-            'message' => $message,
+            'message_unsubscribe' => $message,
             'participate' => $estDeja
         ]);
     }
