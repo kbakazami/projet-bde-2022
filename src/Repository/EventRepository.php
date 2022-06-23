@@ -190,7 +190,7 @@ final class EventRepository extends AbstractRepository
     }
 
     public function rechercheHome(string $recherche, int $id_cat, float $prix){
-        $pdo = "SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname as prenom, users.firstname as nom FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users";
+        $pdo = "SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, category.color AS color, id_users, event.id_category as id_cat, users.lastname as prenom, users.firstname as nom FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users";
         $i = 0;
         $table = [];      
         if($recherche != "" || $id_cat != 0 || $prix > -1){
