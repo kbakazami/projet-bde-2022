@@ -58,34 +58,4 @@
             </div>
         </div>
     </div>
-{#    <div class="flex flex-col items-center h-full">#}
-{#        <div class="flex flex-row items-center space-x-4">#}
-{#            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>#}
-{#            <h1 class="h1Gradiant">événements</h1>#}
-{#        </div>#}
-
-{#        #}{# Content #}
-{#        {% for event in events %}#}
-{#            {% if event.event.id_cat != 0 %}#}
-{#                <div class="bg-[url('/img/{{ event.event.image }}')]">#}
-{#                    <div class="card_event">#}
-{#                        <h2 class="title">{{ event.event.titre_event }}</h2> #}
-{#                        <a href="detail-category/{{ event.event.id_cat }}"> {{ event.event.titre_category }} </a>#}
-{#                        <span> {{ event.event.price }} € </span>#}
-{#                        <br>#}
-{#                        {{ event.event.date }}#}
-{#                        <br>#}
-{#                        {{ event.event.image }}#}
-{#                        #}{# Compte le nombre de caractère et affiche maximum x caractère + ... #}
-{#                        {{ event.event.description|striptags|length > 100 ? event.event.description|striptags|slice(0, 100) ~ '...' : event.event.description|striptags }}#}
-{#                        <br>#}
-{#                        <a href="/detail-event/{{ event.event.id_event }}"> Plus </a>#}
-{#                        {{event.nb.nombre}}#}
-{#                    </div>#}
-{#                </div>#}
-{#            {% endif %}#}
-{#            #}
-{#            <hr>#}
-{#        {% endfor %}#}
-{#    </div>#}
 {% endblock %}
