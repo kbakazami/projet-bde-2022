@@ -32,7 +32,6 @@
                 <table class="min-w-full border-collapse block lg:table">
                     <thead class="block lg:table-header-group">
                     <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
-                        {#                    <td class="pl-9 py-2 text-left block lg:table-cell"><input type="checkbox"/></td>#}
                         <td class="py-2 w-1/3 text-center block lg:table-cell">Nom</td>
                         <td class="py-2 w-1/3 text-center block lg:table-cell">Couleur</td>
                         <td class="py-2 w-1/3 text-center block lg:table-cell">Evenement</td>
@@ -42,7 +41,6 @@
                     <tbody class="block lg:table-row-group">
                     {% for category in category %}
                         <tr class="block lg:table-row border-b border-t border-white px-4 uppercase mb-10 lg:mb-0 text-sm xl:text-base">
-                            {#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
                             <td class="py-2 text-left lg:text-center block lg:table-cell">
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Nom</span>
                                 <span>{{ category.title }}</span>
@@ -51,10 +49,10 @@
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Couleur</span>
                                 <span style="background-color: {{ category.color }}"
                                       class="px-8 lg:px-6 py-2 rounded-full {% if category.color is same as "#000000" %} text-white border-white border {% else %} text-black {% endif %}  font-bold">
-                                    Couleur
+                                    {{ category.color }}
                                 </span>
                             </td>
-                            <td class="py-2 text-left lg:text-center block lg:table-cell">
+                            <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Evenement</span>
                                 <div class="flex flex-col space-y-2 text-center lg:items-center">
                                     <a href="/admin/liste-event-by-cat/{{ category.id }}" class="button-edit">Voir ( {{ category.nombre }} ) </a>
