@@ -17,14 +17,22 @@ class IndexController extends AbstractController
         $events = $eventRepository->findThirdLastEvent();
 
         $lesEvent = [];
-
+        // var_dump(date("Y-m-d H:i:s"));
         foreach($events as $events){
-            $nb = $eventRepository->CountUserByEvent($events->id_event);
-            $lesEvent[]=["event" => $events, "nb" => $nb];
+            $date = false;
+            // var_dump($events->date);
+            if($events->date >= date("Y-m-d H:i:s"))
+            {
+                $date = true;
+                // var_dump('oui');
+            }
 
+            $nb = $eventRepository->CountUserByEvent($events->id_event);
+            $lesEvent[]=["event" => $events, "nb" => $nb, 'date' => $date];
+            var_dump($date);
         }
         $news = $newsRepository->findThirdLastNews();
-
+      
         $category = $categoryRepository->findAllCategory();
         $cat=[];
         foreach($category as $category){
