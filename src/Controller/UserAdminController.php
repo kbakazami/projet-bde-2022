@@ -182,4 +182,27 @@ class UserAdminController extends AbstractController
             header('Location: /admin/list-user');
         }
     }
+
+     // Recherche 
+     #[Route(path: "/admin/recherche-crud-user", name: "recherhce-crud-user", httpMethod: "POST")]
+     public function rechercheCrudUser(UserRepository $userRepository)
+     {
+         if (!isset($_SESSION['userRole'])) {
+             header('Location: /form-login');
+         }
+         if ($_SESSION['userRole'] !== 'Admin') {
+             echo $this->twig->render('/access.html.twig');
+         } else {
+ 
+            if($_POST["search"] != ""){
+                $users = $userRepository->findAllSearch($_POST["search"]); 
+            }else{
+                $users = $userRepository->findAllUser();
+            }
+            
+            echo $this->twig->render('/admin/user/list-user.html.twig', [
+                'users' => $users
+            ]);
+         }
+     }
 }

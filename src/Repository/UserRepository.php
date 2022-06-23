@@ -86,4 +86,12 @@ final class UserRepository extends AbstractRepository
             'id' => $id
         ]);
     }
+
+    public function findAllSearch(string $recherche){
+        $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id WHERE users.lastname LIKE :recherche OR users.firstname LIKE :recherche OR mail LIKE :recherche ORDER BY lastname ASC");
+        $stmt->execute([
+            'recherche' => "%".$recherche."%"
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }
