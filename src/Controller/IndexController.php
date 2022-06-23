@@ -30,6 +30,7 @@ class IndexController extends AbstractController
             $lesEvent[]=["event" => $events, "nb" => $nb, 'date' => $date];
         }
 
+        var_dump($_SESSION["userRole"]);
         // 3 dernière actualité
         $news = $newsRepository->findThirdLastNews();
       

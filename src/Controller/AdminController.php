@@ -14,9 +14,8 @@ class AdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if($_SESSION['userRole'] !== 'Admin') {
-
-            echo "<p>Vous n'avez pas les droits pour accéder à cette page</p>";
+        if(($_SESSION['userRole'] !== 'Admin') && ($_SESSION['userRole'] !== 'BDE')) {
+            echo $this->twig->render('/access.html.twig');
         }else{
             echo $this->twig->render('admin/base-admin.html.twig');
         }

@@ -17,7 +17,7 @@ class NewsAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
             echo $this->twig->render('admin/news/form-news.html.twig');
@@ -31,7 +31,7 @@ class NewsAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -72,7 +72,7 @@ class NewsAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -92,7 +92,7 @@ class NewsAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -112,7 +112,7 @@ class NewsAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -154,7 +154,7 @@ class NewsAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
@@ -176,7 +176,7 @@ class NewsAdminController extends AbstractController
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
-        if ($_SESSION['userRole'] !== 'Admin') {
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
 
