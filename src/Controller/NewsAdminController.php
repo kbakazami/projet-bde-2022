@@ -168,4 +168,27 @@ class NewsAdminController extends AbstractController
             ]);
         }
     }
+
+    // Recherche 
+    #[Route(path: "/admin/recherche-crud-news", name: "recherhce-crud-news", httpMethod: "POST")]
+    public function rechercheCrudnews(NewsRepository $newsRepository)
+    {
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+
+            if($_POST["search"] != ""){
+                $news = $newsRepository->findAllRecherche($_POST["search"]);
+            }else{
+                $news = $newsRepository->findAllNews();
+            }
+           
+            echo $this->twig->render('admin/news/list-news.html.twig', [
+                'news' => $news
+            ]);
+        }
+    }
 }

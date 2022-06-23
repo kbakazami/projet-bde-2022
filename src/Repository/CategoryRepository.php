@@ -77,4 +77,13 @@ final class CategoryRepository extends AbstractRepository
             'id' => $id
         ]);
     }
+
+    public function findCatByRecherche(string $recherche){
+        $stmt = $this->pdo->prepare(" SELECT category.id AS id ,category.title AS title,color,COUNT(event.id) AS nombre FROM category LEFT JOIN event ON category.id = event.id_category WHERE category.title LIKE :recherche GROUP BY 1,2,3");
+
+        $stmt->execute([
+            'recherche' => "%".$recherche."%"
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }

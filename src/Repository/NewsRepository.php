@@ -69,4 +69,14 @@ final class NewsRepository extends AbstractRepository
             'id' => $id
         ]);
     }
+
+    public function findAllRecherche(string $recherche)
+    {
+        $stmt = $this->pdo->prepare("SELECT id, name, description, date, link FROM news WHERE name LIKE :recherche OR  description LIKE :recherche ORDER BY id DESC");
+
+        $stmt->execute([
+            'recherche' => "%".$recherche."%"
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }

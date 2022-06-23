@@ -16,8 +16,8 @@ class IndexController extends AbstractController
     #[Route(path: "/")]
     public function index(EventRepository $eventRepository, NewsRepository $newsRepository,CategoryRepository $categoryRepository)
     {
+        // Affichage 3 events
         $events = $eventRepository->findThirdLastEvent();
-
         $lesEvent = [];
         foreach($events as $events){
             $date = false;
@@ -29,8 +29,11 @@ class IndexController extends AbstractController
             $nb = $eventRepository->CountUserByEvent($events->id_event);
             $lesEvent[]=["event" => $events, "nb" => $nb, 'date' => $date];
         }
+
+        // 3 dernière actualité
         $news = $newsRepository->findThirdLastNews();
       
+        // Recherche 
         $category = $categoryRepository->findAllCategory();
         $cat=[];
         foreach($category as $category){
