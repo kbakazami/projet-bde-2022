@@ -24,7 +24,7 @@
                 {% else %}
                 <a href="/event-date/{{date}}"> Date &darr; </a>
                 {% endif %}
-            <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center">
+            <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center"
                 {% for event in events %}
                     {% if event.event.id_cat != 0 %}
 
@@ -67,9 +67,9 @@
                                 </div>
                             </div>
                         </div>
-
                     {% endif %}
                 {% endfor %}
+
             </div>
         </div>
     </div>

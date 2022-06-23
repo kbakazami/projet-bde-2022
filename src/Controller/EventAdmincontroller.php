@@ -88,23 +88,59 @@ class EventAdmincontroller extends AbstractController
     #[Route(path: "/admin/list-event", name: "admin-list-event")]
     public function listEvent(EventRepository $eventRepository)
     {
+        $nbByPage = 3;
+        $page = 1;
+
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
         if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
-            $events = $eventRepository->findAllEventwithCategory();
+            $events = $eventRepository->findAllEventByPage($page, $nbByPage);
+            $i = 0;
 
             $lesEvent = [];
             
             foreach($events as $events){
                 $nb = $eventRepository->CountUserByEvent($events->id_event); 
                 $lesEvent[]=["event" => $events, "nb" => $nb];
+                $i += 1;
             }
 
             echo $this->twig->render('admin/event/list-event.html.twig',[
-                'events' => $lesEvent
+                'events' => $lesEvent,
+                'i' => $i
+            ]);
+        }
+    }
+
+    // Affichage de la liste d'évenement complète
+    #[Route(path: "/admin/list-event/{page}", name: "admin-list-event-page")]
+    public function listEventByPage(EventRepository $eventRepository, int $page)
+    {
+        $nbByPage = 3;
+
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+            $events = $eventRepository->findAllEventByPage($page, $nbByPage);
+
+            $i = 0;
+            $lesEvent = [];
+
+            foreach($events as $events){
+                $nb = $eventRepository->CountUserByEvent($events->id_event);
+                $lesEvent[]=["event" => $events, "nb" => $nb];
+                $i += 1;
+            }
+
+            echo $this->twig->render('admin/event/list-event.html.twig',[
+                'events' => $lesEvent,
+                'i' => $i
             ]);
         }
     }
