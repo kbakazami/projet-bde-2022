@@ -1,38 +1,61 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="flex flex-col items-center h-full">
-        <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
-            <div class="relative">
-                <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>
+    <div class="flex flex-col pb-24 pt-10 px-4 lg:px-28 lg:pt-20 2xl:px-48">
+        <div class="w-full ">
+            <div class="flex flex-row justify-center items-center space-x-4">
+                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
+                <h1 class="h1Gradiant">événements</h1>
                 <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
             </div>
-            {# <h1 class="absolute top-12 right-px">Evenements</h1> #}
-            <h1 class="h1Gradiant">Evenements</h1>
-        </div>
 
-        {# Content #}
-        {% for event in events %}
-            {% if event.event.id_cat != 0 %}
-                <div class="bg-[url('/img/{{ event.event.image }}')]">
-                    <div class="card_event">
-                        <h2 class="title">{{ event.event.titre_event }}</h2> 
-                        <a href="detail-category/{{ event.event.id_cat }}"> {{ event.event.titre_category }} </a>
-                        <span> {{ event.event.price }} € </span>
-                        <br>
-                        {{ event.event.date }}
-                        <br>
-                        {{ event.event.image }}
-                        {# Compte le nombre de caractère et affiche maximum x caractère + ... #}
-                        {{ event.event.description|striptags|length > 100 ? event.event.description|striptags|slice(0, 100) ~ '...' : event.event.description|striptags }}
-                        <br>
-                        <a href="/detail-event/{{ event.event.id_event }}"> Plus </a>
-                        {{event.nb.nombre}}
-                    </div>
-                </div>
-            {% endif %}
-            
-            <hr>
-        {% endfor %}
+            <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center">
+                {% for event in events %}
+                    {% if event.event.id_cat != 0 %}
+
+                        <div class="event-wrapper mb-14 lg:mb-28 w-1/2">
+                            <div class="event-container">
+                                <div class="event-container-black">
+                                    <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
+                                        <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
+                                            <div class="relative justify-center flex flex-col p-4">
+                                                <div class="flex flex-row justify-between items-center relative">
+                                                    <span class="uppercase text-lg xl:text-2xl">{{ event.event.titre_event }}</span>
+                                                    <div class="flex flex-row space-x-4 items-center">
+                                                        <span class="text-xl">{{ event.event.price }}€</span>
+                                                    </div>
+                                                </div>
+
+                                                <a href="/detail-category/{{ event.event.id_cat }}">
+                                                    <div>
+                                  <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color }}">
+                                    {{ event.event.titre_category }}
+                                  </span>
+                                                    </div>
+                                                </a>
+                                                <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
+                                                <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
+                                         after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
+                                         py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
+                              {{event.event.description|striptags|length > 150 ? event.event.description|striptags|slice(0, 150) ~ '...' : event.event.description|striptags}}
+                            </span>
+                                                <div class="flex flex-row items-center justify-end mt-2">
+                                                    {% if event.event.date %}
+                                                        <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
+                              <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
+                            </span>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
