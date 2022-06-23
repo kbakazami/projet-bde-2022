@@ -29,12 +29,13 @@
                               </div>
                             </div>
 
-                              <div>
-                              <span class="text-sm xl:text-base text-center rounded-md py-px px-5 text-black" style="background-color: {{ event.event.color_category }}">
-                                  {{ event.event.titre_category }}
-                                </span>
-                              </div>
-
+                            <a href="detail-category/{{ event.event.id_cat }}">
+                                <div>
+                                  <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color_category }}">
+                                    {{ event.event.titre_category }}
+                                  </span>
+                                </div>
+                            </a>
                             <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
                             <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
@@ -50,11 +51,11 @@
                                   <span>{{event.nb.nombre}}</span>
                                 </div>
                               </div>
-{#                              {% if event.date %}#}
+                              {% if event.date %}
                               <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
                               <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
                             </span>
-{#                                {% endif %}#}
+                                {% endif %}
                             </div>
                           </div>
                         </div>
@@ -81,6 +82,7 @@
                     class=" w-full flex flex-col justify-center items-center text-center mx-auto form-search pt-4 lg:pt-8">
                 {{ field("recherche", "Recherche","Rechercher...") }}
 {#                <span class="category">#}
+
                 {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
 {#                  </span>#}
                   {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}

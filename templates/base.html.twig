@@ -16,7 +16,7 @@
 
                     <ul class="nav-menu flex flex-col space-y-12 pt-8
                     md:space-y-0 md:flex-row md:pt-0 items-center
-                    md:divide-white md:divide-x-[2px]">
+                    ">
                         <li class="nav-item">
                             <a class="md:pr-5"
                                href="/">
@@ -58,7 +58,7 @@
                         </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="flex
+                                <a class="flex md:pr-5
                         md:before:w-0.5 md:before:h-6 md:before:mr-5
                         md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
 
@@ -66,11 +66,21 @@
                                     Mon compte
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="flex md:pr-5
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
+
+                                   href="/logout">
+                                    Se déconnecter
+                                </a>
+                            </li>
                         {% endif %}
 
                         {% if admin == "Admin" %}
                         <li class="nav-item">
-                            <a class="flex
+                            <a class="flex md:pr-5
                         md:before:w-0.5 md:before:h-6 md:before:mr-5
                         md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
 
