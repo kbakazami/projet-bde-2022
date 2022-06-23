@@ -120,7 +120,7 @@ class EventController extends AbstractController
 
      // Affichage des évenements par date 
      #[Route(path: "/event-date/{date}", name: "event-date")]
-     public function eventDate(EventRepository $eventRepository, int $date)
+     public function eventDate(EventRepository $eventRepository, int $date, CategoryRepository $categoryRepository)
      {
         $events = $eventRepository->findAllEventByDate($date);
  
@@ -131,6 +131,14 @@ class EventController extends AbstractController
             $lesEvent[]=["event" => $events, "nb" => $nb];
         }
         
+        $category = $categoryRepository->findAllCategory();
+        $cat=[];
+        foreach($category as $category){
+            if($category->id!=0)
+            {
+                $cat[]=$category;
+            }
+        }
         if($date == 0){
             $date = 1;
         }else{
@@ -139,7 +147,8 @@ class EventController extends AbstractController
         
          echo $this->twig->render('event/list_event.html.twig',[
              'events' => $lesEvent,
-             'date' => $date
+             'date' => $date,
+             'category' => $cat
          ]);
      }
 }
