@@ -52,10 +52,14 @@
                                 </div>
                               </div>
                               {% if event.date %}
-                              <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
-                              <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
-                            </span>
-                                {% endif %}
+                                <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
+                                <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
+                                </span>
+                              {% else %}
+                                <span class="bg-gray-500 rounded-md ">
+                                <a class="px-6 py-1 uppercase">Evenement passé</a>
+                                </span>
+                              {% endif %}
                             </div>
                           </div>
                         </div>
