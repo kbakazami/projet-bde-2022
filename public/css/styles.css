@@ -288,9 +288,33 @@ input[type="submit"]
     @apply flex flex-col
 }
 
-.form-front label
+.form-front label,
+.form-search label
 {
     @apply sr-only
+}
+
+.form-search input[type="text"],
+.form-search input[type="number"],
+.form-search select
+{
+    background-color: transparent;
+    background-size: calc(100% + 4px) 2px;
+
+    @apply bg-gradient-to-r from-blue via-purple to-pink bg-no-repeat bg-bottom
+    outline-0
+    placeholder:italic placeholder:uppercase text-sm lg:text-base
+    mb-4 lg:mb-8 w-full
+}
+
+.form-search select
+{
+    @apply bg-black
+}
+
+.form-search .form-group
+{
+    @apply w-4/5
 }
 
 .nbrParticipant-container

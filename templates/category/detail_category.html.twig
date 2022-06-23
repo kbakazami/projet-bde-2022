@@ -3,7 +3,7 @@
 {% block body %}
     <div class="flex flex-row items-center space-x-4">
         <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-        <h1 class="h1Gradiant"> {{ titre }}</h1>
+        <h1 class="h1Gradiant"> {{ category.title }}</h1>
     </div>
     <div class="flex flex-col pt-7 px-4 lg:px-0">
         {% for event in events %}
