@@ -69,7 +69,7 @@
                         </td>
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Date</span>
-                            <span>{{ event.event.date }}</span>
+                            <span>{{ event.event.date|date('d/m/Y H:i') }}</span>
                         </td>
                         <td class="py-2 text-left block lg:table-cell lg:text-center">
                             <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Créateur</span>

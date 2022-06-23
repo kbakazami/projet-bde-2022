@@ -216,9 +216,20 @@ final class EventRepository extends AbstractRepository
                 }
                 $pdo.= " price <= :price";
                 $table['price']=$prix;
+                $i = 1;
             }                  
         }
 
+        if($i == 0)
+        {
+            $pdo .= " WHERE";
+        }else{
+            $pdo .= " AND";
+        }
+
+        $pdo .= " date >= CURRENT_DATE";
+        // var_dump($pdo);
+        // die;
         $stmt = $this->pdo->prepare($pdo);
         $stmt->execute($table);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -230,6 +241,19 @@ final class EventRepository extends AbstractRepository
         $stmt->execute([
             'recherche' => "%".$recherche."%"
         ]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function findAllEventByDate($date){
+        $pdo = "SELECT event.id AS id_event , event.title AS titre_event, description, price, date, event.image, category.title AS titre_category, id_users, event.id_category as id_cat, users.lastname as prenom, users.firstname as nom, category.color as color FROM event INNER JOIN category ON category.id = event.id_category INNER JOIN users ON users.id = event.id_users WHERE date >= CURRENT_DATE ORDER BY ";
+        if($date == 1){
+            $pdo .= " date ASC";
+        }else{
+            $pdo .= " date DESC";
+        }
+        $stmt = $this->pdo->prepare($pdo);
+
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 };
