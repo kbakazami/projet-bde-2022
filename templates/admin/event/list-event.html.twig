@@ -87,30 +87,32 @@
             {% endfor %}
             </tbody>
         </table>
-        {% if i > 9 %}
+        <section class="flex flex-row justify-center items-center mt-8 space-x-8 text-lg">
+            {% if i > 9 %}
                 {% set k = 1 %}
                 {% set j = 1 %}
 
                 {% if page != 0 %}
-                    <a href=/admin/list-event/{{ 0 }}>Début</a>
-                    <a href=/admin/list-event/{{ 0 }}>1</a>
+                    <a class="px-2.5 border border-blue" href=/admin/list-event/{{ 0 }}>Début</a>
+                    <a class="px-2.5 border border-pink" href=/admin/list-event/{{ 0 }}>1</a>
                 {% else %}
-                    <u><a href=/admin/list-event/{{ 0 }}>1</a></u>
+                    <a class="px-2.5 bg-gradient-to-t from-blue via-purple to-pink" href=/admin/list-event/{{ 0 }}>1</a>
                 {% endif %}
                 {% for i in 1..i%}
                     {% if i%9 == 0 %}
                         {% set j = j + 1 %}
-                            {% if page == i %}
-                                <u><a href=/admin/list-event/{{ i }}>{{ j }}</a></u>
-                            {% else %}
-                                <a href=/admin/list-event/{{ i }}>{{ j }}</a>
-                            {% endif %}
+                        {% if page == i %}
+                            <a class="px-2.5 bg-gradient-to-t from-blue via-purple to-pink" href=/admin/list-event/{{ i }}>{{ j }}</a>
+                        {% else %}
+                            <a class="px-2.5 border border-purple" href=/admin/list-event/{{ i }}>{{ j }}</a>
+                        {% endif %}
                         {% set k = i %}
                     {% endif %}
                 {% endfor %}
                 {% if page != k %}
-                    <a href=/admin/list-event/{{ k }}>Fin</a>
+                    <a class="px-2.5 border border-pink" href=/admin/list-event/{{ k }}>Fin</a>
                 {% endif %}
             {% endif %}
+        </section>
     </section>
 {% endblock %}
