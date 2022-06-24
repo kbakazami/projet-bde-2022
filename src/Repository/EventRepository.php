@@ -99,13 +99,15 @@ final class EventRepository extends AbstractRepository
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    public function findEventByCate($id)
+    public function findEventByCate($id, $page, $limit)
     {
-        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, image, category.title AS titre_category, event.id_users, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category WHERE event.id_category = :id ORDER BY event.id DESC");
-
-        $stmt->execute([
-            'id' => $id
-        ]);
+        $pdo = "SELECT event.id AS id_event , event.title AS titre_event, description, price, date, image, category.title AS titre_category, event.id_users, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category WHERE event.id_category = :id ORDER BY event.id DESC LIMIT :limit OFFSET :offset";
+        $stmt = $this->pdo->prepare("SELECT event.id AS id_event , event.title AS titre_event, description, price, date, image, category.title AS titre_category, event.id_users, event.id_category as id_cat FROM event INNER JOIN category ON category.id = event.id_category WHERE event.id_category = :id ORDER BY event.id DESC LIMIT :limit OFFSET :offset");
+        // var_dump($pdo);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $page, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
@@ -291,6 +293,15 @@ final class EventRepository extends AbstractRepository
         $pdo = "SELECT COUNT(*) FROM event";
         $stmt = $this->pdo->prepare($pdo);
         $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function countRowBycategory(int $id){
+        $pdo = "SELECT COUNT(*) FROM event WHERE id_category = :id";
+        $stmt = $this->pdo->prepare($pdo);
+        $stmt->execute([
+            'id' => $id
+        ]);
         return $stmt->fetchColumn();
     }
 

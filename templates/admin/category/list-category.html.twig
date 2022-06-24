@@ -76,6 +76,31 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                {% if i > 9 %}
+                    {% set k = 1 %}
+                    {% set j = 1 %}
+
+                    {% if page != 0 %}
+                        <a href=/admin/list-category/{{ 0 }}>Début</a>
+                        <a href=/admin/list-category/{{ 0 }}>1</a>
+                    {% else %}
+                        <u><a href=/admin/list-category/{{ 0 }}>1</a></u>
+                    {% endif %}
+                    {% for i in 1..i%}
+                        {% if i%9 == 0 %}
+                            {% set j = j + 1 %}
+                                {% if page == i %}
+                                    <u><a href=/admin/list-category/{{ i }}>{{ j }}</a></u>
+                                {% else %}
+                                    <a href=/admin/list-category/{{ i }}>{{ j }}</a>
+                                {% endif %}
+                            {% set k = i %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if page != k %}
+                        <a href=/admin/list-category/{{ k }}>Fin</a>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
 

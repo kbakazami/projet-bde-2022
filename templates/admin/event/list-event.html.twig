@@ -93,28 +93,30 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {% set k = 1 %}
-            {% set j = 1 %}
+            {% if i > 9 %}
+                {% set k = 1 %}
+                {% set j = 1 %}
 
-            {% if page != 0 %}
-                <a href=/admin/list-event/{{ 0 }}>Début</a>
-                <a href=/admin/list-event/{{ 0 }}>1</a>
-            {% else %}
-                <u><a href=/admin/list-event/{{ 0 }}>1</a></u>
-            {% endif %}
-            {% for i in 1..i%}
-                {% if i%3 == 0 %}
-                    {% set j = j + 1 %}
-                        {% if page == i %}
-                            <u><a href=/admin/list-event/{{ i }}>{{ j }}</a></u>
-                        {% else %}
-                            <a href=/admin/list-event/{{ i }}>{{ j }}</a>
-                        {% endif %}
-                    {% set k = i %}
+                {% if page != 0 %}
+                    <a href=/admin/list-event/{{ 0 }}>Début</a>
+                    <a href=/admin/list-event/{{ 0 }}>1</a>
+                {% else %}
+                    <u><a href=/admin/list-event/{{ 0 }}>1</a></u>
                 {% endif %}
-            {% endfor %}
-            {% if page != k %}
-                <a href=/admin/list-event/{{ k }}>Fin</a>
+                {% for i in 1..i%}
+                    {% if i%9 == 0 %}
+                        {% set j = j + 1 %}
+                            {% if page == i %}
+                                <u><a href=/admin/list-event/{{ i }}>{{ j }}</a></u>
+                            {% else %}
+                                <a href=/admin/list-event/{{ i }}>{{ j }}</a>
+                            {% endif %}
+                        {% set k = i %}
+                    {% endif %}
+                {% endfor %}
+                {% if page != k %}
+                    <a href=/admin/list-event/{{ k }}>Fin</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>

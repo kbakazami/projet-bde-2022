@@ -68,6 +68,8 @@ class CategoryAdminController extends AbstractController
     #[Route(path: "/admin/list-category", name: "admin-list-category")]
     public function listCategory(CategoryRepository $categoryRepository)
     {
+        $nbByPage = 9;
+        $page = 0;
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
@@ -75,27 +77,56 @@ class CategoryAdminController extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
-            $category = $categoryRepository->findAllCategoryCountEvent();
+            $category = $categoryRepository->findAllCategoryCountEventByPage($page, $nbByPage);
+            $i = $categoryRepository->countRow();
 
             echo $this->twig->render('admin/category/list-category.html.twig', [
-                'category' => $category
+                'category' => $category,
+                'i' => $i,
+                'page' => $page
             ]);
         }
     }
+
+     // Affichage des la list de toutes les catégorie existante 
+     #[Route(path: "/admin/list-category/{page}", name: "admin-list-category")]
+     public function listCategoryByPage(CategoryRepository $categoryRepository, int $page)
+     {
+        $nbByPage = 9;
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+ 
+             $category = $categoryRepository->findAllCategoryCountEventByPage($page, $nbByPage);
+             $i = $categoryRepository->countRow();
+ 
+             echo $this->twig->render('admin/category/list-category.html.twig', [
+                'category' => $category,
+                'i' => $i,
+                'page' => $page
+             ]);
+         }
+     }
 
     // Affichage des événements contenu dans une catégorie 
     #[Route(path: "/admin/liste-event-by-cat/{id}", name: "admin-list-event-by-cat")]
     public function listEventByCat(EventRepository $eventRepository, int $id, CategoryRepository $categoryRepository)
     {
+        $nbByPage = 9;
+        $page = 0;
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
         if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
-            $events = $eventRepository->findEventByCate($id);
+            $events = $eventRepository->findEventByCate($id, $page, $nbByPage);
             $category = $categoryRepository->findCategoryById($id);
             $lesEvent = [];
+            $i = $eventRepository->countRowBycategory($id);
             
             foreach($events as $events){
                 $nb = $eventRepository->CountUserByEvent($events->id_event); 
@@ -104,7 +135,39 @@ class CategoryAdminController extends AbstractController
 
             echo $this->twig->render('admin/category/list-event-by-category.html.twig',[
                 'events' => $lesEvent,
-                'category' => $category
+                'category' => $category,
+                'i' => $i,
+                'page' => $page
+            ]);
+        }
+    }
+
+    // Affichage des événements contenu dans une catégorie  pagination
+    #[Route(path: "/admin/liste-event-by-cat/{id}/{page}", name: "admin-list-event-by-cat")]
+    public function listEventByCatByPage(EventRepository $eventRepository, int $id, int $page, CategoryRepository $categoryRepository)
+    {
+        $nbByPage = 9;
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+            $events = $eventRepository->findEventByCate($id, $page, $nbByPage);
+            $category = $categoryRepository->findCategoryById($id);
+            $lesEvent = [];
+            $i = $eventRepository->countRowBycategory($id);
+            
+            foreach($events as $events){
+                $nb = $eventRepository->CountUserByEvent($events->id_event); 
+                $lesEvent[]=["event" => $events, "nb" => $nb];
+            }
+
+            echo $this->twig->render('admin/category/list-event-by-category.html.twig',[
+                'events' => $lesEvent,
+                'category' => $category,
+                'i' => $i,
+                'page' => $page
             ]);
         }
     }

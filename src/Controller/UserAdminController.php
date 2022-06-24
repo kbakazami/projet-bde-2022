@@ -17,6 +17,8 @@ class UserAdminController extends AbstractController
     #[Route(path: "/admin/list-user", name: "list-user")]
     public function listUser(UserRepository $userRepository)
     {
+        $nbByPage = 9;
+        $page = 0;
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
@@ -24,12 +26,39 @@ class UserAdminController extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
-            $users = $userRepository->findAllUser();
+            $users = $userRepository->findAllUserByPage($page, $nbByPage);
             $admin = $_SESSION['userRole'];
+            $i = $userRepository->countRow();
 
             echo $this->twig->render('/admin/user/list-user.html.twig', [
                 'users' => $users,
-                'admin' => $admin
+                'admin' => $admin,
+                'i' => $i,
+                'page' => $page
+            ]);
+        }
+    }
+
+    #[Route(path: "/admin/list-user/{page}", name: "list-user")]
+    public function listUserByPage(UserRepository $userRepository, int $page)
+    {
+        $nbByPage = 9;
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+
+            $users = $userRepository->findAllUserByPage($page, $nbByPage);
+            $admin = $_SESSION['userRole'];
+            $i = $userRepository->countRow();
+
+            echo $this->twig->render('/admin/user/list-user.html.twig', [
+                'users' => $users,
+                'admin' => $admin,
+                'i' => $i,
+                'page' => $page
             ]);
         }
     }
