@@ -3,16 +3,13 @@
 {% block body %}
     <div class="flex flex-col items-center h-full">
 
-        <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">
-            <div class="relative">
-{#                <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>#}
-                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-            </div>
-{#            <h1 class="absolute top-12 right-px">Inscription</h1>#}
-            <h1 class="h1Gradiant">Inscription</h1>
-        </div>
+        <h1 class="relative pl-44 flex items-center pt-12 pb-16
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink h1Gradiant">
+            <span class="h1Gradiant">Inscription</span>
+        </h1>
 
-        <div class="form-wrapper pb-28">
+        <section class="form-wrapper pb-28">
             <div class="form-container">
                 <form action='/register' method='POST'
                       class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">
@@ -22,18 +19,16 @@
                     {{ field("date", "Date de naissance","" ,"", {type: 'date'}) }}
                     {{ field("password", "Mot de passe","Mot de passe",'',  {type: "password"}) }}
                     {{ field("confirmPassword", "Confirmation du mot de passe","Confirmation du mot de passe","", {type: "password"}) }}
-                    <div class="submit-wrapper">
-                        <div class="submit-container">
-                            <div class="submit-container2">
-                                <div class="submit-container-black">
-                                    <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="S'inscrire"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <section class="submit-wrapper">
+                        <p class="submit-container">
+                            <button class="submit-container-black before:left-2">
+                                <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="S'inscrire"/>
+                            </button>
+                        </p>
+                    </section>
                 </form>
             </div>
-        </div>
+        </section>
     </div>
 
 {% endblock %}

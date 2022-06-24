@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="flex flex-col pb-24 pt-10 px-4 lg:px-28 lg:pt-20 2xl:px-48">
+    <section class="flex flex-col pb-24 pt-10 px-4 lg:px-28 lg:pt-20 2xl:px-48">
         <div class="w-full ">
             <div class="flex flex-row justify-center items-center space-x-4">
                 <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
@@ -11,56 +11,50 @@
 
             <form action='/recherche_home' method='POST'
                 class=" w-full flex flex-col justify-center items-center text-center mx-auto form-search pt-4 lg:pt-8">
-                <div class="flex flex-row w-full space-x-16 items-center">
+                <div class="flex flex-col lg:flex-row w-full lg:space-x-16 items-center">
                 {{ field("recherche", "Recherche","Rechercher...") }}
                 {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
                 {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
                 </div>
-            <span class="w-50 bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:scale-110">
-                <button class="px-6 py-1 uppercase">Rechercher</button>
-            </span>
+                <button class="px-6 py-1 uppercase w-50 bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:scale-110">Rechercher</button>
             </form>
 
             {% if date == 1 %}
-                <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
+                <button class="flex mx-auto lg:ml-0 mt-4 lg:mt-0 bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
                     <a href="/event-date/{{date}}" class="px-6 py-1 uppercase">Date &uarr;</a>
-                </span>
+                </button>
             {% else %}
-                <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
+                <button class="flex mx-auto lg:ml-0 mt-4 lg:mt-0 bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
                     <a href="/event-date/{{date}}" class="px-6 py-1 uppercase">Date &darr;</a>
-                </span>
+                </button>
             {% endif %}
-            <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center">
+            <section class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center">
                 {% for event in events %}
                     {% if event.event.id_cat != 0 %}
-                        <div class="event-wrapper mb-14 lg:mb-28 w-1/2">
+                        <article class="event-wrapper mb-14 lg:mb-28 w-1/2">
                             <div class="event-container">
                                 <div class="event-container-black">
                                     <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
                                         <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
                                             <div class="relative justify-center flex flex-col p-4">
-                                                <div class="flex flex-row justify-between items-center relative">
+                                                <p class="flex flex-row justify-between items-center relative">
                                                     <span class="uppercase text-lg xl:text-2xl">
                                                         {{event.event.titre_event|striptags|length > 12 ? event.event.titre_event|striptags|slice(0, 12) ~ '...' : event.event.titre_event|striptags}}
                                                     </span>
-                                                    <div class="flex flex-row space-x-4 items-center">
                                                         <span class="text-xl">{{ event.event.price }}€</span>
-                                                    </div>
-                                                </div>
+                                                </p>
 
-                                                <a href="/detail-category/{{ event.event.id_cat }}">
-                                                    <div>
-                                                        <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color }}">
-                                                            {{ event.event.titre_category }}
-                                                        </span>
-                                                    </div>
-                                                </a>
+                                                <button class="self-start rounded-md transition duration-300 hover:scale-110" style="background-color: {{ event.event.color }}">
+                                                    <a href="/detail-category/{{ event.event.id_cat }}" class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black ">
+                                                        {{ event.event.titre_category }}
+                                                    </a>
+                                                </button>
                                                 <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
-                                                <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
+                                                <p class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                                 after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
                                                 py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
                                                     {{event.event.description|striptags|length > 150 ? event.event.description|striptags|slice(0, 150) ~ '...' : event.event.description|striptags}}
-                                                </span>
+                                                </p>
                                                 <div class="flex flex-row items-center justify-between mt-2 ">
                                                     <div class="nbrParticipant-wrapper">
                                                         <div class="nbrParticipant-container">
@@ -71,9 +65,9 @@
                                                         </div>
                                                     </div>
                                                     {% if event.event.date %}
-                                                        <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
+                                                        <button class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
                                                             <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
-                                                        </span>
+                                                        </button>
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -81,10 +75,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </article>
                     {% endif %}
                 {% endfor %}
-            </div>
+            </section>
         </div>
-    </div>
+    </section>
 {% endblock %}
