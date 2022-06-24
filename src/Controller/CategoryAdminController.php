@@ -27,7 +27,7 @@ class CategoryAdminController extends AbstractController
     }
 
     // Validation du formulaire de création de catégorie avec affichage erreur 
-    #[Route(path: "/admin/create-category", name: "create-category")]
+    #[Route(path: "/admin/create-category", name: "create-category",httpMethod: "POST")]
     public function createCategory(CategoryRepository $categoryRepository)
     {
 
