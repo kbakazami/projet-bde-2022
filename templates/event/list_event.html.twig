@@ -40,7 +40,9 @@
                                         <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
                                             <div class="relative justify-center flex flex-col p-4">
                                                 <div class="flex flex-row justify-between items-center relative">
-                                                    <span class="uppercase text-lg xl:text-2xl">{{ event.event.titre_event }}</span>
+                                                    <span class="uppercase text-lg xl:text-2xl">
+                                                        {{event.event.titre_event|striptags|length > 12 ? event.event.titre_event|striptags|slice(0, 12) ~ '...' : event.event.titre_event|striptags}}
+                                                    </span>
                                                     <div class="flex flex-row space-x-4 items-center">
                                                         <span class="text-xl">{{ event.event.price }}€</span>
                                                     </div>

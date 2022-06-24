@@ -43,7 +43,7 @@
                             <p class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
                                          py-1 sm:py-7 md:py-10 lg:py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
-                              {{event.event.description|striptags|length > 300 ? event.event.description|striptags|slice(0, 300) ~ '...' : event.event.description|striptags}}
+                              {{event.event.description|striptags|length > 290 ? event.event.description|striptags|slice(0, 290) ~ '...' : event.event.description|striptags}}
                             </p>
                             <div class="flex flex-row items-center justify-between mt-2 ">
                               <div class="nbrParticipant-wrapper">
