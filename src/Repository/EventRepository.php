@@ -287,4 +287,11 @@ final class EventRepository extends AbstractRepository
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function countRow(){
+        $pdo = "SELECT COUNT(*) FROM event";
+        $stmt = $this->pdo->prepare($pdo);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
 }

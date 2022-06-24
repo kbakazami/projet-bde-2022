@@ -88,8 +88,8 @@ class EventAdmincontroller extends AbstractController
     #[Route(path: "/admin/list-event", name: "admin-list-event")]
     public function listEvent(EventRepository $eventRepository)
     {
-        $nbByPage = 3;
-        $page = 1;
+        $nbByPage = 9;
+        $page = 0;
 
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
@@ -98,19 +98,19 @@ class EventAdmincontroller extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
             $events = $eventRepository->findAllEventByPage($page, $nbByPage);
-            $i = 0;
+            $i = $eventRepository->countRow();
 
             $lesEvent = [];
             
             foreach($events as $events){
                 $nb = $eventRepository->CountUserByEvent($events->id_event); 
                 $lesEvent[]=["event" => $events, "nb" => $nb];
-                $i += 1;
             }
 
             echo $this->twig->render('admin/event/list-event.html.twig',[
                 'events' => $lesEvent,
-                'i' => $i
+                'i' => $i,
+                'page' => $page
             ]);
         }
     }
@@ -119,7 +119,7 @@ class EventAdmincontroller extends AbstractController
     #[Route(path: "/admin/list-event/{page}", name: "admin-list-event-page")]
     public function listEventByPage(EventRepository $eventRepository, int $page)
     {
-        $nbByPage = 3;
+        $nbByPage = 9;
 
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
@@ -129,18 +129,18 @@ class EventAdmincontroller extends AbstractController
         } else {
             $events = $eventRepository->findAllEventByPage($page, $nbByPage);
 
-            $i = 0;
+            $i = $eventRepository->countRow();
             $lesEvent = [];
 
             foreach($events as $events){
                 $nb = $eventRepository->CountUserByEvent($events->id_event);
                 $lesEvent[]=["event" => $events, "nb" => $nb];
-                $i += 1;
             }
 
             echo $this->twig->render('admin/event/list-event.html.twig',[
                 'events' => $lesEvent,
-                'i' => $i
+                'i' => $i,
+                'page' => $page
             ]);
         }
     }
