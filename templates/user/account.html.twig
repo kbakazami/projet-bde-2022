@@ -102,10 +102,15 @@
                               {{event.event.description|striptags|length > 150 ? event.event.description|striptags|slice(0, 150) ~ '...' : event.event.description|striptags}}
                             </span>
                                             <div class="flex flex-row items-center justify-end mt-2">
-                                                {% if event.event.date %}
+                                                {% if event.date %}
                                                     <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
-                              <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
-                            </span>
+                                                        <a href="/my-account/delet-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Se desinscrire</a>
+                                                    </span>
+                                                    <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
+                                                        <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
+                                                    </span>
+                                                {% else %}
+                                                        <a class="uppercase px-6 py-px bg-gray-500 rounded-md cursor-default">Evenement passé</a>
                                                 {% endif %}
                                             </div>
                                         </div>

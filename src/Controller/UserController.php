@@ -25,8 +25,13 @@ class UserController extends AbstractController
         $lesEvent = [];
         
         foreach($events as $events){
+            $date = false;
+            if($events->date >= date("Y-m-d H:i:s"))
+            {
+                $date = true;
+            }
             $nb = $eventRepository->CountUserByEvent($events->id_event); 
-            $lesEvent[]=["event" => $events, "nb" => $nb];
+            $lesEvent[]=["event" => $events, "nb" => $nb, 'date' => $date];
         }
 
         echo $this->twig->render('/user/account.html.twig',[
@@ -50,8 +55,13 @@ class UserController extends AbstractController
         $lesEvent = [];
         
         foreach($events as $events){
+            $date = false;
+            if($events->date >= date("Y-m-d H:i:s"))
+            {
+                $date = true;
+            }
             $nb = $eventRepository->CountUserByEvent($events->id_event); 
-            $lesEvent[]=["event" => $events, "nb" => $nb];
+            $lesEvent[]=["event" => $events, "nb" => $nb, 'date' => $date];
         }
 
         echo $this->twig->render('/user/account.html.twig',[
