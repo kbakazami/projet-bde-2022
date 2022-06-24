@@ -2,26 +2,21 @@
 
 {% block body %}
 
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full text-center pb-10 lg:pb-20">
-            <h1 class="text-4xl lg:text-5xl normal-case">{{ news.name }}</h1>
-        </div>
-        <form action='/admin/update-news/{{ news.id }}' method='POST'
-              class="flex flex-col form-back px-4 lg:px-0 lg:mx-auto">
-                <div class="flex flex-col lg:flex-row lg:space-x-11 pb-4 lg:pb-8">
-                    {{ field("name", "Nom", "Nom", news.name ) }}
-                    {{ field("date", "Date","Date", news.date, {type: "date"}) }}
-                </div>
-                <div class="lg:pb-8">
-                    {{ field("link", "Lien vers l'actualité", "Lien vers l'actualité", news.link) }}
-                </div>
-                {{ field("description", "Description", "Description", news.description, {type: "textarea"}) }}
-            <div class="w-full">
-                <div class="w-full lg:w-40 lg:ml-auto mt-5">
-                    <input type='submit' class="button-submit uppercase text-base text-center" value="Modifier"/>
-                </div>
+<section class="flex flex-col pt-4 pb-24">
+    <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">{{ news.name }}</h1>
+    <form action='/admin/update-news/{{ news.id }}' method='POST'
+          class="flex flex-col form-back px-4 lg:px-0 lg:mx-auto">
+            <div class="flex flex-col lg:flex-row lg:space-x-11 lg:pb-8">
+                {{ field("name", "Nom", "Nom", news.name ) }}
+                {{ field("date", "Date","Date", news.date, {type: "date"}) }}
             </div>
-        </form>
-    </div>
+            <div class="lg:pb-8">
+                {{ field("link", "Lien vers l'actualité", "Lien vers l'actualité", news.link) }}
+            </div>
+            {{ field("description", "Description", "Description", news.description, {type: "textarea"}) }}
+        <input type='submit' class="button-submit uppercase text-base text-center w-full lg:w-40 lg:ml-auto mt-4 lg:mt-8" value="Modifier"/>
+
+    </form>
+</section>
 
 {% endblock %}

@@ -1,12 +1,11 @@
 {% extends 'admin/base-admin.html.twig' %}
 
-
 {% block body %}
-
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full text-center pb-10 lg:pb-20">
-            <h1 class="text-4xl lg:text-5xl normal-case"><span class="uppercase">{{ user.lastname }}</span> {{ user.firstname }}</h1>
-        </div>
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">
+            <span class="uppercase">{{ user.lastname }}</span>
+            {{ user.firstname }}
+        </h1>
 
         <form action='/admin/update-user/{{ user.id }}' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto">
                 <div class="flex flex-col lg:flex-row items-center lg:space-x-16 uppercase italic mb-8 text-sm lg:text-base" id="image-in-bdd">
@@ -35,7 +34,7 @@
                 </div>
             </div>
         </form>
-    </div>
+    </section>
 
 
 {% endblock %}

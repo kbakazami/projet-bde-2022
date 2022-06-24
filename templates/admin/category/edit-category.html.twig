@@ -2,22 +2,16 @@
 
 {% block body %}
 
-    <div class="flex flex-col pt-4 pb-24">
-            <div class="w-full text-center pb-10 lg:pb-20">
-                <h1 class="text-4xl lg:text-5xl normal-case">{{ category.title }}</h1>
-            </div>
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">{{ category.title }}</h1>
         <form action='/admin/update-category/{{ category.id }}' method='POST'
               class="flex flex-col form-back px-4 lg:px-0 lg:mx-auto">
             <div class="flex flex-col lg:flex-row lg:items-center lg:justify-center lg:space-x-16">
-            {{ field("title", "Nom de la catégorie", "Nom de la catégorie", category.title ) }}
-            {{ field("color", "Couleur", "Couleur",category.color, {type: "color"}) }}
+                {{ field("title", "Nom de la catégorie", "Nom de la catégorie", category.title ) }}
+                {{ field("color", "Couleur", "Couleur",category.color, {type: "color"}) }}
             </div>
-            <div class="w-full">
-                <div class="w-full lg:w-40 lg:ml-auto mt-5">
-                    <input type='submit' class="button-submit uppercase text-base text-center" value="Modifier"/>
-                </div>
-            </div>
+            <input type='submit' class="button-submit uppercase text-base text-center w-full lg:w-40 lg:ml-auto mt-5" value="Modifier"/>
         </form>
-    </div>
+    </section>
 
 {% endblock %}

@@ -71,11 +71,8 @@ module.exports = {
       minHeight:{
         '34':'136px'
       },
-      keyframes: {
-        translateBorder:{
-          '0%, 100%':{transform: 'rotate(-3deg)'},
-          '50%':{transform: 'rotate(3deg)'},
-        }
+      backgroundImage:{
+        'banner-home':"url('/img/bg-base.jpg')"
       }
     },
   },

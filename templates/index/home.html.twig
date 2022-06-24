@@ -2,47 +2,50 @@
 
 {% block body %}
   <div class="flex flex-col">
-    <div class="border border-red w-full">Bannière event + actu</div>
+    <section class="banner">
+      <p>
+      <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center uppercase text-sm lg:text-3xl ">
+        Bienvenue sur le site du bde ! <br> Venez découvrir tous les événements ici !
+      </span>
+      </p>
+    </section>
     <div class="flex flex-col px-4 lg:px-28 pt-20 2xl:px-48">
 
       <div class="flex flex-col lg:flex-row lg:justify-between xl:justify-around">
         {#Evenements#}
         <div class="w-full lg:w-1/2">
           <div class="relative flex flex-col pb-4 lg:pb-16 w-full">
-            <div class="flex flex-row items-center space-x-4">
-              <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-              <h1 class="h1Gradiant">événements</h1>
-            </div>
-            <div class="flex flex-col pt-7 px-4 lg:px-0">
+            <h1 class="relative pl-44
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink h1Gradiant">
+              <span class="h1Gradiant">derniers événements</span>
+            </h1>
+            <section class="flex flex-col pt-7 px-4 lg:px-0">
               {% for event in events %}
                 {% if event.event.id_cat != 0 %}
-                <div class="event-wrapper mb-14 lg:mb-28">
+                <article class="event-wrapper mb-14 lg:mb-28">
                   <div class="event-container">
                     <div class="event-container-black">
                       <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
-                        <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
-                          <div class="relative justify-center flex flex-col p-4">
+                        <div class="bg-black-80 rounded-md absolute top-4 bottom-4 right-4 left-4">
+                          <section class="relative justify-center flex flex-col p-4">
                             <div class="flex flex-row justify-between items-center relative">
-                              <span class="uppercase text-lg xl:text-2xl">{{ event.event.titre_event }}</span>
-                              <div class="flex flex-row space-x-4 items-center">
-                                <span class="text-xl">{{ event.event.price }}€</span>
-                              </div>
+                              <h2 class="uppercase text-sm sm:text-lg xl:text-2xl">{{ event.event.titre_event }}</h2>
+                                <span class="text-sm sm:text-xl">{{ event.event.price }}€</span>
                             </div>
 
                             <a href="detail-category/{{ event.event.id_cat }}">
-                                <div>
-                                  <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color_category }}">
+                                  <span class=" text-xs sm:text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color_category }}">
                                     {{ event.event.titre_category }}
                                   </span>
-                                </div>
                             </a>
                             <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
-                            <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
+                            <p class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
-                                         py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
+                                         py-1 sm:py-7 md:py-10 lg:py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
                               {{event.event.description|striptags|length > 300 ? event.event.description|striptags|slice(0, 300) ~ '...' : event.event.description|striptags}}
-                            </span>
-                            <div class="flex flex-row items-center justify-between mt-2">
+                            </p>
+                            <div class="flex flex-row items-center justify-between mt-2 ">
                               <div class="nbrParticipant-wrapper">
                                 <div class="nbrParticipant-container">
                                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
@@ -52,57 +55,51 @@
                                 </div>
                               </div>
                               {% if event.date %}
-                                <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
-                                <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
-                                </span>
+                                <a href="/detail-event/{{ event.event.id_event }}"
+                                   class="uppercase px-6 py-px bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
+                                  Plus
+                                </a>
                               {% else %}
-                                <span class="bg-gray-500 rounded-md ">
-                                <a class="px-6 py-1 uppercase">Evenement passé</a>
-                                </span>
+                                <a class="uppercase px-6 py-px bg-gray-500 rounded-md cursor-default">Evenement passé</a>
                               {% endif %}
                             </div>
-                          </div>
+                          </section>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </article>
 
                 {% endif %}
               {% endfor %}
-            </div>
+            </section>
           </div>
         </div>
 
-        <div class="flex flex-col order-first lg:order-none">
         {#Recherche#}
-          <div class="w-full lg:w-auto flex flex-col items-center">
-            <div class="relative flex flex-col items-center pb-16 justify-end">
-              <div class="flex flex-row items-center space-x-4">
-                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-                <h1 class="h1Gradiant">Recherche<br>événements</h1>
-              </div>
+        <aside class="flex flex-col order-first lg:order-none">
+          <section class="w-full lg:w-auto flex flex-col items-center pb-16 justify-end">
+              <h1 class="relative pl-44
+                         before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+                         before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+                        <span class="h1Gradiant">recherche<br>événements</span>
+              </h1>
               <form action='/recherche_home' method='POST'
                     class=" w-full flex flex-col justify-center items-center text-center mx-auto form-search pt-4 lg:pt-8">
-                {{ field("recherche", "Recherche","Rechercher...") }}
-{#                <span class="category">#}
-
-                {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
-{#                  </span>#}
+                  {{ field("recherche", "Recherche","Rechercher...") }}
+                  {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
                   {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
-                <span class="w-50 bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:hover:scale-110">
-                  <button class="px-6 py-1 uppercase">Rechercher</button>
-                </span>
+                  <button class="bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:scale-110 px-6 py-1 uppercase">Rechercher</button>
               </form>
-            </div>
-          </div>
+          </section>
 
         {#Actualités#}
-        <div class="relative flex flex-col items-center  pb-4 lg:pb-16 w-full lg:w-auto">
-          <div class="flex flex-row items-center space-x-4">
-            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-            <h1 class="h1Gradiant">Actualités</h1>
-          </div>
+        <section class="relative flex flex-col items-center  pb-4 lg:pb-16 w-full lg:w-auto">
+          <h1 class="relative pl-44
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+            <span class="h1Gradiant">Actualités</span>
+          </h1>
           <div class="flex flex-col sm:flex-row sm:flex-wrap sm:gap-x-16 lg:flex-col  lg:items-center pt-7 w-full justify-center lg:w-3/4 px-4 lg:px-0">
             {% for new in news %}
               <a href="{{ new.link }}" target="_blank" class="transition duration-300 hover:hover:scale-110 sm:w-2/6 lg:w-11/12">
@@ -121,8 +118,8 @@
                           </span>
                           <span class="italic pt-1">{{ new.date|date("d/m/Y") }}</span>
                           <span class="text-xs lg:text-sm">
-                {{ new.description|striptags|length > 50 ? new.description|striptags|slice(0, 50) ~ '...' : new.description|striptags }}
-      </span>
+                            {{ new.description|striptags|length > 50 ? new.description|striptags|slice(0, 50) ~ '...' : new.description|striptags }}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -131,40 +128,33 @@
               </a>
             {% endfor %}
           </div>
-        </div>
-        </div>
+        </section>
+        </aside>
       </div>
     </div>
   </div>
   {#Qui sommes nous#}
-  <div class="relative w-full h-auto mt-32 mb-24">
-    <div class="box">
-      <div class=" flex flex-row items-center space-x-4 px-4 lg:px-0 py-6 sm:py-8 lg:py-14 justify-center">
-        <div class="relative">
-          <div class="relative borderGradiantEffect w-32  lg:w-40 opacity-90 mt-px pt-1 mr-1"></div>
-        </div>
-        <div class="relative">
-          <h1 class="h1Gradiant">Qui sommes nous ?</h1>
-        </div>
-      </div>
-      <div class="px-4 lg:px-24 xl:px-60 pb-6 sm:pb-8 lg:pb-12 text-center">
-        <div class="pb-2">Aibyu est une équipe de 3 personnes, tous passionés par le développement Web et bien d'autres choses.</div>
-        <p>Cette équipe  est composée de trois personnes :</p>
-
-        <div class="flex flex-col lg:flex-row justify-center text-center lg:space-x-4 pt-4 lg:pt-8">
-          <div class="relative">
-            <h1 class="h1Gradiant">STRYUS Wyvin</h1>
-          </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">CHAUDHRY Sofia</h1>
-          </div>
-          <div class="relative">
-            <h1 class="h1Gradiant">SCHWALLER Nadia</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <section class="px-4 w-full h-auto mb-24 flex flex-col items-center">
+      <h1 class="relative pl-44 justify-center
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+        <span class="h1Gradiant">qui sommes nous ?</span>
+      </h1>
+        <p class=" lg:px-24 xl:px-60 py-6 sm:py-8 lg:py-12 text-center pb-2 text-sm sm:text-base">
+          Bienvenue sur le site du BDE, vous retrouverez ici toutes les informations relatives à tous les évènements.
+          <br>
+          <br>
+          Nous sommes ravis de pouvoir vous proposer un ensemble d'événements tout au long de l'année afin de pouvoir vous divertir
+          et vous rapprocher les uns des autres
+          <br>
+          <br>
+          Le BDE est constitué d'un ensemble d'élève venue de plusieurs cursus différents, ils se sont investis dans la vie de l'école
+          pour rendre la vie estudiantine plus animée et plus joviale.
+          <br>
+          <br>
+          Si vous avez des questions ou des idées n'hésitez pas à venir nous voir au sein de l'école afin d'en discuter.
+        </p>
+  </section>
 
 {% endblock %}
 

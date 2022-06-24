@@ -2,19 +2,13 @@
 
 {% block body %}
 
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full text-center pb-10 lg:pb-20">
-            <h1 class="text-4xl lg:text-5xl normal-case">{{ role.title }}</h1>
-        </div>
-        <form action='/admin/update-role/{{ role.id }}' method='POST'
-              class="flex flex-col lg:flex-row form-back px-4 lg:px-0 lg:mx-auto lg:space-x-16">
-            {{ field("title", "Nom du Rôle", "Nom du Rôle", role.title) }}
-            <div class="w-full">
-                <div class="w-full lg:w-40 mt-6">
-                    <input type='submit' class="button-submit uppercase text-base text-center" value="Modifier"/>
-                </div>
-            </div>
-        </form>
-    </div>
+<section class="flex flex-col pt-4 pb-24">
+    <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">{{ role.title }}</h1>
+    <form action='/admin/update-role/{{ role.id }}' method='POST'
+          class="flex flex-col lg:flex-row form-back px-4 lg:px-0 lg:mx-auto lg:space-x-16 items-center">
+        {{ field("title", "Nom du Rôle", "Nom du Rôle", role.title) }}
+        <input type='submit' class="button-submit uppercase text-base text-center w-full lg:w-40 lg:mt-5" value="Modifier"/>
+    </form>
+</section>
 
 {% endblock %}
