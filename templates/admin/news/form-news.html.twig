@@ -1,10 +1,8 @@
 {% extends 'admin/base-admin.html.twig' %}
 
 {% block body %}
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full text-center pb-10 px-4 lg:px-0 lg:pb-20">
-            <h1 class="text-4xl lg:text-5xl normal-case">Ajouter une Actualitée</h1>
-        </div>
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">Ajouter une actualité</h1>
         <form action='/admin/create-news' method='POST'
               class="flex flex-col form-back px-4 lg:px-0 lg:mx-auto">
             <div class="flex flex-col lg:flex-row lg:space-x-11 lg:pb-8">
@@ -15,13 +13,10 @@
             {{ field("link", "Lien vers l'actualité", "Lien vers l'actualité","") }}
             </div>
             {{ field("description", "Description", "Description","", {type: "textarea"}) }}
-            <div class="w-full">
-                <div class="w-full lg:w-40 lg:ml-auto mt-5">
-                    <input type='submit' class="button-submit uppercase text-base text-center" value="Ajouter"/>
-                </div>
-            </div>
+            <input type='submit' class="button-submit uppercase text-base text-center w-full lg:w-40 lg:ml-auto mt-4 lg:mt-8" value="Modifier"/>
+
         </form>
-    </div>
+    </section>
 
 
 {% endblock %}

@@ -5,12 +5,9 @@
     {{ message }}
     {#    {% endif %}#}
 
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full">
-            <div class="w-full text-center">
-                <h1 class="text-4xl lg:text-5xl normal-case">Actualités</h1>
-            </div>
-            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
+    <section class="flex flex-col pt-4 pb-24">
+            <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">Actualités</h1>
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 pb-8">
                 <form method='POST' action="/admin/recherche-crud-news" class="flex flex-row items-center space-x-4">
                     <button name="ok" id="ok">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
@@ -31,31 +28,31 @@
             <table class="min-w-full border-collapse block lg:table">
                 <thead class="block lg:table-header-group">
                 <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
-                    <td class="py-2 w-1/4 text-center block lg:table-cell">Nom</td>
-                    <td class="py-2 w-1/4 text-center block lg:table-cell">Description</td>
-                    <td class="py-2 w-1/4 text-center block lg:table-cell">Date</td>
-                    <td class="py-2 w-1/4 text-center block lg:table-cell">Lien</td>
-                    <td class="py-2 w-1/4 text-center block lg:table-cell">Action</td>
+                    <td class="py-2 w-1/5 text-center block lg:table-cell">Nom</td>
+                    <td class="py-2 w-1/5 text-center block lg:table-cell">Description</td>
+                    <td class="py-2 w-1/5 text-center block lg:table-cell">Date</td>
+                    <td class="py-2 w-1/5 text-center block lg:table-cell">Lien</td>
+                    <td class="py-2 w-1/5 text-center block lg:table-cell">Action</td>
                 </tr>
                 </thead>
                 <tbody class="block lg:table-row-group">
                 {% for new in news %}
                     <tr class="block lg:table-row border-b border-t border-white px-4 mb-10 lg:mb-0 text-sm xl:text-base">
-                        <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <td class="py-2 text-left lg:text-center flex flex-row lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Nom</span>
-                            <span>{{ new.name }}</span>
+                            <span class="w-1/2 inline-block">{{ new.name }}</span>
                         </td>
-                        <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <td class="py-2 text-left lg:text-center flex flex-row lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Description</span>
-                            <span>{{ new.description|striptags|length > 100 ? new.description|striptags|slice(0, 100) ~ '...' : new.description|striptags }}</span>
+                            <p class="w-1/2 lg:w-auto">{{ new.description|striptags|length > 80 ? new.description|striptags|slice(0, 80) ~ '...' : new.description|striptags }}</p>
                         </td>
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Date</span>
                             <span>{{ new.date|date('d/m/Y') }}</span>
                         </td>
-                        <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <td class="py-2 text-left lg:text-center flex flex-row lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Lien</span>
-                            <span>{{ new.link }}</span>
+                            <span class="w-1/4 lg:w-auto">{{ new.link|striptags|length > 20 ? new.link|striptags|slice(0, 20) ~ '...' : new.link|striptags }}</span>
                         </td>
                         <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Actions</span>
@@ -68,6 +65,5 @@
                 {% endfor %}
                 </tbody>
             </table>
-        </div>
-    </div>
+    </section>
 {% endblock %}

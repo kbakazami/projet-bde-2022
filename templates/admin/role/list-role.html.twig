@@ -6,60 +6,59 @@
     {{ message }}
     {#    {% endif %}#}
 
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full">
-            <div class="w-full text-center">
-                <h1 class="text-4xl lg:text-5xl normal-case">Rôles</h1>
-                <br>
-                    Si vous supprimez un rôle, tout les utilisateur ayant le rôle, recevront le rôle user.
-            </div>
-             {% if admin == "Admin" %}
-            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
-                <a href="/admin/form-create-role" class="button-add text-center mt-4 lg:mt-0">Ajouter un rôle</a>
-            </div>
-            {% endif %}
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="w-full text-center text-4xl lg:text-5xl normal-case px-4">Rôles</h1>
+        <span class="pb-10 text-center pt-8 text-red flex flex-col lg:flex-row justify-center items-center px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            Si vous supprimez un rôle tous les utilisateurs ayant le rôle supprimé recevront le rôle user.
+        </span>
 
-            <table class="min-w-full border-collapse block lg:table">
-                <thead class="block lg:table-header-group">
-                <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
-                    {#                    <td class="pl-9 py-2 text-left block lg:table-cell"><input type="checkbox"/></td>#}
-                    <td class="py-2 w-1/2 text-center block lg:table-cell">Nom</td>
-                    <td class="py-2 w-1/2 text-center block lg:table-cell">Action</td>
-                </tr>
-                </thead>
-                <tbody class="block lg:table-row-group">
-                {% for role in roles %}
-                    <tr class="block lg:table-row border-b border-t border-white px-4 uppercase mb-10 lg:mb-0 text-sm xl:text-base">
-                        {#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
-                        <td class="py-2 text-left lg:text-center block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Nom</span>
-                            <span>{{ role.title }}</span>
-                        </td>
-                        {% if admin == "Admin" %}
-                            {% if role.id == 8 or role.id == 10 or role.id == 9 %}
-                                <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
-                                    <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
-                                    <span> Rôle par défaut </span>
-                                </td>
-                            {% else %}
-                                <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
-                                    <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
-                                    <div class="flex flex-col space-y-2 text-center lg:items-center">
-                                        <a href="/admin/form-update-role/{{ role.id }}" class="button-edit">Modifier</a>
-                                        <a href="/admin/delete-role/{{ role.id }}" class="button-delete">Supprimer</a>
-                                    </div>
-                                </td>
-                            {% endif %}
+         {% if admin == "Admin" %}
+             <button class="flex flex-col lg:flex-row lg:justify-end lg:items-center px-3 lg:px-9">
+                 <a href="/admin/form-create-role" class="button-add text-center mt-4 lg:mt-0">Ajouter un rôle</a>
+             </button>
+        {% endif %}
+
+        <table class="min-w-full border-collapse block lg:table mt-8">
+            <thead class="block lg:table-header-group">
+            <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
+                <td class="py-2 w-1/2 text-center block lg:table-cell">Nom</td>
+                <td class="py-2 w-1/2 text-center block lg:table-cell">Action</td>
+            </tr>
+            </thead>
+            <tbody class="block lg:table-row-group">
+            {% for role in roles %}
+                <tr class="block lg:table-row border-b border-t border-white px-4 uppercase mb-10 lg:mb-0 text-sm xl:text-base">
+                    <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Nom</span>
+                        <span>{{ role.title }}</span>
+                    </td>
+                    {% if admin == "Admin" %}
+                        {% if role.id == 8 or role.id == 10 or role.id == 9 %}
+                            <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
+                                <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
+                                <span> Rôle par défaut </span>
+                            </td>
                         {% else %}
                             <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
                                 <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
-                                <span> Vous n'avez pas les droits </span>
+                                <div class="flex flex-col space-y-2 text-center lg:items-center">
+                                    <a href="/admin/form-update-role/{{ role.id }}" class="button-edit">Modifier</a>
+                                    <a href="/admin/delete-role/{{ role.id }}" class="button-delete">Supprimer</a>
+                                </div>
                             </td>
                         {% endif %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+                    {% else %}
+                        <td class="py-2 text-left lg:text-center flex flex-row items-center lg:table-cell">
+                            <span class="inline-block w-1/2 lg:hidden font-expletus font-bold">Actions</span>
+                            <span class="uppercase text-red italic"> Action impossible </span>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

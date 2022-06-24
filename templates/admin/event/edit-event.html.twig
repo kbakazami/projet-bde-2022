@@ -1,12 +1,12 @@
 {% extends 'admin/base-admin.html.twig' %}
 
 {% block body %}
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full text-center pb-10 lg:pb-20">
-            <h1 class="text-4xl lg:text-5xl normal-case">{{ event.title }}</h1>
-        </div>
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">{{ event.title }}</h1>
 
-        <form action='/admin/update-event/{{ event.id }}' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto" enctype="multipart/form-data">
+        <form action='/admin/update-event/{{ event.id }}' method='POST'
+              class="flex flex-col form-back px-4 lg:px-0 lg:mx-auto"
+              enctype="multipart/form-data">
             <div class="flex flex-col lg:flex-row lg:space-x-11 mb-8 lg:mb-16 items-center">
                 <div class="flex flex-col uppercase italic mb-5 lg:mb-0" id="image-in-bdd">
                     <span>Image actuelle (Re-upload image obligatoire) :</span>
@@ -16,9 +16,7 @@
                     <span>Nouvelle image :</span>
                     <div id="img-preview" class="mt-2 w-full sm:w-420 lg:w-290 h-auto"></div>
                 </div>
-{#                <div class="inputTypeFile">#}
                     {{ field("file", "Image", "", event.image, {type: "file"}) }}
-{#                </div>#}
             </div>
             <div class="flex flex-col lg:flex-row lg:space-x-11 items-center pb-4 lg:pb-8">
                 {{ field("title", "Titre", "Titre", event.title ) }}
@@ -28,53 +26,8 @@
                 {{ field("date", "Date et Heure","Date et Heure", date, {type: "datetime-local"}) }}
                 {{ field("price", "Prix", "Prix", event.price,{type: "number"} ) }}
             </div>
-            <div class="pb-4 lg:pb-8">
-            {{ field("description", "Description", "Description", event.description, {type: "textarea"}) }}
-            </div>
-            <div class="w-full">
-                <div class="w-full lg:w-40 lg:ml-auto">
-                    <input type='submit' class="button-submit uppercase text-base text-center" value="Modifier"/>
-                </div>
-            </div>
+                {{ field("description", "Description", "Description", event.description, {type: "textarea"}) }}
+            <input type='submit' class="button-submit uppercase text-base text-center w-full lg:w-40 lg:ml-auto mt-4 lg:mt-8" value="Modifier"/>
         </form>
-    </div>
-
-
-{#    <div class="flex flex-col items-center h-full">#}
-
-{#        <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16">#}
-{#            <div class="relative">#}
-{#                <div class="absolute bg-white w-40 p-px ml-1 opacity-60"></div>#}
-{#                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>#}
-{#            </div>#}
-{#            <h1 class="absolute top-12 right-px">Modification d'un Événement</h1>#}
-{#            <h1 class="h1Gradiant">Modification d'un Événement</h1>#}
-{#        </div>#}
-
-{#        <div class="form-wrapper pb-28">#}
-{#            <div class="form-container">#}
-
-
-{#                <form action='/admin/update-event/{{ event.id }}' method='POST'#}
-{#                      class="relative w-full flex flex-col justify-center text-center bg-black py-7 sm:py-10 px-5 sm:px-15 rounded mx-auto form-front">#}
-{#                    {{ field("title", "Titre", "Titre", event.title ) }}#}
-{#                    <div>Image actuelle :</div>#}
-{#                    <div><img src="/img/{{ event.image }}" alt="e"/></div>#}
-{#                    {{ field("file", "Image", "", "", {type: "file"}) }}#}
-{#                    <div id="edit-image-preview" class="hidden">#}
-{#                        <p>Nouvelle image :</p>#}
-{#                    <div id="img-preview"></div>#}
-{#                    </div>#}
-{#                    {{ field("description", "Description", "", event.description, {type: "textarea"}) }}#}
-{#                    {{ field("price", "Prix", "Prix", event.price,{type: "number"} ) }}#}
-{#                    {{ field("date", "Date","Date", event.date, {type: "date"}) }}#}
-{#                    {{ field("category", "Catégorie", "", event.id_category, {type: "select", data: category}) }}#}
-{#                    <div class="customSubmit">#}
-{#                        <input type='submit' class="uppercase text-base" value="Modifier"/>#}
-{#                    </div>#}
-{#                </form>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div#}
-
+    </section>
 {% endblock %}

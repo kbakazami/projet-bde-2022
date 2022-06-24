@@ -4,64 +4,42 @@
     {#    {% if message %}#}
     {{ message }}
     {#    {% endif %}#}
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full">
-            <div class="w-full text-center">
-                <h1 class="text-4xl lg:text-5xl normal-case">Participant</h1>
-            </div>
-            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
-                <div class="flex flex-row items-center space-x-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        <defs>
-                            <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <input type="search" id="search" class="inputSearchBack" placeholder="Recherche">
-                </div>
-            </div>
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">Participants</h1>
 
-            <table class="min-w-full border-collapse block lg:table">
-                <thead class="block lg:table-header-group">
-                <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
-{#                    <td class="pl-9 py-2 text-left block lg:table-cell"><input type="checkbox"/></td>#}
-                    <td class="w-1/12 lg:pl-9 py-2 text-left block lg:table-cell">Nom</td>
-                    <td class="w-1/12 py-2 text-left block lg:table-cell">Prenom</td>
-                    <td class="w-1/12 py-2 text-left block lg:table-cell">E-mail</td>
-                    <td class="w-1/12 lg:pr-9 py-2 text-right block lg:table-cell">Action</td>
+        <table class="min-w-full border-collapse block lg:table">
+            <thead class="block lg:table-header-group">
+            <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
+                <td class="py-2 w-1/4 text-center block lg:table-cell">Nom</td>
+                <td class="py-2 w-1/4 text-center block lg:table-cell">Prenom</td>
+                <td class="py-2 w-1/4 text-center block lg:table-cell">E-mail</td>
+                <td class="py-2 w-1/4 text-center block lg:table-cell">Action</td>
+            </tr>
+            </thead>
+            <tbody class="block lg:table-row-group">
+            {% for participant in participant %}
+                <tr class="block lg:table-row border-b border-t border-white px-4 mb-10 lg:mb-0 text-sm xl:text-base">
+                    <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Nom</span>
+                        <span>{{ participant.nom }}</span>
+                    </td>
+                    <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Prénom</span>
+                        <span>{{ participant.prenom }}</span>
+                    </td>
+                    <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">E-mail</span>
+                        <span>{{ participant.mail }}</span>
+                    </td>
+                    <td class="py-2 text-left lg:text-center block lg:table-cell">
+                        <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Actions</span>
+                        <button class="flex flex-col space-y-2 text-center lg:items-end lg:mx-auto">
+                            <a href="/admin/delete-user-event/{{ participant.id }}/{{ id_event }}" class="button-delete">Supprimer</a>
+                        </button>
+                    </td>
                 </tr>
-                </thead>
-                <tbody class="block lg:table-row-group">
-                {% for participant in participant %}
-                    <tr class="block lg:table-row border-b border-t border-white px-4 mb-10 lg:mb-0 text-sm xl:text-base">
-{#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
-                        <td class="pt-7 pb-2 lg:py-2 lg:pl-9 text-left flex flex-row justify-center lg:table-cell">
-                            <div class="w-full sm:w-3/4 lg:w-24 h-full">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Nom</span>
-                            <span>{{ participant.nom }}</span>
-                            </div>
-                        </td>
-                        <td class="py-2 text-left block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Prénom</span>
-                            <span>{{ participant.prenom }}</span>
-                        </td>
-                        <td class="py-2 text-left block lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">E-mail</span>
-                            <span>{{ participant.mail }}</span>
-                        </td>
-                        <td class="lg:pr-4 py-2 text-left flex flex-row items-center lg:table-cell">
-                            <span class="inline-block w-1/2 lg:hidden font-expletus uppercase">Actions</span>
-                            <div class="flex flex-col space-y-2 text-center lg:items-end">
-                                <a href="/admin/delete-user-event/{{ participant.id }}/{{ id_event }}" class="button-delete">Supprimer</a>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock %}
