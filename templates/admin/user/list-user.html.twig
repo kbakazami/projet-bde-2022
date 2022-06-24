@@ -76,7 +76,7 @@
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Email</span>
                             <span>{{ user.mail }}</span>
                         </td>
-                         {% if admin == "Admin" %}
+                         {% if admin == "Admin" and user.id != 0 and userID != user.id %}
                         <td class="lg:pr-4 py-2 text-left flex flex-row items-center lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Actions</span>
                             <div class="flex flex-col space-y-2 text-center lg:items-end">
