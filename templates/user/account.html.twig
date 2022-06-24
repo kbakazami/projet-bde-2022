@@ -1,23 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="relative flex flex-row items-center space-x-4 pt-12 pb-16 pl-4 sm:pl-16">
-        <div class="relative">
-            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-        </div>
-        <h1 class="h1Gradiant">Mon compte</h1>
-    </div>
-
-    <div class="flex flex-col pt-4 pb-24 w-290 sm:w-auto xl:w-1080 mx-auto sm:px-4 lg:px-28 xl:px-0">
+    <section class="pt-12">
+    <h1 class="relative pl-44 ml-16
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink h1Gradiant">
+        <span class="h1Gradiant">Mon compte</span>
+    </h1>
+    </section>
+    <section class="flex flex-col pt-20 pb-24 w-290 sm:w-auto xl:w-1080 mx-auto sm:px-4 lg:px-28 xl:px-0">
         <div class="form-container">
             <form action='/update-user/{{ user.id }}' method='POST' class="form-front-user relative w-full px-4 py-7 lg:px-28 lg:py-10" enctype="multipart/form-data">
-                {#            <div class="flex flex-col lg:flex-row items-center lg:space-x-16 uppercase italic mb-8 text-sm lg:text-base hidden" id="edit-image-preview">#}
-                {#                {% if user.image %}#}
-                {#                    <div class="rounded-full border border-white h-24 w-24 bg-cover" style="background-image: url('/img/{{ user.image }}')"></div>#}
-                {#                {% else %}#}
-                {#                    <div id="img-preview"></div>#}
-                {#                {% endif %}#}
-                {#            </div>#}
                 <div class="flex flex-col lg:flex-row items-center pb-4 lg:pb-8" id="userProfilePicture">
                     {% if user.image %}
                         <div id="image-user" class="rounded-full border border-white w-24 h-24 bg-cover bg-center"
@@ -39,7 +32,7 @@
                     {{ field("mail", "Email","Email", user.mail) }}
                     {{ field("date", "Date de naissance","Date de naissance" , user.birthdate, {type: 'date'}) }}
                 </div>
-                <div class="flex flex-col lg:flex-row lg:space-x-11 lg:items-center lg:pb-8">
+                <section class="flex flex-col lg:flex-row lg:space-x-11 lg:items-center lg:pb-8">
                     <div class="flex flex-col">
                         <div class="flex flex-row pb-4 passwordDisplay lg:items-center w-full sm:w-400 space-x-4">
                             <input type="checkbox" id="checkboxChangePassword" class="cursor-pointer checked:glowEffect">
@@ -52,90 +45,83 @@
                         </div>
 
                     </div>
-                </div>
-                <div class="submit-wrapper">
-                    <div class="submit-container">
-                        <div class="submit-container2">
-                            <div class="submit-container-black">
-                                <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="Modifier"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </section>
+                <section class="submit-wrapper">
+                    <p class="submit-container">
+                        <button class="submit-container-black before:left-2">
+                            <input type='submit' class="relative submit-front flex uppercase py-0.5 sm:py-2 lg:px-12" value="Modifier"/>
+                        </button>
+                    </p>
+                </section>
             </form>
         </div>
 
         {% if events %}
-            <div class="relative flex flex-row items-center space-x-4 pt-24 pb-8 sm:pl-16">
-                <div class="relative">
-                    <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-                </div>
-                <h1 class="h1Gradiant">Mes événements</h1>
-            </div>
-            <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 gap-x-20 justify-center items-center">
-                {% for event in events %}
-
-                    <div class="event-wrapper mb-14 lg:mb-28 w-1/2">
-                        <div class="event-container">
-                            <div class="event-container-black">
-                                <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
-                                    <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
-                                        <div class="relative justify-center flex flex-col p-4">
-                                            <div class="flex flex-row justify-between items-center relative">
+            <section class="pt-24">
+                <h1 class="relative pl-44 ml-16
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink h1Gradiant">
+                    <span class="h1Gradiant">Mes événements</span>
+                </h1>
+                <section class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %} pt-14 px-4 gap-x-20 justify-center items-center">
+                    {% for event in events %}
+                        <article class="event-wrapper mb-14 lg:mb-28 w-1/2">
+                            <div class="event-container">
+                                <div class="event-container-black">
+                                    <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.event.image }}')">
+                                        <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
+                                            <div class="relative justify-center flex flex-col p-4">
+                                                <p class="flex flex-row justify-between items-center relative">
                                                 <span class="uppercase text-lg xl:text-xl">
                                                     {{event.event.titre_event|striptags|length > 12 ? event.event.titre_event|striptags|slice(0, 12) ~ '...' : event.event.titre_event|striptags}}
                                                 </span>
-
-                                                <div class="flex flex-row space-x-4 items-center">
                                                     <span class="text-xl">{{ event.event.price }}€</span>
-                                                </div>
-                                            </div>
+                                                </p>
 
-                                            <a href="detail-category/{{ event.event.id_cat }}">
-                                                <div>
-                                  <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color }}">
-                                    {{ event.event.titre_category }}
-                                  </span>
-                                                </div>
-                                            </a>
-                                            <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
-                                            <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
-                                         after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
-                                         py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
-                              {{event.event.description|striptags|length > 150 ? event.event.description|striptags|slice(0, 150) ~ '...' : event.event.description|striptags}}
-                            </span>
-                                            <div class="flex flex-row items-center justify-around mt-2 space-x-2">
-                                                {% if event.date %}
-                                                    <button class="bg-gradient-to-t from-red to-orange rounded-md transition duration-300 hover:hover:scale-110">
-                                                        <a href="/my-account/delet-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">annuler</a>
-                                                    </button>
-                                                    <button class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
-                                                        <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
-                                                    </button>
-                                                {% else %}
+                                                <button class="self-start rounded-md transition duration-300 hover:scale-110" style="background-color: {{ event.event.color }}">
+                                                    <a href="/detail-category/{{ event.event.id_cat }}" class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black ">
+                                                        {{ event.event.titre_category }}
+                                                    </a>
+                                                </button>
+                                                <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
+                                                <p class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
+                                                      after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
+                                                      py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
+                                                    {{event.event.description|striptags|length > 150 ? event.event.description|striptags|slice(0, 150) ~ '...' : event.event.description|striptags}}
+                                                </p>
+                                                <section class="flex flex-row items-center justify-around mt-2 space-x-2">
+                                                    {% if event.date %}
+                                                        <button class="bg-gradient-to-t from-red to-orange rounded-md transition duration-300 hover:hover:scale-110">
+                                                            <a href="/my-account/delet-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">annuler</a>
+                                                        </button>
+                                                        <button class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
+                                                            <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
+                                                        </button>
+                                                    {% else %}
                                                         <a class="uppercase px-6 py-px bg-gray-500 rounded-md cursor-default">Evenement passé</a>
-                                                {% endif %}
+                                                    {% endif %}
+                                                </section>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </article>
 
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </section>
+            </section>
         {% else %}
-            <div class="text-center pt-12 uppercase h1Gradiant">
+            <section class="text-center pt-12 uppercase h1Gradiant">
                 <p><span>Oups..</span><br> Il semblerait que vous ne participiez à aucun évenements <br>
                     Retournez à
                     <a href="/">
                         l'accueil
                     </a>
                     ou allez dans la page des <a href="/list-event">événements</a> directement !</p>
-            </div>
+            </section>
         {% endif %}
-    </div>
+    </section>
 
 
 {% endblock %}

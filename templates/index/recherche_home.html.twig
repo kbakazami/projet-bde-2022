@@ -1,60 +1,57 @@
 {% extends 'base.html.twig' %}
 {% block body%}
-    <div class="flex flex-col pb-24 pt-10 px-4 lg:px-28 lg:pt-20 2xl:px-48">
-        <div class="w-full ">
+    <section class="flex flex-col pb-24 pt-10 px-4 lg:px-28 lg:pt-20 2xl:px-48">
             <div class="flex flex-row justify-center items-center space-x-4">
                 <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
                 <h1 class="h1Gradiant">Recherche d'événements</h1>
                 <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
             </div>
             {% if events %}
-            <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center">
+            <section class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center">
                 {% for event in events %}
                     {% if event.id_cat != 0 %}
 
-                        <div class="event-wrapper mb-14 lg:mb-28 w-1/2">
+                        <article class="event-wrapper mb-14 lg:mb-28 w-1/2">
                             <div class="event-container">
                                 <div class="event-container-black">
                                     <div class="relative w-full rounded mx-auto bg-cover bg-center h-full z-1" style="background-image: url('/img/{{ event.image }}')">
                                         <div class="bg-black-80 border border-white rounded-md absolute top-4 bottom-4 right-4 left-4">
                                             <div class="relative justify-center flex flex-col p-4">
-                                                <div class="flex flex-row justify-between items-center relative">
-                                                    <span class="uppercase text-lg xl:text-2xl">{{ event.titre_event }}</span>
-                                                    <div class="flex flex-row space-x-4 items-center">
+                                                <p class="flex flex-row justify-between items-center relative">
+                                                    <span class="uppercase text-lg xl:text-2xl">
+                                                        {{event.titre_event|striptags|length > 12 ? event.titre_event|striptags|slice(0, 12) ~ '...' : event.titre_event|striptags}}
+                                                    </span>
                                                         <span class="text-xl">{{ event.price }}€</span>
-                                                    </div>
-                                                </div>
+                                                </p>
 
-                                                <a href="detail-category/{{ event.id_cat }}">
-                                                    <div>
-                                  <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.color }}">
-                                    {{ event.titre_category }}
-                                  </span>
-                                                    </div>
-                                                </a>
+                                                <button class="self-start rounded-md transition duration-300 hover:scale-110" style="background-color: {{ event.color }}">
+                                                    <a href="/detail-category/{{ event.id_cat }}" class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black ">
+                                                        {{ event.titre_category }}
+                                                    </a>
+                                                </button>
                                                 <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.date|date("d/m/Y") }}</span>
-                                                <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
-                                         after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
-                                         py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
-                              {{event.description|striptags|length > 150 ? event.description|striptags|slice(0, 150) ~ '...' : event.description|striptags}}
-                            </span>
-                                                <div class="flex flex-row items-center justify-end mt-2">
+                                                <p class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
+                                                          after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
+                                                          py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
+                                                  {{event.description|striptags|length > 150 ? event.description|striptags|slice(0, 150) ~ '...' : event.description|striptags}}
+                                                </p>
+                                                <p class="flex flex-row items-center justify-end mt-2">
                                                     {% if event.date %}
-                                                        <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
-                              <a href="/detail-event/{{ event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
-                            </span>
+                                                        <button class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
+                                                            <a href="/detail-event/{{ event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
+                                                        </button>
                                                     {% endif %}
-                                                </div>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </article>
 
                     {% endif %}
                 {% endfor %}
-            </div>
+            </section>
             {% else %}
             <div class="text-center pt-12 uppercase h1Gradiant">
                 <p><span>Oups..</span><br> Il semblerait qu'aucun événement ne correspond à votre recherche... <br>
@@ -65,6 +62,5 @@
                     ou allez dans la page des <a href="/list-event">événements</a> directement !</p>
             </div>
             {% endif %}
-        </div>
-    </div>
+    </section>
 {% endblock %}

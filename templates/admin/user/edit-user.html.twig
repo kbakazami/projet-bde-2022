@@ -7,15 +7,15 @@
             {{ user.firstname }}
         </h1>
 
-        <form action='/admin/update-user/{{ user.id }}' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto">
-                <div class="flex flex-col lg:flex-row items-center lg:space-x-16 uppercase italic mb-8 text-sm lg:text-base" id="image-in-bdd">
-                    {% if user.image %}
-                        <div class="rounded-full border border-white h-24 w-24 bg-cover" style="background-image: url('/img/{{ user.image }}')"></div>
-                    {% else %}
-                        <div class="rounded-full border border-white h-24 w-24 bg-cover"></div>
-                        <span class="mt-4 lg:mt-0 text-center lg:text-left">L'utilisateur n'a pas défini d'image de profil</span>
-                    {% endif %}
-                </div>
+        <form action='/admin/update-user/{{ user.id }}' method='POST' class="flex flex-col form-back px-4 lg:px-0 lg:mx-auto">
+            <div class="flex flex-col lg:flex-row items-center lg:space-x-16 uppercase italic mb-8 text-sm lg:text-base" id="image-in-bdd">
+                {% if user.image %}
+                    <div class="rounded-full border border-white h-24 w-24 bg-cover" style="background-image: url('/img/{{ user.image }}')"></div>
+                {% else %}
+                    <div class="rounded-full border border-white h-24 w-24 bg-cover"></div>
+                    <span class="mt-4 lg:mt-0 text-center lg:text-left">L'utilisateur n'a pas défini d'image de profil</span>
+                {% endif %}
+            </div>
 
             <div class="flex flex-col lg:flex-row lg:space-x-11 items-center lg:pb-8">
                 {{ field("nom", "Nom","Nom", user.lastname) }}
@@ -28,11 +28,8 @@
             <div class="pb-4 lg:pb-8">
                 {{ field("role", "Rôle", "", user.id_role, {type: "select", data: role}) }}
             </div>
-            <div class="w-full">
-                <div class="w-full lg:w-40 lg:ml-auto">
-                    <input type='submit' class="button-submit uppercase text-base text-center" value="Modifier"/>
-                </div>
-            </div>
+            <input type='submit' class="button-submit uppercase text-base text-center w-full lg:w-40 lg:ml-auto mt-5" value="Modifier"/>
+
         </form>
     </section>
 

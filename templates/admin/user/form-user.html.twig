@@ -2,12 +2,10 @@
 
 {% block body %}
 
-    <div class="flex flex-col pt-4 pb-24">
-        <div class="w-full text-center pb-10 lg:pb-20">
-            <h1 class="text-4xl lg:text-5xl normal-case">Ajouter d'un Utilisateur</h1>
-        </div>
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">Ajouter un utilisateur</h1>
 
-        <form action='/admin/create-user' method='POST' class="form-back px-4 lg:px-0 lg:mx-auto">
+        <form action='/admin/create-user' method='POST' class="flex flex-col form-back px-4 lg:px-0 lg:mx-auto">
             <div class="flex flex-col lg:flex-row items-center lg:space-x-16 uppercase italic mb-8 text-sm lg:text-base" id="image-in-bdd">
                 {% if user.image %}
                     <div class="rounded-full border border-white h-24 w-24 bg-cover" style="background-image: url('/img/{{ user.image }}')"></div>
@@ -32,13 +30,9 @@
             <div class="pb-4 lg:pb-8">
                 {{ field("role", "Rôle", "", "", {type: "select", data: role}) }}
             </div>
-            <div class="w-full">
-                <div class="w-full lg:w-40 lg:ml-auto">
-                    <input type='submit' class="button-submit uppercase text-base text-center" value="Ajouter"/>
-                </div>
-            </div>
+            <input type='submit' class="button-submit uppercase text-base text-center w-full lg:w-40 lg:ml-auto mt-5" value="Ajouter"/>
         </form>
-    </div>
+    </section>
 
 {% endblock %}
 

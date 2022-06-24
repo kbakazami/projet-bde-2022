@@ -5,7 +5,7 @@
 {% block nav %}
     <header>
         <nav class="relative navbar pb-px uppercase bg-gradient-to-r from-blue via-purple to-pink text-sm lg:text-base font-expletus h-16">
-            <div class="relative h-full">
+            <section class="relative h-full">
                 <div class="glowEffect"></div>
                 <div class="glowEffect"></div>
 
@@ -28,11 +28,11 @@
                             <a class="flex md:pr-5
                         md:before:w-0.5 md:before:h-6 md:before:mr-5
                         md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
-                        href="/list-event">
-                            Evenements
-                        </a>
+                               href="/list-event">
+                                Evenements
+                            </a>
 
-                        {% if admin == null %}
+                            {% if admin == null %}
 
                         <li class="nav-item">
                             <a class="flex md:pr-5
@@ -41,9 +41,9 @@
 
 
 
-                        href="/form-login">
-                            Se connecter
-                        </a>
+                               href="/form-login">
+                                Se connecter
+                            </a>
                         </li>
 
 
@@ -52,9 +52,9 @@
                         md:before:w-0.5 md:before:h-6 md:before:mr-5
                         md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
 
-                        href="/form-register">
-                            S'inscrire
-                        </a>
+                               href="/form-register">
+                                S'inscrire
+                            </a>
                         </li>
                         {% else %}
                             <li class="nav-item">
@@ -87,32 +87,30 @@
                                 </a>
                             </li>
                         {% endif %}
-
-
                     </ul>
 
                     <div class="hamburger-menu md:hidden">
-                            <svg id="burgerMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                                <defs>
-                                    <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <svg id="cross" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant2)" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                <defs>
-                                    <linearGradient id="gradiant2" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
+                        <svg id="burgerMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            <defs>
+                                <linearGradient id="gradiant" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <svg id="cross" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant2)" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            <defs>
+                                <linearGradient id="gradiant2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:rgb(255,10,108);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:rgb(45,39,255);stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
                     </div>
                 </div>
-            </div>
+            </section>
         </nav>
     </header>
 <main id="maincontent">

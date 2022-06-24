@@ -41,51 +41,58 @@
                 <a href="/participer/{{ event.id_event }}" class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110 px-3 py-px uppercase"> Participer </a>
             {% endif %}
         </div>
-        <div class="relative flex flex-row items-center space-x-4 pt-12 pb-8">
-            <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-            <h1 class="h1Gradiant">Description</h1>
-        </div>
+        <h1 class="relative pl-44 pb-8 pt-12
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+            <span class="h1Gradiant">Description</span>
+        </h1>
         {{ event.description }}
         <section class="flex flex-col">
-            <div class="relative flex flex-row items-center space-x-4 pt-10 pb-8">
-                <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
-                <h1 class="h1Gradiant">Informations</h1>
-            </div>
-            <div class="flex flex-col lg:flex-row justify-start lg:items-center lg:justify-between space-y-8 lg:space-y-0">
+            <h1 class="relative pl-44 pb-8 pt-10
+            before:absolute before:w-40 before:h-0.5 before:top-1/2 before:left-0
+            before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+                <span class="h1Gradiant">Informations</span>
+            </h1>
+            <section class="flex flex-col lg:flex-row justify-start lg:items-center lg:justify-between space-y-8 lg:space-y-0">
                 <div class="flex flex-row lg:flex-col text-center items-center text-base">
-                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
-                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
-                        <h1 class="h1Gradiant text-base">Date</h1>
-                    </div>
+                    <h2 class="relative pl-14 pb-8 pt-10 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto
+                               before:absolute before:w-10 before:h-0.5 before:top-1/2 before:left-0
+                               before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+                        <span class="h1Gradiant text-base uppercase">Date</span>
+                    </h2>
                     {{ event.date|date("d/m/Y") }}
                 </div>
                 <div class="flex flex-row lg:flex-col text-center items-center text-base">
-                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
-                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
-                        <h1 class="h1Gradiant text-base">Heure</h1>
-                    </div>
+                    <h2 class="relative pl-14 pb-8 pt-10 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto
+                               before:absolute before:w-10 before:h-0.5 before:top-1/2 before:left-0
+                               before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+                        <span class="h1Gradiant text-base uppercase">Heure</span>
+                    </h2>
                     {{ event.date|date("H:i") }}
                 </div>
                 <div class="flex flex-row lg:flex-col text-center items-center text-base">
-                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
-                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
-                        <h1 class="h1Gradiant text-base">Prix</h1>
-                    </div>
+                    <h2 class="relative pl-14 pb-8 pt-10 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto
+                               before:absolute before:w-10 before:h-0.5 before:top-1/2 before:left-0
+                               before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+                        <span class="h1Gradiant text-base uppercase">Prix</span>
+                    </h2>
                     {{ event.price }} €
                 </div>
                 <div class="flex flex-row lg:flex-col text-center items-center text-base">
-                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto">
-                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
-                        <h1 class="h1Gradiant text-base">Créé par</h1>
-                    </div>
+                    <h2 class="relative pl-14 pb-8 pt-10 lg:pt-10 lg:pb-8 w-1/2 lg:w-auto
+                               before:absolute before:w-10 before:h-0.5 before:top-1/2 before:left-0
+                               before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+                        <span class="h1Gradiant text-base uppercase">Créé par</span>
+                    </h2>
                     {{ event.nom }} {{ event.prenom }}
                 </div>
-                <div class="flex flex-col sm:flex-row lg:flex-col text-center items-center text-base">
-                    <div class="relative flex flex-row items-center lg:space-x-4 lg:pt-10 lg:pb-8 w-full sm:w-1/2 lg:w-auto">
-                        <div class="relative borderGradiantEffect w-10 opacity-90 mt-px pt-1 mr-1"></div>
-                        <h1 class="h1Gradiant text-base">Nombre de participants</h1>
-                    </div>
-                    <div class="nbrParticipant-wrapper mt-2 sm:mt-0">
+                <div class="flex flex-col sm:flex-row lg:flex-col sm:text-center sm:items-center text-base">
+                    <h2 class="relative pl-14 pb-8 pt-10 lg:pt-10 lg:pb-8 sm:w-1/2 lg:w-auto
+                               before:absolute before:w-10 before:h-0.5 before:top-1/2 before:left-0
+                               before:bg-gradient-to-r before:from-blue before:via-purple before:to-pink">
+                        <span class="h1Gradiant text-base uppercase">Nombre de participant</span>
+                    </h2>
+                    <div class="nbrParticipant-wrapper mt-2 sm:mt-0 mx-auto">
                         <div class="nbrParticipant-container">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
@@ -94,8 +101,7 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
+            </section>
         </section>
     </section>
 {% endblock %}

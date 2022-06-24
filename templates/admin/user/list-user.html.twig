@@ -2,13 +2,9 @@
 
 {% block body %}
 
-    {#    {% if message %}#}
     {{ message }}
-    {#    {% endif %}#}
-    <div class="flex flex-col pt-4 pb-24">
-            <div class="w-full text-center">
-                <h1 class="text-4xl lg:text-5xl normal-case">Utilisateurs</h1>
-            </div>
+    <section class="flex flex-col pt-4 pb-24">
+        <h1 class="text-4xl lg:text-5xl normal-case w-full text-center pb-10">Utilisateurs</h1>
             <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-3 lg:px-9 py-8 lg:py-16">
                 <form method='POST' action="/admin/recherche-crud-user" class="flex flex-row items-center space-x-4">
                     <button name="ok" id="ok">
@@ -32,7 +28,6 @@
             <table class="min-w-full border-collapse block lg:table">
                 <thead class="block lg:table-header-group">
                 <tr class="block lg:table-row absolute -top-full lg:top-auto -left-full lg:left-auto lg:relative border-b border-white uppercase">
-                    {#                    <td class="pl-9 py-2 text-left block lg:table-cell"><input type="checkbox"/></td>#}
                     <td class="w-1/12 lg:pl-9 py-2 text-left block lg:table-cell">Image</td>
                     <td class="w-1/12 py-2 text-left block lg:table-cell">Nom</td>
                     <td class="w-1/12 py-2 text-left block lg:table-cell">Prénom</td>
@@ -45,7 +40,6 @@
                 <tbody class="block lg:table-row-group">
                 {% for user in users %}
                     <tr class="block lg:table-row border-b border-t border-white px-4 mb-10 lg:mb-0 text-sm xl:text-base">
-                        {#                        <td class="lg:pl-9 py-2 text-center block lg:table-cell "><input type="checkbox"/></td>#}
                         <td class="pt-7 pb-2 lg:py-2 lg:pl-9 text-left flex flex-row justify-center lg:table-cell">
                             {% if user.image %}
                                 <div class="w-full sm:w-3/4 lg:w-24 h-full">
@@ -86,7 +80,7 @@
                         {% else %}
                         <td class="py-2 text-left lg:text-center block lg:table-cell">
                             <span class="inline-block w-1/2 lg:hidden font-expletus font-bold uppercase">Action</span>
-                            <span>Vous n'avez pas les droits</span>
+                            <span class="text-red italic">Vous n'avez pas les droits</span>
                         </td>
                         {% endif %}
                     </tr>
@@ -120,5 +114,5 @@
                     {% endif %}
                 {% endif %}
             </section>
-    </div>
+    </section>
 {% endblock %}
