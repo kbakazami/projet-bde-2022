@@ -74,11 +74,6 @@ class FormExtension extends AbstractExtension
     {
         return '<textarea type="text" placeholder="'. $placeholder .'"'. $this->getHtmlFromArray($attributes) .'>' . $value .'</textarea>';
     }
-//
-//    private function file(?string $value, array $attributes, $type, ?string $jsMethod): string
-//    {
-//        return '<input type="'. $type .'"'. $this->getHtmlFromArray($attributes) . ' value="' . $value . '" onChange="' . $jsMethod . '" />';
-//    }
 
     private function select(?string $value, array $attributes, $data): string
     {

@@ -101,6 +101,7 @@ class UserAdminController extends AbstractController
                 ->length("prenom", 2, 50)
                 ->length("password", 2, 50)
                 ->mailPattern("mail")
+                ->mailExist('mail', $userRepository)
                 ->dateTime("date")
                 ->confirmPasword("password", "confirmPassword")
                 ->select('role');
