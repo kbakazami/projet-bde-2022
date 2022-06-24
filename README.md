@@ -1,6 +1,6 @@
 #  PROJET ANNUEL - BDE
     
-## About the project
+## A propos
 
 ### Contributors
 
@@ -33,3 +33,9 @@ Compte superadmin a ne pas supprimer
 
 admin@myges.fr
 admin
+
+### Maquette Figma
+
+Vous pouvez retrouver ici le lien de la maquette Figma : https://www.figma.com/file/2ZfQsU9HbdyOlQd9VzWOEI/Projet-Annuel
+
+N'hésitez pas à nous contacter si vous rencontrez le moindre soucis.
