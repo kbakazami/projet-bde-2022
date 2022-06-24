@@ -109,4 +109,12 @@ final class UserRepository extends AbstractRepository
         $stmt->execute();
         return $stmt->fetchColumn();
     }
+
+    public function setParDefaut(int $id){
+        $stmt = $this->pdo->prepare("UPDATE event SET id_users = 0 WHERE id_users = :id ");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
 }

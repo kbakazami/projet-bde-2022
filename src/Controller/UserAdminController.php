@@ -26,6 +26,7 @@ class UserAdminController extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
+            $userId = $_SESSION['userId'];
             $users = $userRepository->findAllUserByPage($page, $nbByPage);
             $admin = $_SESSION['userRole'];
             $i = $userRepository->countRow();
@@ -34,7 +35,8 @@ class UserAdminController extends AbstractController
                 'users' => $users,
                 'admin' => $admin,
                 'i' => $i,
-                'page' => $page
+                'page' => $page,
+                'userID' => $userId
             ]);
         }
     }
@@ -50,6 +52,7 @@ class UserAdminController extends AbstractController
             echo $this->twig->render('/access.html.twig');
         } else {
 
+            $userId = $_SESSION['userId'];
             $users = $userRepository->findAllUserByPage($page, $nbByPage);
             $admin = $_SESSION['userRole'];
             $i = $userRepository->countRow();
@@ -58,7 +61,8 @@ class UserAdminController extends AbstractController
                 'users' => $users,
                 'admin' => $admin,
                 'i' => $i,
-                'page' => $page
+                'page' => $page,
+                'userID' => $userId
             ]);
         }
     }
@@ -209,6 +213,7 @@ class UserAdminController extends AbstractController
         if($_SESSION['userRole'] !== 'Admin') {
             echo $this->twig->render('/access.html.twig');
         }else {
+            $userRepository->setParDefaut($id);
             $userRepository->deleteUserParticiper($id);
             $userRepository->deleteUser($id);
             header('Location: /admin/list-user');
