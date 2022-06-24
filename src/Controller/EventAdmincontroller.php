@@ -88,13 +88,17 @@ class EventAdmincontroller extends AbstractController
     #[Route(path: "/admin/list-event", name: "admin-list-event")]
     public function listEvent(EventRepository $eventRepository)
     {
+        $nbByPage = 9;
+        $page = 0;
+
         if (!isset($_SESSION['userRole'])) {
             header('Location: /form-login');
         }
         if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
             echo $this->twig->render('/access.html.twig');
         } else {
-            $events = $eventRepository->findAllEventwithCategory();
+            $events = $eventRepository->findAllEventByPage($page, $nbByPage);
+            $i = $eventRepository->countRow();
 
             $lesEvent = [];
             
@@ -104,7 +108,39 @@ class EventAdmincontroller extends AbstractController
             }
 
             echo $this->twig->render('admin/event/list-event.html.twig',[
-                'events' => $lesEvent
+                'events' => $lesEvent,
+                'i' => $i,
+                'page' => $page
+            ]);
+        }
+    }
+
+    // Affichage de la liste d'évenement complète
+    #[Route(path: "/admin/list-event/{page}", name: "admin-list-event-page")]
+    public function listEventByPage(EventRepository $eventRepository, int $page)
+    {
+        $nbByPage = 9;
+
+        if (!isset($_SESSION['userRole'])) {
+            header('Location: /form-login');
+        }
+        if ($_SESSION['userRole'] !== 'Admin' && $_SESSION['userRole'] !== 'BDE') {
+            echo $this->twig->render('/access.html.twig');
+        } else {
+            $events = $eventRepository->findAllEventByPage($page, $nbByPage);
+
+            $i = $eventRepository->countRow();
+            $lesEvent = [];
+
+            foreach($events as $events){
+                $nb = $eventRepository->CountUserByEvent($events->id_event);
+                $lesEvent[]=["event" => $events, "nb" => $nb];
+            }
+
+            echo $this->twig->render('admin/event/list-event.html.twig',[
+                'events' => $lesEvent,
+                'i' => $i,
+                'page' => $page
             ]);
         }
     }

@@ -45,11 +45,19 @@ final class UserRepository extends AbstractRepository
     }
   }
 
-  public function findAllUser(){
-      $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id ORDER BY lastname ASC");
-      $stmt->execute();
-      return $stmt->fetchAll(PDO::FETCH_OBJ);
-  }
+    public function findAllUser(){
+        $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id ORDER BY lastname ASC");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function findAllUserByPage($page, $limit){
+        $stmt = $this->pdo->prepare("SELECT users.*, roles.title FROM `users` INNER JOIN roles ON users.id_role = roles.id ORDER BY lastname ASC LIMIT :limit OFFSET :offset");
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $page, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
     public function findUserById(int $id){
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = :id");
@@ -93,5 +101,20 @@ final class UserRepository extends AbstractRepository
             'recherche' => "%".$recherche."%"
         ]);
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function countRow(){
+        $pdo = "SELECT COUNT(*) FROM users";
+        $stmt = $this->pdo->prepare($pdo);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+
+    public function setParDefaut(int $id){
+        $stmt = $this->pdo->prepare("UPDATE event SET id_users = 0 WHERE id_users = :id ");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
     }
 }
