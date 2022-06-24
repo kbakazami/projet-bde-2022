@@ -10,8 +10,8 @@
                 <div class="glowEffect"></div>
 
                 <div class=" flex flex-row justify-between items-center h-full w-full bg-black px-8 py-2.5 lg:px-20 lg:py-5 opacity-90">
-                    <div class="nav-logo">
-                        <p>Logo</p>
+                    <div class="nav-logo h-10 w-7">
+                        <img src="/img/logo.png" alt="Aibyu">
                     </div>
 
                     <ul class="nav-menu flex flex-col space-y-12 pt-8
@@ -31,7 +31,7 @@
                         href="/list-event">
                             Evenements
                         </a>
-                            
+
                         {% if admin == null %}
 
                         <li class="nav-item">
@@ -66,7 +66,17 @@
                                     Mon compte
                                 </a>
                             </li>
+                            {% if admin == "Admin" or admin == "BDE" %}
+                                <li class="nav-item">
+                                    <a class="flex md:pr-5
+                        md:before:w-0.5 md:before:h-6 md:before:mr-5
+                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
 
+                                       href="/admin/list-event">
+                                        Admin
+                                    </a>
+                                </li>
+                            {% endif %}
                             <li class="nav-item">
                                 <a class="flex md:pr-5
                         md:before:w-0.5 md:before:h-6 md:before:mr-5
@@ -78,18 +88,8 @@
                             </li>
                         {% endif %}
 
-                        {% if admin == "Admin" or admin == "BDE" %}
-                        <li class="nav-item">
-                            <a class="flex md:pr-5
-                        md:before:w-0.5 md:before:h-6 md:before:mr-5
-                        md:before:bg-gradient-to-b md:before:from-blue md:before:via-purple md:before:to-pink"
 
-                               href="/admin/list-event">
-                                Admin
-                            </a>
-                        </li>
                     </ul>
-                    {% endif %}
 
                     <div class="hamburger-menu md:hidden">
                             <svg id="burgerMenu" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="url(#gradiant)" stroke-width="2">
