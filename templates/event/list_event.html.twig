@@ -9,31 +9,30 @@
                 <div class="relative borderGradiantEffect w-40 opacity-90 mt-px pt-1 mr-1"></div>
             </div>
 
-                <form action='/recherche_home' method='POST'
-                    class=" w-full flex flex-col justify-center items-center text-center mx-auto form-search pt-4 lg:pt-8">
-                    <div class="flex flex-row w-full space-x-16 items-center">
-                    {{ field("recherche", "Recherche","Rechercher...") }}
-                    {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
-                    {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
-                    </div>
-                <span class="w-50 bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:scale-110">
-                  <button class="px-6 py-1 uppercase">Rechercher</button>
-                </span>
-                </form>
+            <form action='/recherche_home' method='POST'
+                class=" w-full flex flex-col justify-center items-center text-center mx-auto form-search pt-4 lg:pt-8">
+                <div class="flex flex-row w-full space-x-16 items-center">
+                {{ field("recherche", "Recherche","Rechercher...") }}
+                {{ field("category", "Catégorie", "", "", {type: "select", data: category}) }}
+                {{ field("prix_max", "Prix_max","Prix maximum","",{type: "number"}) }}
+                </div>
+            <span class="w-50 bg-gradient-to-t from-blue via-purple to-pink rounded-md text-center transition duration-300 hover:scale-110">
+                <button class="px-6 py-1 uppercase">Rechercher</button>
+            </span>
+            </form>
 
-                {% if date == 1 %}
-                    <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
-                              <a href="/event-date/{{date}}" class="px-6 py-1 uppercase">Date &uarr;</a>
-                            </span>
-                {% else %}
-                    <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
-                              <a href="/event-date/{{date}}" class="px-6 py-1 uppercase">Date &darr;</a>
-                            </span>
-                {% endif %}
+            {% if date == 1 %}
+                <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
+                    <a href="/event-date/{{date}}" class="px-6 py-1 uppercase">Date &uarr;</a>
+                </span>
+            {% else %}
+                <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:scale-110">
+                    <a href="/event-date/{{date}}" class="px-6 py-1 uppercase">Date &darr;</a>
+                </span>
+            {% endif %}
             <div class="grid grid-cols-1 {% if events|length > 1 %} lg:grid-cols-2 {% endif %}{% if events|length > 2 %}xl:grid-cols-3 {% endif %}pt-7 px-4 lg:px-0 gap-x-20 pt-10 lg:pt-20 justify-center items-center"
                 {% for event in events %}
                     {% if event.event.id_cat != 0 %}
-
                         <div class="event-wrapper mb-14 lg:mb-28 w-1/2">
                             <div class="event-container">
                                 <div class="event-container-black">
@@ -49,22 +48,30 @@
 
                                                 <a href="/detail-category/{{ event.event.id_cat }}">
                                                     <div>
-                                  <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color }}">
-                                    {{ event.event.titre_category }}
-                                  </span>
+                                                        <span class=" text-sm xl:text-base text-center rounded-md py-px px-5 text-black " style="background-color: {{ event.event.color }}">
+                                                            {{ event.event.titre_category }}
+                                                        </span>
                                                     </div>
                                                 </a>
                                                 <span class="uppercase text-sm xl:text-lg italic pt-2">{{ event.event.date|date("d/m/Y") }}</span>
                                                 <span class="before:h-0.5 before:w-24 before:bg-white before:absolute before:top-0 before:left-0
-                                         after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
-                                         py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
-                              {{event.event.description|striptags|length > 150 ? event.event.description|striptags|slice(0, 150) ~ '...' : event.event.description|striptags}}
-                            </span>
-                                                <div class="flex flex-row items-center justify-end mt-2">
+                                                after:h-0.5 after:w-24 after:bg-white after:absolute after:bottom-0 after:left-0
+                                                py-2 relative min-h-34 max-h-34 text-xs sm:text-sm 2xl:text-base">
+                                                    {{event.event.description|striptags|length > 150 ? event.event.description|striptags|slice(0, 150) ~ '...' : event.event.description|striptags}}
+                                                </span>
+                                                <div class="flex flex-row items-center justify-between mt-2 ">
+                                                    <div class="nbrParticipant-wrapper">
+                                                        <div class="nbrParticipant-container">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-px" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                                                            </svg>
+                                                            <span>{{event.nb.nombre}}</span>
+                                                        </div>
+                                                    </div>
                                                     {% if event.event.date %}
                                                         <span class="bg-gradient-to-t from-blue via-purple to-pink rounded-md transition duration-300 hover:hover:scale-110">
-                              <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
-                            </span>
+                                                            <a href="/detail-event/{{ event.event.id_event }}" class="px-6 py-1 uppercase">Plus</a>
+                                                        </span>
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -75,7 +82,6 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-
             </div>
         </div>
     </div>
